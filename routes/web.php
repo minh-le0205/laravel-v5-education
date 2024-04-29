@@ -19,9 +19,23 @@ Route::group(['prefix' => $prefixAdmin], function () {
     $prefix = 'slider';
     Route::group(['prefix' => $prefix], function () use ($prefix) {
         $controller = ucfirst($prefix) . 'Controller@';
-        Route::get('/', $controller . 'index');
-        Route::get('/edit/{id}', $controller . 'form')->where('id', '[0-9]+');
-        Route::get('/delete/{id}', $controller . 'delete')->where('id', '[0-9]+');
-        Route::get('/change-status-{status}/{id}', $controller . 'changeStatus')->where('id', '[0-9]+');
+        Route::get('/', [
+            'as' => $prefix,
+            'uses' => $controller . 'index'
+        ]);
+        Route::get('/form/{id}', [
+            'as' => $prefix . '/form',
+            'uses' => $controller . 'form'
+        ])->where('id', '[0-9]+');
+
+        Route::get('/delete/{id}', [
+            'as' => $prefix . '/delete',
+            'uses' => $controller . 'delete'
+        ])->where('id', '[0-9]+');
+
+        Route::get('/change-status-{status}/{id}', [
+            'as' => $prefix . '/change-status',
+            'uses' => $controller . 'changeStatus'
+        ])->where('id', '[0-9]+');
     });
 });
