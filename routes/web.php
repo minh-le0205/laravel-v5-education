@@ -15,6 +15,16 @@ $prefixAdmin = config("zvn.url.admin");
 
 Route::group(['prefix' => $prefixAdmin], function () {
 
+    // Dashboard Group
+    $prefix = 'dashboard';
+    Route::group(['prefix' => $prefix], function () use ($prefix) {
+        $controller = ucfirst($prefix) . 'Controller@';
+        Route::get('/', [
+            'as' => $prefix,
+            'uses' => $controller . 'index'
+        ]);
+    });
+
     // Slider Group
     $prefix = 'slider';
     Route::group(['prefix' => $prefix], function () use ($prefix) {
