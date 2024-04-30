@@ -12,18 +12,18 @@ class SliderController extends Controller
 {
   private $pathViewController = "admin.slider.";
   private $controllerName = 'slider';
+  private $model;
 
   public function __construct()
   {
+    $this->model = new MainModel();
     view()->share('controllerName', $this->controllerName);
   }
   public function index()
   {
-    $mainModel = new MainModel();
-    $items = $mainModel->getListItems(null, ['task' => 'admin-list-item']);
+    $items = $this->model->getListItems(null, ['task' => 'admin-list-item']);
     return view($this->pathViewController . "index", [
-      "message" => "SliderController - index",
-      "id" => ''
+      "items" => $items
     ]);
   }
 
