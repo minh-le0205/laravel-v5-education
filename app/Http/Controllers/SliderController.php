@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\SliderModel;
+use App\Models\SliderModel as MainModel;
 
 
 class SliderController extends Controller
@@ -19,6 +19,8 @@ class SliderController extends Controller
   }
   public function index()
   {
+    $mainModel = new MainModel();
+    $items = $mainModel->getListItems(null, ['task' => 'admin-list-item']);
     return view($this->pathViewController . "index", [
       "message" => "SliderController - index",
       "id" => ''
