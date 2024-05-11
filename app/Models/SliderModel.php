@@ -26,7 +26,8 @@ class SliderModel extends Model
                 'created_by',
                 'modified',
                 'modified_by'
-            )->get();
+            )
+                ->get();
         }
 
         return $results;
