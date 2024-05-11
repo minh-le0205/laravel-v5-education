@@ -4,7 +4,7 @@
             <thead>
                 <tr class="headings">
                     <th class="column-title text-center">ID</th>
-                    <th class="column-title text-center">Slider Name</th>
+                    <th class="column-title text-center">Slider Info</th>
                     <th class="column-title text-center">Image</th>
                     <th class="column-title text-center">Trạng thái</th>
                     <th class="column-title text-center">Tạo mới</th>
@@ -17,8 +17,12 @@
                     @foreach ($items as $item)
                         <tr class="even pointer">
                             <td class="text-center">{{ $item->id }}</td>
-                            <td class="text-center">{{ $item->name }}</td>
-                            <td class="text-center" style="max-width: 30em">
+                            <td style="max-width: 25em;">
+                                <p><strong>Name: </strong>{{ $item->name }}</p>
+                                <p><strong>Description: </strong>{{ $item->description }}</p>
+                                <p><strong>Link: </strong>{{ $item->link }}</p>
+                            </td>
+                            <td class="text-center" style="max-width: 25em;">
                                 <img style="vertical-align: bottom;" width="100%" height="100%"
                                     src="{{ asset("admin/images/sliders/$item->thumb") }}" alt="">
                             </td>
