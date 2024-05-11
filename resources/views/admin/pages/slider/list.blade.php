@@ -17,12 +17,15 @@
             </thead>
             <tbody>
                 @if (count($items) > 0)
-                    @foreach ($items as $item)
+                    @foreach ($items as $key => $item)
                         @php
+                            $rowClass = $key % 2 == 0 ? 'even' : 'odd';
+                            $id = $item->id;
+                            $status = Template::showItemStatus($controllerName, $id, $item->status);
                             $createdHistory = Template::showItemHistory($item->created_by, $item->created);
                             $modifiedHistory = Template::showItemHistory($item->modified_by, $item->modified);
                         @endphp
-                        <tr class="even pointer">
+                        <tr class="{{ $rowClass }} pointer">
                             <td class="text-center">{{ $item->id }}</td>
                             <td style="max-width: 25em;">
                                 <p><strong>Name: </strong>{{ $item->name }}</p>
@@ -34,8 +37,8 @@
                                     src="{{ asset("admin/images/sliders/$item->thumb") }}" alt="">
                             </td>
                             </td>
-                            <td class="text-center"><a href="/change-status-active/{{ $item->id }}" type="button"
-                                    class="btn btn-round btn-success">{{ $item->status }}</a>
+                            <td class="text-center">
+                                {!! $status !!}
                             </td>
                             <td>
                                 {!! $createdHistory !!}
