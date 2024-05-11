@@ -34,12 +34,12 @@ Route::group(['prefix' => $prefixAdmin], function () {
             'uses' => $controller . 'index'
         ]);
         Route::get('/form/{id}', [
-            'as' => $prefix . '/form',
+            'as' => 'form',
             'uses' => $controller . 'form'
         ])->where('id', '[0-9]+');
 
         Route::get('/delete/{id}', [
-            'as' => $prefix . '/delete',
+            'as' => 'delete',
             'uses' => $controller . 'delete'
         ])->where('id', '[0-9]+');
 
