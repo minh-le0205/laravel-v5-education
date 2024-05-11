@@ -1,4 +1,7 @@
 <div class="x_content">
+    @php
+        use App\Helpers\Template;
+    @endphp
     <div class="table-responsive">
         <table class="table table-striped jambo_table bulk_action">
             <thead>
@@ -15,6 +18,10 @@
             <tbody>
                 @if (count($items) > 0)
                     @foreach ($items as $item)
+                        @php
+                            $createdHistory = Template::showItemHistory($item->created_by, $item->created);
+                            $modifiedHistory = Template::showItemHistory($item->modified_by, $item->modified);
+                        @endphp
                         <tr class="even pointer">
                             <td class="text-center">{{ $item->id }}</td>
                             <td style="max-width: 25em;">
@@ -31,12 +38,10 @@
                                     class="btn btn-round btn-success">{{ $item->status }}</a>
                             </td>
                             <td>
-                                <p><i class="fa fa-user"></i> {{ $item->created_by }}</p>
-                                <p><i class="fa fa-clock-o"></i> {{ $item->created }}</p>
+                                {!! $createdHistory !!}
                             </td>
                             <td>
-                                <p><i class="fa fa-user"></i> {{ $item->modified_by }}</p>
-                                <p><i class="fa fa-clock-o"></i> {{ $item->modified }}</p>
+                                {!! $modifiedHistory !!}
                             </td>
                             <td class="last">
                                 <div class="zvn-box-btn-filter"><a href="/form/{{ $item->id }}" type="button"
