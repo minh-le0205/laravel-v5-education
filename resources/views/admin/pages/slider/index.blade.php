@@ -84,7 +84,7 @@
                     </ul>
                     <div class="clearfix"></div>
                 </div>
-                @include('admin.slider.list')
+                @include('admin.pages.slider.list')
             </div>
         </div>
     </div>

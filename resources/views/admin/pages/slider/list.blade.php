@@ -44,11 +44,7 @@
                         </tr>
                     @endforeach
                 @else
-                    <tr>
-                        <td colspan="6" class="text-center">
-                            No Data
-                        </td>
-                    </tr>
+                    @include('admin.templates.list_empty', ['colspans' => 6])
                 @endif
             </tbody>
         </table>
