@@ -27,7 +27,7 @@ class SliderModel extends Model
                 'modified',
                 'modified_by'
             )
-                ->get();
+                ->paginate($params['pagination']['totalItemsPerPage']);
         }
 
         return $results;
