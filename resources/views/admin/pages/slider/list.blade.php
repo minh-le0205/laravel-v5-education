@@ -22,6 +22,7 @@
                             $rowClass = $key % 2 == 0 ? 'even' : 'odd';
                             $id = $item->id;
                             $status = Template::showItemStatus($controllerName, $id, $item->status);
+                            $thumb = Template::showItemThumb($controllerName, $item->thumb, $item->name);
                             $createdHistory = Template::showItemHistory($item->created_by, $item->created);
                             $modifiedHistory = Template::showItemHistory($item->modified_by, $item->modified);
                         @endphp
@@ -33,8 +34,7 @@
                                 <p><strong>Link: </strong>{{ $item->link }}</p>
                             </td>
                             <td class="text-center" style="max-width: 25em;">
-                                <img style="vertical-align: bottom;" width="100%" height="100%"
-                                    src="{{ asset("admin/images/sliders/$item->thumb") }}" alt="">
+                                {!! $thumb !!}
                             </td>
                             </td>
                             <td class="text-center">

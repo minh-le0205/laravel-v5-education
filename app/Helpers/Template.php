@@ -38,4 +38,17 @@ class Template
 
         return $xhtml;
     }
+
+    public static function showItemThumb($controllerName, $thumbName, $thumbAlt)
+    {
+        $xhtml = sprintf(
+            '<img style="vertical-align: bottom;" width="100%%" height="100%%" src="%s" alt="%s">',
+            asset("images/$controllerName/$thumbName"),
+            $thumbAlt
+        );
+
+
+
+        return $xhtml;
+    }
 }
