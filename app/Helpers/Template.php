@@ -47,7 +47,44 @@ class Template
             $thumbAlt
         );
 
+        return $xhtml;
+    }
 
+    public static function showButtonAction($controllerName, $id)
+    {
+        $tmpButton = [
+            'edit' => ['class' => 'btn-success', 'title' => 'Edit', 'icon' => 'fa-pencil', 'route-name' => $controllerName . '/form'],
+            'delete' => ['class' => 'btn-danger btn-delete', 'title' => 'Delete', 'icon' => 'fa-trash', 'route-name' => $controllerName . '/delete'],
+            'info' => ['class' => 'btn-info', 'title' => 'View', 'icon' => 'fa-trash', 'route-name' => $controllerName . '/delete'],
+        ];
+
+        $buttonInArea = [
+            'default' => ['edit', 'delete'],
+            'slider' => ['edit', 'delete'],
+        ];
+
+        $listBtn = array_key_exists($controllerName, $buttonInArea) ? $buttonInArea[$controllerName] : $buttonInArea['default'];
+
+
+        $xhtml = '<div class="zvn-box-btn-filter">';
+
+        foreach ($listBtn as $element) {
+            $currentBtn = $tmpButton[$element];
+            $link = route($currentBtn['route-name'], ['id' => $id]);
+            $xhtml .= sprintf(
+                '<a href="%s" type="button" class="btn btn-icon %s"
+                data-toggle="tooltip" data-placement="top" data-original-title="%s">
+                <i class="fa %s"></i>
+                </a>',
+                $link,
+                $currentBtn['class'],
+                $currentBtn['title'],
+                $currentBtn['icon'],
+            );
+        }
+
+
+        $xhtml .= '</div>';
 
         return $xhtml;
     }

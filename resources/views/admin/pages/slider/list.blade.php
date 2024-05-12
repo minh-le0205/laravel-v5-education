@@ -25,6 +25,7 @@
                             $thumb = Template::showItemThumb($controllerName, $item->thumb, $item->name);
                             $createdHistory = Template::showItemHistory($item->created_by, $item->created);
                             $modifiedHistory = Template::showItemHistory($item->modified_by, $item->modified);
+                            $listBtn = Template::showButtonAction($controllerName, $id);
                         @endphp
                         <tr class="{{ $rowClass }} pointer">
                             <td class="text-center">{{ $item->id }}</td>
@@ -47,16 +48,7 @@
                                 {!! $modifiedHistory !!}
                             </td>
                             <td class="last">
-                                <div class="zvn-box-btn-filter"><a href="/form/{{ $item->id }}" type="button"
-                                        class="btn btn-icon btn-success" data-toggle="tooltip" data-placement="top"
-                                        data-original-title="Edit">
-                                        <i class="fa fa-pencil"></i>
-                                    </a><a href="/delete/{{ $item->id }}" type="button"
-                                        class="btn btn-icon btn-danger btn-delete" data-toggle="tooltip"
-                                        data-placement="top" data-original-title="Delete">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                </div>
+                                {!! $listBtn !!}
                             </td>
                         </tr>
                     @endforeach
