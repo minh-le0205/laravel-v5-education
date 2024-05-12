@@ -26,12 +26,12 @@ class Template
             'inactive' => ['class' => 'btn-warning', 'name' => 'Inactive'],
         ];
 
-        $route = route('status', ['status' => $status, 'id' => $id]);
+        $route = route($controllerName . '/status', ['status' => $status, 'id' => $id]);
 
         $xhtml = sprintf(
             '<a href="%s" type="button"
             class="btn btn-round %s">%s</a>',
-            $controllerName . $route,
+            $route,
             $tmplStatus[$status]['class'],
             $tmplStatus[$status]['name']
         );

@@ -34,17 +34,17 @@ Route::group(['prefix' => $prefixAdmin], function () {
             'uses' => $controller . 'index'
         ]);
         Route::get('/form/{id}', [
-            'as' => 'form',
+            'as' => $prefix . '/form',
             'uses' => $controller . 'form'
         ])->where('id', '[0-9]+');
 
         Route::get('/delete/{id}', [
-            'as' => 'delete',
+            'as' => $prefix . '/delete',
             'uses' => $controller . 'delete'
         ])->where('id', '[0-9]+');
 
         Route::get('/change-status-{status}/{id}', [
-            'as' => 'status',
+            'as' => $prefix . '/status',
             'uses' => $controller . 'changeStatus'
         ])->where('id', '[0-9]+');
     });
