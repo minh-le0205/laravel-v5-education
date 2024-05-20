@@ -49,16 +49,9 @@ class Template
 
     public static function showButtonAction($controllerName, $id)
     {
-        $tmpButton = [
-            'edit' => ['class' => 'btn-success', 'title' => 'Edit', 'icon' => 'fa-pencil', 'route-name' => $controllerName . '/form'],
-            'delete' => ['class' => 'btn-danger btn-delete', 'title' => 'Delete', 'icon' => 'fa-trash', 'route-name' => $controllerName . '/delete'],
-            'info' => ['class' => 'btn-info', 'title' => 'View', 'icon' => 'fa-trash', 'route-name' => $controllerName . '/delete'],
-        ];
+        $tmpButton = Config::get('zvn.template.button');
 
-        $buttonInArea = [
-            'default' => ['edit', 'delete'],
-            'slider' => ['edit', 'delete'],
-        ];
+        $buttonInArea = Config::get('zvn.config.button');
 
         $listBtn = array_key_exists($controllerName, $buttonInArea) ? $buttonInArea[$controllerName] : $buttonInArea['default'];
 
@@ -67,7 +60,7 @@ class Template
 
         foreach ($listBtn as $element) {
             $currentBtn = $tmpButton[$element];
-            $link = route($currentBtn['route-name'], ['id' => $id]);
+            $link = route($controllerName . $currentBtn['route-name'], ['id' => $id]);
             $xhtml .= sprintf(
                 '<a href="%s" type="button" class="btn btn-icon %s"
                 data-toggle="tooltip" data-placement="top" data-original-title="%s">
@@ -115,6 +108,57 @@ class Template
             }
         }
 
+
+        return $xhtml;
+    }
+
+    public static function showSearchArea($controllerName)
+    {
+        $xhtml = null;
+
+        $tmpFields = Config::get('zvn.template.search');
+
+        $moduleFields = Config::get('zvn.config.search');
+
+        $controllerFields = array_key_exists($controllerName, $moduleFields) ? $moduleFields[$controllerName] : $moduleFields['default'];
+
+        $xhtmlFields = null;
+
+        foreach ($controllerFields as $field) {
+            $xhtmlFields .= sprintf(
+                '
+                    <li><a href="#" class="select-field" data-field="%s">%s</a></li>
+                ',
+                $field,
+                $tmpFields[$field]['name']
+            );
+        }
+
+
+        $xhtml = sprintf(
+            '
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle btn-active-field"
+                        data-toggle="dropdown" aria-expanded="false">
+                        Search by All <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        %s
+                    </ul>
+                </div>
+                <input type="text" class="form-control" name="search_value" value="">
+                <span class="input-group-btn">
+                    <button id="btn-clear" type="button" class="btn btn-success"
+                        style="margin-right: 0px">Xóa tìm kiếm</button>
+                    <button id="btn-search" type="button" class="btn btn-primary">Tìm
+                        kiếm</button>
+                </span>
+                <input type="hidden" name="search_field" value="all">
+            </div>
+            ',
+            $xhtmlFields
+        );
 
         return $xhtml;
     }
