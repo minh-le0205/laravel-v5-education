@@ -21,10 +21,7 @@ class Template
 
     public static function showItemStatus($controllerName, $id, $status)
     {
-        $tmplStatus = [
-            'active' => ['class' => 'btn-success', 'name' => 'Active'],
-            'inactive' => ['class' => 'btn-warning', 'name' => 'Inactive'],
-        ];
+        $tmplStatus = Config::get('zvn.template.status');
 
         $route = route($controllerName . '/status', ['status' => $status, 'id' => $id]);
 
@@ -85,6 +82,39 @@ class Template
 
 
         $xhtml .= '</div>';
+
+        return $xhtml;
+    }
+
+    public static function showButtonFilter($controllerName, $countListStatus, $currentFilterStatus)
+    {
+        $xhtml = null;
+
+        $tmpStatusClass = Config::get('zvn.template.status');
+
+        if ($countListStatus > 0) {
+            array_unshift($countListStatus, [
+                'user_count' => array_sum(array_column($countListStatus, 'user_count')),
+                'status' => 'all'
+            ]);
+            foreach ($countListStatus as $value) {
+                $statusName = array_key_exists($value['status'], $tmpStatusClass) ? $tmpStatusClass[$value['status']]['name'] : $tmpStatusClass['default']['name'];
+                $link = route($controllerName) . '?filter_status=' . $value['status'];
+                $currentActiveClass = ($currentFilterStatus == $value['status']) ? 'btn-primary' : 'btn-info';
+                $xhtml .= sprintf(
+                    '
+                <a href="%s" type="button" class="btn %s">
+                                %s <span class="badge bg-white">%s</span>
+                            </a>
+                ',
+                    $link,
+                    $currentActiveClass,
+                    $statusName,
+                    $value['user_count'],
+                );
+            }
+        }
+
 
         return $xhtml;
     }
