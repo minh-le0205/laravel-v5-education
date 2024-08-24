@@ -35,7 +35,7 @@ return [
     'config' => [
         'search' => [
             'default' => ['id', 'all'],
-            'slider' => ['all', 'description', 'link'],
+            'slider' => ['all', 'id', 'name', 'description', 'link'],
         ],
         'button' => [
             'default' => ['edit', 'delete'],

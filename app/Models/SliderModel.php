@@ -39,7 +39,9 @@ class SliderModel extends Model
                 $query->where('status', $params['filter']['status']);
             }
             if ($params['search']['field'] == 'all') {
-                // $query->where('status', $params['filter']['status']);
+                foreach ($this->fieldSearchAccepted as $column) {
+                    $query->orWhere($column, "LIKE", "%" . $params['search']['value'] . "%");
+                }
             } else if (in_array($params['search']['field'], $this->fieldSearchAccepted)) {
                 $query->where($params['search']['field'], "LIKE", "%" . $params['search']['value'] . "%");
             }

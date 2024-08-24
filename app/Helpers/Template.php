@@ -135,6 +135,7 @@ class Template
         }
 
 
+
         $xhtml = sprintf(
             '
             <div class="input-group">
