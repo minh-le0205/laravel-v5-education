@@ -38,12 +38,14 @@ class SliderModel extends Model
             if ($params['filter']['status'] != 'all') {
                 $query->where('status', $params['filter']['status']);
             }
-            if ($params['search']['field'] == 'all') {
-                foreach ($this->fieldSearchAccepted as $column) {
-                    $query->orWhere($column, "LIKE", "%" . $params['search']['value'] . "%");
+            if ($params['search']['field'] != "") {
+                if ($params['search']['field'] == 'all') {
+                    foreach ($this->fieldSearchAccepted as $column) {
+                        $query->orWhere($column, "LIKE", "%" . $params['search']['value'] . "%");
+                    }
+                } else if (in_array($params['search']['field'], $this->fieldSearchAccepted)) {
+                    $query->where($params['search']['field'], "LIKE", "%" . $params['search']['value'] . "%");
                 }
-            } else if (in_array($params['search']['field'], $this->fieldSearchAccepted)) {
-                $query->where($params['search']['field'], "LIKE", "%" . $params['search']['value'] . "%");
             }
             $results = $query->orderBy('id', 'desc')
                 ->paginate($params['pagination']['totalItemsPerPage']);
@@ -56,11 +58,21 @@ class SliderModel extends Model
     {
         $results = null;
         if ($options['task'] == 'admin-list-item') {
-            $results = self::select(
+            $query = $this::groupBy("status")->select(
                 DB::raw('count(*) as user_count, status')
-            )
-                ->groupBy('status')
-                ->get()->toArray();
+            );
+            if ($params['search']['field'] != "") {
+                if ($params['search']['field'] == 'all') {
+                    foreach ($this->fieldSearchAccepted as $column) {
+                        $query->orWhere($column, "LIKE", "%" . $params['search']['value'] . "%");
+                    }
+                } else if (in_array($params['search']['field'], $this->fieldSearchAccepted)) {
+                    $query->where($params['search']['field'], "LIKE", "%" . $params['search']['value'] . "%");
+                }
+            }
+
+            $results = $query->get()->toArray();
+
         }
         return $results;
     }
