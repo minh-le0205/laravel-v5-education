@@ -11,6 +11,13 @@ class SliderModel extends Model
     public $timestamps = false;
     const CREATED_AT = 'created';
     const UPDATED_AT = 'modified';
+    protected $fieldSearchAccepted = [
+        'id',
+        'name',
+        'description',
+        'link',
+    ];
+
 
     public function getListItems($params, $options)
     {
@@ -30,6 +37,11 @@ class SliderModel extends Model
             );
             if ($params['filter']['status'] != 'all') {
                 $query->where('status', $params['filter']['status']);
+            }
+            if ($params['search']['field'] == 'all') {
+                // $query->where('status', $params['filter']['status']);
+            } else if (in_array($params['search']['field'], $this->fieldSearchAccepted)) {
+                $query->where($params['search']['field'], "LIKE", "%" . $params['search']['value'] . "%");
             }
             $results = $query->orderBy('id', 'desc')
                 ->paginate($params['pagination']['totalItemsPerPage']);

@@ -22,7 +22,7 @@ return [
             'username' => ['name' => 'Search By Username'],
             'full_name' => ['name' => 'Search By Full Name'],
             'email' => ['name' => 'Search By Email'],
-            'description' => ['name' => 'Search By description'],
+            'description' => ['name' => 'Search By Description'],
             'link' => ['name' => 'Search By Link'],
             'content' => ['name' => 'Search By Content'],
         ],
@@ -35,7 +35,7 @@ return [
     'config' => [
         'search' => [
             'default' => ['id', 'all'],
-            'slider' => ['id', 'all', 'username'],
+            'slider' => ['all', 'description', 'link'],
         ],
         'button' => [
             'default' => ['edit', 'delete'],
