@@ -18,7 +18,7 @@ class SliderController extends Controller
     public function __construct()
     {
         $this->model = new MainModel();
-        $this->params['pagination']['totalItemsPerPage'] = 1;
+        $this->params['pagination']['totalItemsPerPage'] = 5;
         view()->share('controllerName', $this->controllerName);
     }
     public function index(Request $request)
@@ -53,13 +53,11 @@ class SliderController extends Controller
 
     public function changeStatus(Request $request)
     {
-        $id = $request->id;
-        $status = $request->status;
+        $params["currentStatus"] = $request->status;
+        $params["id"] = $request->id;
 
-        return view($this->pathViewController . 'changeStatus', [
-            "message" => "SliderController - changeStatus",
-            "id" => $id,
-            "status" => $status,
-        ]);
+        $this->model->saveItem($params, ['task' => 'change-status']);
+
+        return redirect()->route($this->controllerName);
     }
 }
