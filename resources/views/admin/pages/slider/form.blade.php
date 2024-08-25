@@ -3,14 +3,7 @@
     use App\Helpers\Template;
 @endphp
 @section('content')
-    <div class="page-header zvn-page-header clearfix">
-        <div class="zvn-page-header-title">
-            <h3>Quản lý slider</h3>
-        </div>
-        <div class="zvn-add-new pull-right">
-            <a href="{{ route($controllerName) }}" class="btn btn-success"><i class="fa fa-plus-circle"></i> Quay về</a>
-        </div>
-    </div>
+    @include('admin.templates.page_header', ['pageIndex' => false])
     @include('admin.templates.zvn_notify')
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
