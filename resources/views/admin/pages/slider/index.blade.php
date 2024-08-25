@@ -14,6 +14,7 @@
             <a href="/form" class="btn btn-success"><i class="fa fa-plus-circle"></i> Thêm mới</a>
         </div>
     </div>
+    @include('admin.templates.zvn_notify')
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
