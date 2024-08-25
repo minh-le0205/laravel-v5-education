@@ -33,7 +33,7 @@ Route::group(['prefix' => $prefixAdmin], function () {
             'as' => $prefix,
             'uses' => $controller . 'index'
         ]);
-        Route::get('/form/{id}', [
+        Route::get('/form/{id?}', [
             'as' => $prefix . '/form',
             'uses' => $controller . 'form'
         ])->where('id', '[0-9]+');

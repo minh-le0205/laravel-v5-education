@@ -38,8 +38,7 @@ class SliderController extends Controller
     public function form($id = null)
     {
         return view($this->pathViewController . 'form', [
-            "message" => "SliderController - form",
-            "id" => $id
+
         ]);
     }
 
