@@ -85,4 +85,11 @@ class SliderModel extends Model
                 ->update(['status' => $status]);
         }
     }
+
+    public function deleteItem($params, $options)
+    {
+        if ($options['task'] == 'delete-item') {
+            self::where('id', $params['id'])->delete();
+        }
+    }
 }

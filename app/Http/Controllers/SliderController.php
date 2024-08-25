@@ -43,12 +43,13 @@ class SliderController extends Controller
         ]);
     }
 
-    public function delete($id)
+    public function delete(Request $request)
     {
-        return view($this->pathViewController . 'delete', [
-            "message" => "SliderController - delete",
-            "id" => $id
-        ]);
+        $params["id"] = $request->id;
+
+        $this->model->deleteItem($params, ['task' => 'delete-item']);
+
+        return redirect()->route($this->controllerName)->with('zvn_notify', "Xóa phần tử thành công");
     }
 
     public function changeStatus(Request $request)
