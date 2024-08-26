@@ -65,4 +65,9 @@ class SliderController extends Controller
 
         return redirect()->route($this->controllerName)->with('zvn_notify', "Cập nhật trạng thái thành công");
     }
+
+    public function save(Request $request)
+    {
+
+    }
 }

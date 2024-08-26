@@ -38,6 +38,11 @@ Route::group(['prefix' => $prefixAdmin], function () {
             'uses' => $controller . 'form'
         ])->where('id', '[0-9]+');
 
+        Route::post('/save', [
+            'as' => $prefix . '/save',
+            'uses' => $controller . 'save'
+        ]);
+
         Route::get('/delete/{id}', [
             'as' => $prefix . '/delete',
             'uses' => $controller . 'delete'

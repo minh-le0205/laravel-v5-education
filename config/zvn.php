@@ -9,6 +9,12 @@ return [
         "short_time" => "d/m/Y"
     ],
     'template' => [
+        'form_label' => [
+            'class' => 'control-label col-md-3 col-sm-3 col-xs-12'
+        ],
+        'form_input' => [
+            'class' => 'form-control col-md-6 col-xs-12'
+        ],
         'status' => [
             'active' => ['class' => 'btn-primary', 'name' => 'Kích hoạt'],
             'inactive' => ['class' => 'btn-warning', 'name' => 'Chưa kích hoạt'],
