@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SliderModel as MainModel;
+use App\Http\Requests\SliderRequest as MainRequest;
 
 
 class SliderController extends Controller
@@ -66,7 +67,7 @@ class SliderController extends Controller
         return redirect()->route($this->controllerName)->with('zvn_notify', "Cập nhật trạng thái thành công");
     }
 
-    public function save(Request $request)
+    public function save(MainRequest $request)
     {
 
     }
