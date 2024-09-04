@@ -27,6 +27,8 @@ class SliderRequest extends FormRequest
             'name' => 'required|min:5', // name unique: posts max:255'
             'description' => 'required',
             'link' => 'bail|required|min:5|url',
+            'status' => 'bail|in:active,inactive',
+            'thumb' => 'bail|required|image|max:100'
         ];
     }
 

@@ -16,7 +16,7 @@
     $elements = [
         [
             'label' => Form::label('name', 'Name', ['class' => $formLabelClass]),
-            'element' => Form::text('email', $item['name'] ?? '', ['class' => $formInputClass]),
+            'element' => Form::text('name', $item['name'] ?? '', ['class' => $formInputClass]),
         ],
         [
             'label' => Form::label('description', 'Description', ['class' => $formLabelClass]),
