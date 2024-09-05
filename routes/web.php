@@ -11,46 +11,65 @@
 |
 */
 
-$prefixAdmin = config("zvn.url.admin");
+$prefixAdmin = config("zvn.url.prefix_admin");
+$prefixNews = config("zvn.url.prefix_news");
 
+// Admin
 Route::group(['prefix' => $prefixAdmin], function () {
 
     // Dashboard Group
     $prefix = 'dashboard';
-    Route::group(['prefix' => $prefix], function () use ($prefix) {
-        $controller = ucfirst($prefix) . 'Controller@';
+    $controllerName = 'dashboard';
+    Route::group(['prefix' => $prefix], function () use ($controllerName) {
+        $controller = ucfirst($controllerName) . 'Controller@';
         Route::get('/', [
-            'as' => $prefix,
+            'as' => $controllerName,
             'uses' => $controller . 'index'
         ]);
     });
 
     // Slider Group
     $prefix = 'slider';
-    Route::group(['prefix' => $prefix], function () use ($prefix) {
-        $controller = ucfirst($prefix) . 'Controller@';
+    $controllerName = 'slider';
+    Route::group(['prefix' => $prefix], function () use ($controllerName) {
+        $controller = ucfirst($controllerName) . 'Controller@';
         Route::get('/', [
-            'as' => $prefix,
+            'as' => $controllerName,
             'uses' => $controller . 'index'
         ]);
         Route::get('/form/{id?}', [
-            'as' => $prefix . '/form',
+            'as' => $controllerName . '/form',
             'uses' => $controller . 'form'
         ])->where('id', '[0-9]+');
 
         Route::post('/save', [
-            'as' => $prefix . '/save',
+            'as' => $controllerName . '/save',
             'uses' => $controller . 'save'
         ]);
 
         Route::get('/delete/{id}', [
-            'as' => $prefix . '/delete',
+            'as' => $controllerName . '/delete',
             'uses' => $controller . 'delete'
         ])->where('id', '[0-9]+');
 
         Route::get('/change-status-{status}/{id}', [
-            'as' => $prefix . '/status',
+            'as' => $controllerName . '/status',
             'uses' => $controller . 'changeStatus'
         ])->where('id', '[0-9]+');
     });
+});
+
+// News
+Route::group(['prefix' => $prefixNews], function () {
+    // Homepage
+    $prefix = '';
+    $controllerName = 'home';
+    Route::group(['prefix' => $prefix], function () use ($controllerName) {
+        $controller = ucfirst($controllerName) . 'Controller@';
+        Route::get('/', [
+            'as' => $controllerName,
+            'uses' => $controller . 'index'
+        ]);
+    });
+
 });
