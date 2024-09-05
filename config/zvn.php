@@ -3,7 +3,7 @@
 return [
     "url" => [
         'prefix_admin' => "admin",
-        'prefix_news' => "news123",
+        'prefix_news' => "newsx",
     ],
     "format" => [
         "long_time" => "H:m:s d/m/Y",
