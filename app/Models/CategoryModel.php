@@ -118,6 +118,12 @@ class CategoryModel extends AdminModel
             $params = $this->prepareParams($params);
             self::where('id', $params['id'])->update($params);
         }
+
+        if ($options['task'] == 'change-is-home') {
+            $isHome = $params['currentIsHome'] == '1' ? '0' : '1';
+            self::where('id', $params['id'])
+                ->update(['is_home' => $isHome]);
+        }
     }
 
     public function deleteItem($params, $options)

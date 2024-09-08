@@ -57,7 +57,7 @@ Route::group(['prefix' => $prefixAdmin], function () {
             'uses' => $controller . 'changeStatus'
         ])->where('id', '[0-9]+');
 
-        Route::get('/change-status-{isHome}/{id}', [
+        Route::get('/isHome/{id}', [
             'as' => $controllerName . '/isHome',
             'uses' => $controller . 'isHome'
         ])->where('id', '[0-9]+');
