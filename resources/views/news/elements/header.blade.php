@@ -1,3 +1,26 @@
+@php
+    use App\Models\CategoryModel as CategoryModel;
+
+    $categoryModel = new CategoryModel();
+    $itemsCategory = $categoryModel->getListItems(null, ['task' => 'news-list-items']);
+
+    $xhtmlMenu = '';
+    if (!empty($itemsCategory)) {
+        $xhtmlMenu =
+            '<nav class="main_nav"><ul class="main_nav_list d-flex flex-row align-items-center justify-content-start">';
+        foreach ($itemsCategory as $item) {
+            $xhtmlMenu .= sprintf(
+                '
+                    <li><a href="#">%s</a></li>
+                ',
+                $item['name'],
+            );
+        }
+        $xhtmlMenu .= '</ul></nav>';
+    }
+
+@endphp
+
 <header class="header">
     <!-- Header Content -->
     <div class="header_content_container">
@@ -35,16 +58,7 @@
                             </a>
                         </div>
                         <!-- Navigation -->
-                        <nav class="main_nav">
-                            <ul class="main_nav_list d-flex flex-row align-items-center justify-content-start">
-                                <li><a href="index.html">home</a></li>
-                                <li><a href="#">tech</a></li>
-                                <li><a href="#">innovation</a></li>
-                                <li><a href="#">videos</a></li>
-                                <li><a href="#">world</a></li>
-                                <li><a href="contact.html">contact</a></li>
-                            </ul>
-                        </nav>
+                        {!! $xhtmlMenu !!}
                         <!-- Hamburger -->
                         <div class="hamburger ml-auto menu_mm"><i class="fa fa-bars  trans_200 menu_mm"
                                 aria-hidden="true"></i></div>

@@ -52,6 +52,13 @@ class CategoryModel extends AdminModel
                 ->paginate($params['pagination']['totalItemsPerPage']);
         }
 
+        if ($options['task'] == 'news-list-items') {
+            $query = $this->select('id', 'name')
+                ->where('status', '=', 'active')
+                ->limit(8);
+
+            $results = $query->get()->toArray();
+        }
 
         return $results;
     }
