@@ -43,10 +43,12 @@ return [
         'search' => [
             'default' => ['id', 'all'],
             'slider' => ['all', 'id', 'name', 'description', 'link'],
+            'category' => ['all', 'id', 'name'],
         ],
         'button' => [
             'default' => ['edit', 'delete'],
             'slider' => ['edit', 'delete'],
+            'category' => ['edit', 'delete'],
         ]
     ]
 ];

@@ -8,21 +8,18 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Models\AdminModel;
 
-class SliderModel extends AdminModel
+class CategoryModel extends AdminModel
 {
     public function __construct()
     {
-        $this->table = 'slider';
-        $this->folderUpload = 'slider';
+        $this->table = 'category';
+        $this->folderUpload = 'category';
         $this->fieldSearchAccepted = [
             'id',
-            'name',
-            'link',
-            'description'
+            'name'
         ];
         $this->crudNotAccepted = [
-            '_token',
-            'thumb_current'
+            '_token'
         ];
     }
 
@@ -34,9 +31,6 @@ class SliderModel extends AdminModel
                 'id',
                 'status',
                 'name',
-                'description',
-                'link',
-                'thumb',
                 'created',
                 'created_by',
                 'modified',
@@ -58,13 +52,6 @@ class SliderModel extends AdminModel
                 ->paginate($params['pagination']['totalItemsPerPage']);
         }
 
-        if ($options['task'] == 'news-list-items') {
-            $query = $this->select('id', 'name', 'description', 'link', 'thumb')
-                ->where('status', '=', 'active')
-                ->limit(5);
-
-            $results = $query->get()->toArray();
-        }
 
         return $results;
     }
@@ -73,12 +60,9 @@ class SliderModel extends AdminModel
     {
         $result = null;
         if ($options['task'] == 'get-item') {
-            $result = self::select('id', 'name', 'description', 'status', 'link', 'thumb')->where('id', $params['id'])->first();
+            $result = self::select('id', 'name', 'status')->where('id', $params['id'])->first();
         }
 
-        if ($options['task'] == 'get-thumb') {
-            $result = self::select('id', 'thumb')->where('id', $params['id'])->first();
-        }
 
         return $result;
     }
@@ -114,7 +98,6 @@ class SliderModel extends AdminModel
                 ->update(['status' => $status]);
         }
         if ($options['task'] == 'add-item') {
-            $params['thumb'] = $this->uploadThumb($params['thumb']);
             $params['created_by'] = 'minhle';
             $params['created'] = Date('Y-m-d');
             $params = $this->prepareParams($params);
@@ -122,10 +105,6 @@ class SliderModel extends AdminModel
         }
 
         if ($options['task'] == 'edit-item') {
-            if (!empty($params['thumb'])) {
-                $this->deleteThumb($params['thumb_current']);
-                $params['thumb'] = $this->uploadThumb($params['thumb']);
-            }
             $params['modified_by'] = 'minhle';
             $params['modified'] = Date('Y-m-d');
             $params = $this->prepareParams($params);
@@ -136,8 +115,6 @@ class SliderModel extends AdminModel
     public function deleteItem($params, $options)
     {
         if ($options['task'] == 'delete-item') {
-            $item = self::getItem($params, ['task' => 'get-thumb']);
-            $this->deleteThumb($item['thumb']);
             self::where('id', $params['id'])->delete();
         }
     }

@@ -14,6 +14,7 @@
         <ul class="nav side-menu">
             <li><a href="{{ route('dashboard') }}"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="{{ route('slider') }}"><i class="fa fa-sliders"></i> Silders</a></li>
+            <li><a href="{{ route('category') }}"><i class="fa fa fa-building-o"></i> Categories</a></li>
         </ul>
     </div>
 </div>
