@@ -36,6 +36,23 @@ class Template
         return $xhtml;
     }
 
+    public static function showItemIsHome($controllerName, $id, $isHome)
+    {
+        $tmplStatus = Config::get('zvn.template.is_home');
+
+        $route = route($controllerName . '/isHome', ['is_home' => $isHome, 'id' => $id]);
+
+        $xhtml = sprintf(
+            '<a href="%s" type="button"
+            class="btn btn-round %s">%s</a>',
+            $route,
+            $tmplStatus[$isHome]['class'],
+            $tmplStatus[$isHome]['name']
+        );
+
+        return $xhtml;
+    }
+
     public static function showItemThumb($controllerName, $thumbName, $thumbAlt)
     {
         $xhtml = sprintf(

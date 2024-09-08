@@ -10,6 +10,7 @@
                     <th class="column-title text-center">ID</th>
                     <th class="column-title text-center">Category</th>
                     <th class="column-title text-center">Trạng thái</th>
+                    <th class="column-title text-center">Hiển thị home</th>
                     <th class="column-title text-center">Tạo mới</th>
                     <th class="column-title text-center">Chỉnh sửa</th>
                     <th class="column-title text-center">Hành động</th>
@@ -22,6 +23,7 @@
                             $rowClass = $key % 2 == 0 ? 'even' : 'odd';
                             $id = $item->id;
                             $status = Template::showItemStatus($controllerName, $id, $item->status);
+                            $isHome = Template::showItemIsHome($controllerName, $id, $item->is_home);
                             $name = Highlight::show($item['name'], $params['search'], 'name');
                             $createdHistory = Template::showItemHistory($item->created_by, $item->created);
                             $modifiedHistory = Template::showItemHistory($item->modified_by, $item->modified);
@@ -32,6 +34,9 @@
                             <td class="text-center">{!! $name !!}</td>
                             <td class="text-center">
                                 {!! $status !!}
+                            </td>
+                            <td class="text-center">
+                                {!! $isHome !!}
                             </td>
                             <td>
                                 {!! $createdHistory !!}

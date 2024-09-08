@@ -30,6 +30,7 @@ class CategoryModel extends AdminModel
             $query = self::select(
                 'id',
                 'status',
+                'is_home',
                 'name',
                 'created',
                 'created_by',

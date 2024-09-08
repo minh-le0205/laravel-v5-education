@@ -22,6 +22,10 @@ return [
             'all' => ['class' => 'btn-success', 'name' => 'Tất cả'],
             'default' => ['class' => 'btn-danger', 'name' => 'Chưa xác định'],
         ],
+        'is_home' => [
+            '0' => ['class' => 'btn-primary', 'name' => 'Hiển thị'],
+            '1' => ['class' => 'btn-warning', 'name' => 'Không hiển thị'],
+        ],
         'search' => [
             'all' => ['name' => 'Search By All'],
             'id' => ['name' => 'Search By ID'],

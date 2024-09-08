@@ -28,7 +28,7 @@ Route::group(['prefix' => $prefixAdmin], function () {
         ]);
     });
 
-    // Slider Group
+    // Category Group
     $prefix = 'category';
     $controllerName = 'category';
     Route::group(['prefix' => $prefix], function () use ($controllerName) {
@@ -56,9 +56,14 @@ Route::group(['prefix' => $prefixAdmin], function () {
             'as' => $controllerName . '/status',
             'uses' => $controller . 'changeStatus'
         ])->where('id', '[0-9]+');
+
+        Route::get('/change-status-{isHome}/{id}', [
+            'as' => $controllerName . '/isHome',
+            'uses' => $controller . 'isHome'
+        ])->where('id', '[0-9]+');
     });
 
-    // Category Group
+    // Slider Group
     $prefix = 'slider';
     $controllerName = 'slider';
     Route::group(['prefix' => $prefix], function () use ($controllerName) {
