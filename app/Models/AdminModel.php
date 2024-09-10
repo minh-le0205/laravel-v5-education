@@ -34,9 +34,23 @@ class AdminModel extends Model
 
         return $thumbName;
     }
+
+    public function uploadThumbNews($thumbObj)
+    {
+        $thumbName = Str::random(10) . '.' . $thumbObj->clientExtension();
+        $thumbObj->storeAs($this->folderUpload, $thumbName, 'zvn_storage_image_news');
+
+        return $thumbName;
+    }
+
     public function deleteThumb($thumbName)
     {
         Storage::disk('zvn_storage_image')->delete($this->folderUpload . '/' . $thumbName);
+    }
+
+    public function deleteThumbNews($thumbName)
+    {
+        Storage::disk('zvn_storage_image_news')->delete($this->folderUpload . '/' . $thumbName);
     }
 
     public function prepareParams($params)

@@ -112,7 +112,7 @@ class ArticleModel extends AdminModel
                 ->update(['status' => $status]);
         }
         if ($options['task'] == 'add-item') {
-            $params['thumb'] = $this->uploadThumb($params['thumb']);
+            $params['thumb'] = $this->uploadThumbNews($params['thumb']);
             $params['created_by'] = 'minhle';
             $params['created'] = Date('Y-m-d');
             $params = $this->prepareParams($params);
@@ -121,8 +121,8 @@ class ArticleModel extends AdminModel
 
         if ($options['task'] == 'edit-item') {
             if (!empty($params['thumb'])) {
-                $this->deleteThumb($params['thumb_current']);
-                $params['thumb'] = $this->uploadThumb($params['thumb']);
+                $this->deleteThumbNews($params['thumb_current']);
+                $params['thumb'] = $this->uploadThumbNews($params['thumb']);
             }
             $params['modified_by'] = 'minhle';
             $params['modified'] = Date('Y-m-d');
@@ -135,7 +135,7 @@ class ArticleModel extends AdminModel
     {
         if ($options['task'] == 'delete-item') {
             $item = self::getItem($params, ['task' => 'get-thumb']);
-            $this->deleteThumb($item['thumb']);
+            $this->deleteThumbNews($item['thumb']);
             self::where('id', $params['id'])->delete();
         }
     }

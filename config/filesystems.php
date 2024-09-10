@@ -47,6 +47,11 @@ return [
             'root' => public_path('images'),
         ],
 
+        'zvn_storage_image_news' => [
+            'driver' => 'local',
+            'root' => public_path('news/images'),
+        ],
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
