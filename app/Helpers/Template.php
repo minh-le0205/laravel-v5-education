@@ -64,6 +64,17 @@ class Template
         return $xhtml;
     }
 
+    public static function showItemThumbNews($controllerName, $thumbName, $thumbAlt)
+    {
+        $xhtml = sprintf(
+            '<img style="vertical-align: bottom;" width="100%%" height="100%%" src="%s" alt="%s">',
+            asset("news/images/$controllerName/$thumbName"),
+            $thumbAlt
+        );
+
+        return $xhtml;
+    }
+
     public static function showButtonAction($controllerName, $id)
     {
         $tmpButton = Config::get('zvn.template.button');
