@@ -89,8 +89,8 @@ $(document).ready(function () {
 
     $selectChangeAttr.on("change", function () {
         let select_value = $(this).val();
-        let $url = $(this).data("url");
-        window.location.href = $url.replace("value_new", select_value);
+        let url = $(this).data("url");
+        window.location.href = url.replace("value_new", select_value);
     });
 
     $selectChangeAttrAjax.on("change", function () {

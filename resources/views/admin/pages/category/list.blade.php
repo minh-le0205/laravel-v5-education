@@ -11,6 +11,7 @@
                     <th class="column-title text-center">Category</th>
                     <th class="column-title text-center">Trạng thái</th>
                     <th class="column-title text-center">Hiển thị home</th>
+                    <th class="column-title text-center">Kiểu hiển thị</th>
                     <th class="column-title text-center">Tạo mới</th>
                     <th class="column-title text-center">Chỉnh sửa</th>
                     <th class="column-title text-center">Hành động</th>
@@ -24,6 +25,7 @@
                             $id = $item->id;
                             $status = Template::showItemStatus($controllerName, $id, $item->status);
                             $isHome = Template::showItemIsHome($controllerName, $id, $item->is_home);
+                            $display = Template::showItemSelect($controllerName, $id, $item->display);
                             $name = Highlight::show($item['name'], $params['search'], 'name');
                             $createdHistory = Template::showItemHistory($item->created_by, $item->created);
                             $modifiedHistory = Template::showItemHistory($item->modified_by, $item->modified);
@@ -37,6 +39,9 @@
                             </td>
                             <td class="text-center">
                                 {!! $isHome !!}
+                            </td>
+                            <td class="text-center">
+                                {!! $display !!}
                             </td>
                             <td>
                                 {!! $createdHistory !!}

@@ -61,6 +61,11 @@ Route::group(['prefix' => $prefixAdmin], function () {
             'as' => $controllerName . '/isHome',
             'uses' => $controller . 'isHome'
         ])->where('id', '[0-9]+');
+
+        Route::get('/change-display-{display}/{id}', [
+            'as' => $controllerName . '/display',
+            'uses' => $controller . 'display'
+        ])->where('id', '[0-9]+');
     });
 
     // Slider Group

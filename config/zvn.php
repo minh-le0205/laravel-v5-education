@@ -26,6 +26,10 @@ return [
             '0' => ['class' => 'btn-primary', 'name' => 'Hiển thị'],
             '1' => ['class' => 'btn-warning', 'name' => 'Không hiển thị'],
         ],
+        'display' => [
+            'list' => ['name' => 'Danh sách'],
+            'grid' => ['name' => 'Lưới'],
+        ],
         'search' => [
             'all' => ['name' => 'Search By All'],
             'id' => ['name' => 'Search By ID'],

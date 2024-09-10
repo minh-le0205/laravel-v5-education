@@ -31,6 +31,7 @@ class CategoryModel extends AdminModel
                 'id',
                 'status',
                 'is_home',
+                'display',
                 'name',
                 'created',
                 'created_by',
@@ -57,6 +58,14 @@ class CategoryModel extends AdminModel
             $query = $this->select('id', 'name')
                 ->where('status', '=', 'active')
                 ->limit(8);
+
+            $results = $query->get()->toArray();
+        }
+
+        if ($options['task'] == 'news-list-items-is-home') {
+            $query = $this->select('id', 'name')
+                ->where('status', '=', 'active')
+                ->where('is_home', '=', '1');
 
             $results = $query->get()->toArray();
         }
@@ -123,6 +132,12 @@ class CategoryModel extends AdminModel
             $isHome = $params['currentIsHome'] == '1' ? '0' : '1';
             self::where('id', $params['id'])
                 ->update(['is_home' => $isHome]);
+        }
+
+        if ($options['task'] == 'change-display') {
+            $display = $params['currentDisplay'];
+            self::where('id', $params['id'])
+                ->update(['display' => $display]);
         }
     }
 
