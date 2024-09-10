@@ -32,5 +32,6 @@ class HomeController extends Controller
             'itemsSlider' => $itemsSlider,
             'itemsCategory' => $itemsCategory
         ]);
+
     }
 }
