@@ -30,35 +30,36 @@ class ArticleModel extends AdminModel
         $results = null;
         if ($options['task'] == 'admin-list-item') {
             $query = self::select(
-                'id',
-                'status',
-                'name',
+                'article.id',
+                'article.status',
+                'article.name',
                 'content',
                 'thumb',
-                'created',
-                'created_by',
-                'modified',
-                'modified_by'
-            );
+                'article.created',
+                'article.created_by',
+                'article.modified',
+                'article.modified_by',
+                'category.name as category_name'
+            )->leftJoin('category', 'article.category_id', '=', 'category.id');
             if ($params['filter']['status'] != 'all') {
-                $query->where('status', $params['filter']['status']);
+                $query->where('article.status', $params['filter']['status']);
             }
             if ($params['search']['field'] != "") {
                 if ($params['search']['field'] == 'all') {
                     foreach ($this->fieldSearchAccepted as $column) {
-                        $query->orWhere($column, "LIKE", "%" . $params['search']['value'] . "%");
+                        $query->orWhere("article." . $column, "LIKE", "%" . $params['search']['value'] . "%");
                     }
                 } else if (in_array($params['search']['field'], $this->fieldSearchAccepted)) {
                     $query->where($params['search']['field'], "LIKE", "%" . $params['search']['value'] . "%");
                 }
             }
-            $results = $query->orderBy('id', 'desc')
+            $results = $query->orderBy('article.id', 'desc')
                 ->paginate($params['pagination']['totalItemsPerPage']);
         }
 
         if ($options['task'] == 'news-list-items') {
             $query = $this->select('id', 'name', 'description', 'link', 'thumb')
-                ->where('status', '=', 'active')
+                ->where('article.status', '=', 'active')
                 ->limit(5);
 
             $results = $query->get()->toArray();
