@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryModel;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -43,8 +44,12 @@ class ArticleController extends Controller
             $params['id'] = $request->id;
             $item = $this->model->getItem($params, ['task' => 'get-item']);
         }
+
+        $categoryModel = new CategoryModel();
+        $itemsCategory = $categoryModel->getListItems(null, ['task' => 'admin-list-items-in-selectbox']);
         return view($this->pathViewController . 'form', [
-            'item' => $item
+            'item' => $item,
+            'itemsCategory' => $itemsCategory
         ]);
     }
 
