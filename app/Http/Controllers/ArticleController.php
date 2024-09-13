@@ -89,4 +89,14 @@ class ArticleController extends Controller
             return redirect()->route($this->controllerName)->with('zvn_notify', $notify);
         }
     }
+
+    public function type(Request $request)
+    {
+        $params["currentType"] = $request->type;
+        $params["id"] = $request->id;
+
+        $this->model->saveItem($params, ['task' => 'change-type']);
+
+        return redirect()->route($this->controllerName)->with('zvn_notify', "Cập nhật kiểu bài viết thành công");
+    }
 }

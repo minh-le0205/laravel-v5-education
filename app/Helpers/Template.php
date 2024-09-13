@@ -192,12 +192,12 @@ class Template
         return $xhtml;
     }
 
-    public static function showItemSelect($controllerName, $id, $displayValue)
+    public static function showItemSelect($controllerName, $id, $displayValue, $field)
     {
-        $link = route($controllerName . '/display', ['display' => 'value_new', 'id' => $id]);
-        $templateDisplay = Config::get('zvn.template.display');
+        $link = route($controllerName . '/' . $field, [$field => 'value_new', 'id' => $id]);
+        $templateConfig = Config::get('zvn.template.' . $field);
         $xhtml = sprintf('<select name="select_change_attr" data-url="%s" class="form-control">', $link);
-        foreach ($templateDisplay as $key => $value) {
+        foreach ($templateConfig as $key => $value) {
             $xhtmlSelected = "";
             if ($key == $displayValue)
                 $xhtmlSelected = 'selected="selected"';

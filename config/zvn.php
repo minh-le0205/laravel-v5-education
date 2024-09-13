@@ -33,6 +33,10 @@ return [
             'list' => ['name' => 'Danh sách'],
             'grid' => ['name' => 'Lưới'],
         ],
+        'type' => [
+            'normal' => ['name' => 'Bình thường'],
+            'feature' => ['name' => 'Nổi bật'],
+        ],
         'search' => [
             'all' => ['name' => 'Search By All'],
             'id' => ['name' => 'Search By ID'],

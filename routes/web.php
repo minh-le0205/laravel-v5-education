@@ -127,6 +127,10 @@ Route::group(['prefix' => $prefixAdmin], function () {
             'uses' => $controller . 'changeStatus'
         ])->where('id', '[0-9]+');
 
+        Route::get('/change-type-{type}/{id}', [
+            'as' => $controllerName . '/type',
+            'uses' => $controller . 'type'
+        ])->where('id', '[0-9]+');
     });
 });
 

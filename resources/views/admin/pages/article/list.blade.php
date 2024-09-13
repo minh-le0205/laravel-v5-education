@@ -11,9 +11,8 @@
                     <th class="column-title text-center">Article Info</th>
                     <th class="column-title text-center">Image</th>
                     <th class="column-title text-center">Category</th>
+                    <th class="column-title text-center">Kiểu bài viết</th>
                     <th class="column-title text-center">Trạng thái</th>
-                    <th class="column-title text-center">Tạo mới</th>
-                    <th class="column-title text-center">Chỉnh sửa</th>
                     <th class="column-title text-center">Hành động</th>
                 </tr>
             </thead>
@@ -28,8 +27,7 @@
                             $content = Highlight::show($item['content'], $params['search'], 'content');
                             $thumb = Template::showItemThumbNews($controllerName, $item->thumb, $item->name);
                             $categoryName = $item['category_name'];
-                            $createdHistory = Template::showItemHistory($item->created_by, $item->created);
-                            $modifiedHistory = Template::showItemHistory($item->modified_by, $item->modified);
+                            $type = Template::showItemSelect($controllerName, $id, $item->type, 'type');
                             $listBtn = Template::showButtonAction($controllerName, $id);
                         @endphp
                         <tr class="{{ $rowClass }} pointer">
@@ -46,13 +44,10 @@
                                 {!! $categoryName !!}
                             </td>
                             <td class="text-center">
+                                {!! $type !!}
+                            </td>
+                            <td class="text-center">
                                 {!! $status !!}
-                            </td>
-                            <td>
-                                {!! $createdHistory !!}
-                            </td>
-                            <td>
-                                {!! $modifiedHistory !!}
                             </td>
                             <td class="last">
                                 {!! $listBtn !!}
