@@ -38,5 +38,6 @@ class HomeController extends Controller
             'itemsFeatured' => $itemsFeatured
         ]);
 
+
     }
 }

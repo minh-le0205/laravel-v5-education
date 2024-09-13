@@ -75,6 +75,7 @@ class ArticleModel extends AdminModel
                 'article.category_id',
                 'category.name as category_name',
                 'article.thumb',
+                'article.created_by'
             )->leftJoin('category', 'article.category_id', '=', 'category.id')
                 ->where('article.status', 'active')
                 ->where('article.type', 'feature')

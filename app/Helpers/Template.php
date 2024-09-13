@@ -212,4 +212,20 @@ class Template
         $xhtml .= '</select>';
         return $xhtml;
     }
+
+    public static function showDatetimeFrontend($dateTime)
+    {
+        return date_format(date_create($dateTime), Config::get('zvn.format.short_time'));
+    }
+
+    public static function showContent($content, $length, $prefix = "...")
+    {
+        $prefix = ($length == 0) ? '' : $prefix;
+        $content = str_replace([
+            '<p>',
+            '</p>'
+        ], '', $content);
+
+        return preg_replace('/\s+?(\S+)?$/', '', substr($content, 0, $length)) . $prefix;
+    }
 }
