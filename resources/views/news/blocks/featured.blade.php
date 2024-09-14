@@ -27,6 +27,7 @@
                     @include('news.partials.article.content', [
                         'item' => $itemsFeatured[0],
                         'lengthContent' => 500,
+                        'showCategory' => true,
                     ])
                 </div>
             </div>
@@ -38,7 +39,11 @@
             @foreach ($itemsFeatured as $item)
                 <div class="post_item post_v_small d-flex flex-column align-items-start justify-content-start">
                     @include('news.partials.article.image', ['item' => $item])
-                    @include('news.partials.article.content', ['item' => $item, 'lengthContent' => 0])
+                    @include('news.partials.article.content', [
+                        'item' => $item,
+                        'lengthContent' => 0,
+                        'showCategory' => true,
+                    ])
                 </div>
             @endforeach
         </div>
