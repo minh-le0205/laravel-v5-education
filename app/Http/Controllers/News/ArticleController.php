@@ -35,6 +35,9 @@ class ArticleController extends Controller
 
         $itemsLatest = $articleModel->getListItems(null, ['task' => 'news-list-items-latest']);
 
+        $params['category_id'] = $itemArticle['category_id'];
+        $itemArticle['related_articles'] = $articleModel->getListItems($params, ['task' => 'news-list-items-related-in-category']);
+
 
         return view($this->pathViewController . "index", [
             'params' => $this->params,

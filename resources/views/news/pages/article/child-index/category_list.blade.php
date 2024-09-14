@@ -1,5 +1,5 @@
 <div class="posts">
-    @foreach ($item['articles'] as $article)
+    @foreach ($item['related_articles'] as $article)
         <div class="post_item post_h_large">
             <div class="row">
                 <div class="col-lg-5">

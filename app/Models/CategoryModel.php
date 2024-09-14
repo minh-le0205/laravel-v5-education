@@ -117,7 +117,6 @@ class CategoryModel extends AdminModel
             }
 
             $results = $query->get()->toArray();
-
         }
         return $results;
     }

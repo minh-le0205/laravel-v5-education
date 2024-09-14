@@ -14,7 +14,9 @@
                                 @include('news.pages.article.child-index.article', [
                                     'item' => $itemArticle,
                                 ])
-                                @include('news.pages.article.child-index.related')
+                                @include('news.pages.article.child-index.related', [
+                                    'item' => $itemArticle,
+                                ])
                             </div>
                         </div>
                         <!-- Sidebar -->
