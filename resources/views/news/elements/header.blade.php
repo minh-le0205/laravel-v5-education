@@ -1,5 +1,6 @@
 @php
     use App\Models\CategoryModel as CategoryModel;
+    use App\Helpers\Url as UrlHelper;
 
     $categoryModel = new CategoryModel();
     $itemsCategory = $categoryModel->getListItems(null, ['task' => 'news-list-items']);
@@ -8,11 +9,20 @@
     if (!empty($itemsCategory)) {
         $xhtmlMenu =
             '<nav class="main_nav"><ul class="main_nav_list d-flex flex-row align-items-center justify-content-start">';
+
+        $categoryIdCurrent = Route::input('category_id');
+
         foreach ($itemsCategory as $item) {
+            $link = UrlHelper::linkCategory($item['id'], $item['name']);
+
+            $classActive = $categoryIdCurrent == $item['id'] ? 'class="active"' : '';
+
             $xhtmlMenu .= sprintf(
                 '
-                    <li><a href="#">%s</a></li>
+                    <li %s><a href="%s">%s</a></li>
                 ',
+                $classActive,
+                $link,
                 $item['name'],
             );
         }
@@ -29,7 +39,7 @@
                 <div class="col">
                     <div class="header_content d-flex flex-row align-items-center justfy-content-start">
                         <div class="logo_container">
-                            <a href="#">
+                            <a href="{{ route('home') }}">
                                 <div class="logo"><span>ZEND</span>VN</div>
                             </a>
                         </div>

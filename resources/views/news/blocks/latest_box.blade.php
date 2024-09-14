@@ -1,5 +1,6 @@
 @php
     use App\Helpers\Template;
+    use App\Helpers\Url as UrlHelper;
 @endphp
 <div class="sidebar_latest">
     <div class="sidebar_title">Bài viết gần đây</div>
@@ -9,7 +10,7 @@
                 $name = $item['name'];
                 $createdBy = $item['created_by'];
                 $categoryName = $item['category_name'];
-                $linkCategory = '#';
+                $linkCategory = UrlHelper::linkCategory($item['category_id'], $item['category_name']);
                 $linkArticle = '#';
                 $date = Template::showDatetimeFrontend($item['created']);
                 $thumb = asset('news/images/article/' . $item['thumb']);

@@ -15,7 +15,7 @@ $prefixAdmin = config("zvn.url.prefix_admin");
 $prefixNews = config("zvn.url.prefix_news");
 
 // Admin
-Route::group(['prefix' => $prefixAdmin], function () {
+Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin'], function () {
 
     // Dashboard Group
     $prefix = 'dashboard';
@@ -135,7 +135,7 @@ Route::group(['prefix' => $prefixAdmin], function () {
 });
 
 // News
-Route::group(['prefix' => $prefixNews], function () {
+Route::group(['prefix' => $prefixNews, 'namespace' => 'News'], function () {
     // Homepage
     $prefix = '';
     $controllerName = 'home';
@@ -145,6 +145,18 @@ Route::group(['prefix' => $prefixNews], function () {
             'as' => $controllerName,
             'uses' => $controller . 'index'
         ]);
+    });
+
+    // Category
+    $prefix = 'chuyen-muc';
+    $controllerName = 'category';
+    Route::group(['prefix' => $prefix], function () use ($controllerName) {
+        $controller = ucfirst($controllerName) . 'Controller@';
+        Route::get('/{category_name}-{category_id}.html', [
+            'as' => $controllerName . '/index',
+            'uses' => $controller . 'index'
+        ])->where('category_name', '[0-9a-zA-Z_-]+')
+            ->where('category_id', '[0-9]+');
     });
 
 });

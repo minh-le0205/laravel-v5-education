@@ -1,9 +1,14 @@
 @php
     use App\Helpers\Template;
+    use App\Helpers\Url as UrlHelper;
+
     $name = $item['name'];
     $createdBy = $item['created_by'];
     $categoryName = isset($item['category_name']) ? $item['category_name'] : null;
     $linkCategory = '#';
+    if ($showCategory) {
+        $linkCategory = UrlHelper::linkCategory($item['category_id'], $item['category_name']);
+    }
     $linkArticle = '#';
     $date = Template::showDatetimeFrontend($item['created']);
     $content = Template::showContent($item['content'], $lengthContent);
