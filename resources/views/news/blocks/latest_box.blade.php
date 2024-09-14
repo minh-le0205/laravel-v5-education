@@ -11,7 +11,7 @@
                 $createdBy = $item['created_by'];
                 $categoryName = $item['category_name'];
                 $linkCategory = UrlHelper::linkCategory($item['category_id'], $item['category_name']);
-                $linkArticle = '#';
+                $linkArticle = UrlHelper::linkArticle($item['id'], $item['name']);
                 $date = Template::showDatetimeFrontend($item['created']);
                 $thumb = asset('news/images/article/' . $item['thumb']);
             @endphp

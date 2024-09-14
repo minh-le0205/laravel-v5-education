@@ -14,4 +14,11 @@ class Url
         ]);
     }
 
+    public static function linkArticle($id, $name)
+    {
+        return route('article/index', [
+            'article_id' => $id,
+            'article_name' => Str::slug($name),
+        ]);
+    }
 }

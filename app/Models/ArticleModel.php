@@ -135,6 +135,26 @@ class ArticleModel extends AdminModel
             $result = self::select('id', 'thumb')->where('id', $params['id'])->first();
         }
 
+        if ($options['task'] == 'news-get-items') {
+            $result = self::select(
+                'article.id',
+                'article.name',
+                'article.content',
+                'article.category_id',
+                'category.name as category_name',
+                'article.thumb',
+                'article.created',
+                'article.created_by'
+            )
+                ->leftJoin('category', 'category.id', '=', 'article.category_id')
+                ->where('article.id', $params['article_id'])
+                ->where('article.status', '=', 'active')
+                ->first();
+            if (!empty($result)) {
+                $result = $result->toArray();
+            }
+        }
+
         return $result;
     }
 

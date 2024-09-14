@@ -9,9 +9,13 @@
     if ($showCategory) {
         $linkCategory = UrlHelper::linkCategory($item['category_id'], $item['category_name']);
     }
-    $linkArticle = '#';
+    $linkArticle = UrlHelper::linkArticle($item['id'], $item['name']);
     $date = Template::showDatetimeFrontend($item['created']);
-    $content = Template::showContent($item['content'], $lengthContent);
+    if ($lengthContent == 'full') {
+        $content = $item['content'];
+    } else {
+        $content = Template::showContent($item['content'], $lengthContent);
+    }
 @endphp
 <div class="post_content">
     @if ($showCategory)
@@ -29,6 +33,12 @@
         <div class="post_date"><a href="#">{!! $date !!}</a></div>
     </div>
     @if ($lengthContent > 0)
+        <div class="post_text">
+            <p>{!! $content !!}</p>
+        </div>
+    @endif
+
+    @if ($lengthContent == 'full')
         <div class="post_text">
             <p>{!! $content !!}</p>
         </div>
