@@ -16,6 +16,9 @@ return [
         'form_input' => [
             'class' => 'form-control col-md-6 col-xs-12'
         ],
+        'form_label_edit' => [
+            'class' => 'control-label col-md-4 col-sm-3 col-xs-12'
+        ],
         'form_ckeditor' => [
             'class' => 'form-control col-md-6 col-xs-12 ckeditor'
         ],
@@ -37,12 +40,16 @@ return [
             'normal' => ['name' => 'Bình thường'],
             'feature' => ['name' => 'Nổi bật'],
         ],
+        'level'       => [
+            'admin'      => ['name' => 'Quản trị hệ thống'],
+            'member'      => ['name' => 'Người dùng bình thường'],
+        ],
         'search' => [
             'all' => ['name' => 'Search By All'],
             'id' => ['name' => 'Search By ID'],
             'name' => ['name' => 'Search By Name'],
             'username' => ['name' => 'Search By Username'],
-            'full_name' => ['name' => 'Search By Full Name'],
+            'fullname' => ['name' => 'Search By Full Name'],
             'email' => ['name' => 'Search By Email'],
             'description' => ['name' => 'Search By Description'],
             'link' => ['name' => 'Search By Link'],
@@ -60,12 +67,14 @@ return [
             'slider' => ['all', 'id', 'name', 'description', 'link'],
             'category' => ['all', 'id', 'name'],
             'article' => ['all', 'name', 'content'],
+            'user'      => ['all', 'username', 'email', 'fullname'],
         ],
         'button' => [
             'default' => ['edit', 'delete'],
             'slider' => ['edit', 'delete'],
             'category' => ['edit', 'delete'],
             'article' => ['edit', 'delete'],
+            'user'      => ['edit'],
         ]
     ]
 ];

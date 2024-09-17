@@ -166,6 +166,9 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin'], function () {
             'as' => $controllerName . '/level',
             'uses' => $controller . 'level'
         ])->where('id', '[0-9]+');
+
+        Route::post('change-password', ['as' => $controllerName . '/change-password', 'uses' => $controller . 'changePassword']);
+        Route::post('change-level', ['as' => $controllerName . '/change-level', 'uses' => $controller . 'changeLevel']);
     });
 });
 

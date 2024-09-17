@@ -30,10 +30,10 @@ class UserModel extends AdminModel
 
     public function getListItems($params, $options)
     {
-        $result = null;
+        $results = null;
 
         if ($options['task'] == "admin-list-items") {
-            $query = $this->select('id', 'username', 'email', 'fullname', 'avatar', 'status', 'level', 'created', 'created_by', 'modified', 'modified_by');
+            $query = self::select('id', 'username', 'email', 'fullname', 'avatar', 'status', 'level', 'created', 'created_by', 'modified', 'modified_by');
 
             if ($params['filter']['status'] !== "all") {
                 $query->where('status', '=', $params['filter']['status']);
@@ -51,13 +51,14 @@ class UserModel extends AdminModel
                 }
             }
 
-            $result =  $query->orderBy('id', 'desc')
+
+            $results = $query->orderBy('id', 'desc')
                 ->paginate($params['pagination']['totalItemsPerPage']);
         }
 
 
 
-        return $result;
+        return $results;
     }
 
     public function getItem($params, $options)
@@ -91,7 +92,7 @@ class UserModel extends AdminModel
         if ($options['task'] == 'admin-count-items-group-by-status') {
 
             $query = $this::groupBy('status')
-                ->select(DB::raw('status , COUNT(id) as count'));
+                ->select(DB::raw('count(*) as user_count,status'));
 
             if ($params['search']['value'] !== "") {
                 if ($params['search']['field'] == "all") {

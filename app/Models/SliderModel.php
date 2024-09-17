@@ -101,7 +101,6 @@ class SliderModel extends AdminModel
             }
 
             $results = $query->get()->toArray();
-
         }
         return $results;
     }
