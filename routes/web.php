@@ -132,6 +132,41 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin'], function () {
             'uses' => $controller . 'type'
         ])->where('id', '[0-9]+');
     });
+
+    // User Group
+    $prefix = 'user';
+    $controllerName = 'user';
+    Route::group(['prefix' => $prefix], function () use ($controllerName) {
+        $controller = ucfirst($controllerName) . 'Controller@';
+        Route::get('/', [
+            'as' => $controllerName,
+            'uses' => $controller . 'index'
+        ]);
+        Route::get('/form/{id?}', [
+            'as' => $controllerName . '/form',
+            'uses' => $controller . 'form'
+        ])->where('id', '[0-9]+');
+
+        Route::post('/save', [
+            'as' => $controllerName . '/save',
+            'uses' => $controller . 'save'
+        ]);
+
+        Route::get('/delete/{id}', [
+            'as' => $controllerName . '/delete',
+            'uses' => $controller . 'delete'
+        ])->where('id', '[0-9]+');
+
+        Route::get('/change-status-{status}/{id}', [
+            'as' => $controllerName . '/status',
+            'uses' => $controller . 'changeStatus'
+        ])->where('id', '[0-9]+');
+
+        Route::get('/change-level-{level}/{id}', [
+            'as' => $controllerName . '/level',
+            'uses' => $controller . 'level'
+        ])->where('id', '[0-9]+');
+    });
 });
 
 // News
@@ -169,5 +204,4 @@ Route::group(['prefix' => $prefixNews, 'namespace' => 'News'], function () {
         ])->where('article_name', '[0-9a-zA-Z_-]+')
             ->where('article_id', '[0-9]+');
     });
-
 });
