@@ -26,7 +26,14 @@
                 $item['name'],
             );
         }
-        $xhtmlMenu .= '</ul></nav>';
+
+        if (empty(session('userInfo'))) {
+            $xhtmlMenuUser = sprintf('<li><a href="%s">%s</a></li>', route('auth/login'), 'Đăng nhập');
+        } else {
+            $xhtmlMenuUser = sprintf('<li><a href="%s">%s</a></li>', route('auth/logout'), 'Đăng xuất');
+        }
+
+        $xhtmlMenu .= $xhtmlMenuUser . '</ul></nav>';
     }
 
 @endphp
