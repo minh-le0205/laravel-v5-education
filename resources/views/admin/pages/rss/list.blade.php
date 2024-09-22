@@ -37,10 +37,10 @@
 
                         <tr class="{{ $class }} pointer">
                             <td>{{ $index }}</td>
-                            <td>{{ $name }}</td>
-                            <td>{{ $link }}</td>
-                            <td>{{ $ordering }}</td>
-                            <td>{{ $source }}</td>
+                            <td>{!! $name !!}</td>
+                            <td>{!! $link !!}</td>
+                            <td>{!! $ordering !!}</td>
+                            <td>{!! $source !!}</td>
                             <td>{!! $status !!}</td>
                             <td>{!! $createdHistory !!}</td>
                             <td>{!! $modifiedHistory !!}</td>
