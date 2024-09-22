@@ -17,7 +17,7 @@
             <li><a href="{{ route('user') }}"><i class="fa fa-user"></i> Users</a></li>
             <li><a href="{{ route('category') }}"><i class="fa fa fa-building-o"></i> Categories</a></li>
             <li><a href="{{ route('article') }}"><i class="fa fa-newspaper-o"></i> Articles</a></li>
-            <li><a href="{{ route('rss') }}"><i class="fa fa-newspaper-o"></i> Rss</a></li>
+            <li><a href="{{ route('rss') }}"><i class="fa fa-rss"></i> Rss</a></li>
         </ul>
     </div>
 </div>
