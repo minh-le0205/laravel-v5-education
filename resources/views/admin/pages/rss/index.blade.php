@@ -30,7 +30,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 @include('admin.templates.x_title', ['title' => 'Danh sách'])
-                @include('admin.pages.slider.list')
+                @include('admin.pages.rss.list')
             </div>
         </div>
     </div>

@@ -28,7 +28,7 @@ class RssController extends Controller
         $this->params['search']['value'] = $request->input('search_value', '');
         $items = $this->model->getListItems($this->params, ['task' => 'admin-list-items']);
 
-        $countListStatus = $this->model->countListItems($this->params, ['task' => 'admin-list-item']);
+        $countListStatus = $this->model->countListItems($this->params, ['task' => 'admin-list-items']);
         return view($this->pathViewController . "index", [
             'params' => $this->params,
             "items" => $items,
@@ -66,17 +66,13 @@ class RssController extends Controller
         }
     }
 
-    public function status(Request $request)
+    public function changeStatus(Request $request)
     {
         $params["currentStatus"]  = $request->status;
         $params["id"]             = $request->id;
         $this->model->saveItem($params, ['task' => 'change-status']);
-        $status = $request->status == 'active' ? 'inactive' : 'active';
-        $link = route($this->controllerName . '/status', ['status' => $status, 'id' => $request->id]);
-        return response()->json([
-            'statusObj' => config('zvn.template.status')[$status],
-            'link' => $link,
-        ]);
+
+        return redirect()->route($this->controllerName)->with('zvn_notify', "Cập nhật trạng thái thành công");
     }
 
     public function delete(Request $request)

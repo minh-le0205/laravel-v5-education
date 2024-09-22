@@ -17,7 +17,6 @@ class RssModel extends AdminModel
             'id',
             'name',
             'link',
-            'description'
         ];
         $this->crudNotAccepted = [
             '_token'

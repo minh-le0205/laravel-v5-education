@@ -1,6 +1,6 @@
 @php
     use App\Helpers\Template as Template;
-    use App\Helpers\Hightlight as Hightlight;
+    use App\Helpers\HighLight;
 @endphp
 <div class="x_content">
     <div class="table-responsive">
@@ -27,8 +27,8 @@
                             $id = $val['id'];
                             $source = $val['source'];
                             $ordering = $val['ordering'];
-                            $name = Hightlight::show($val['name'], $params['search'], 'name');
-                            $link = Hightlight::show($val['link'], $params['search'], 'link');
+                            $name = HighLight::show($val['name'], $params['search'], 'name');
+                            $link = HighLight::show($val['link'], $params['search'], 'link');
                             $status = Template::showItemStatus($controllerName, $id, $val['status']);
                             $createdHistory = Template::showItemHistory($val['created_by'], $val['created']);
                             $modifiedHistory = Template::showItemHistory($val['modified_by'], $val['modified']);
