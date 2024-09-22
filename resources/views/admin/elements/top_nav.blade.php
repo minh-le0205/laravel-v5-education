@@ -1,3 +1,12 @@
+@php
+    $accountName = '';
+    $accountImage = '';
+    if (!empty(session('userInfo'))) {
+        $accountName = session('userInfo')['username'];
+        $accountImage = asset('images/user/' . session('userInfo')['avatar']);
+    }
+    $xhtmlLogOut = sprintf('<li><a href="%s">%s</a></li>', route('auth/logout'), 'Logout');
+@endphp
 <div class="nav_menu">
     <nav>
         <div class="nav toggle">
@@ -6,11 +15,11 @@
         <ul class="nav navbar-nav navbar-right">
             <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="img/img.jpg" alt="">John Doe
+                    <img src="{!! $accountImage !!}" alt="">{!! $accountName !!}
                     <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    {!! $xhtmlLogOut !!}
                 </ul>
             </li>
 
