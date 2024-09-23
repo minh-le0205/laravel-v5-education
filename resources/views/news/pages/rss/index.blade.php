@@ -18,11 +18,11 @@
                         <h3>Giá Coin</h3>
                         <div id="box-coin" class="d-flex align-items-center justify-content-center" data-url="{{ route('rss/get-coin') }}">
                             <img src="{{ asset('images/loading.gif') }}" alt="">
-                        </div>
-                    </div> --}}
+                        </div> --}}
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection
