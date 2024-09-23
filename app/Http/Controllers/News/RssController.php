@@ -40,4 +40,12 @@ class RssController extends Controller
             'itemsGold' => $itemsGold
         ]);
     }
+
+    public function getCoin()
+    {
+        $itemsCoin = Feed::getCoin();
+        return view($this->pathViewController .  'child-index.box-coin', [
+            'itemsCoin' => $itemsCoin
+        ]);
+    }
 }

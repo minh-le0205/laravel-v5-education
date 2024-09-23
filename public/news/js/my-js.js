@@ -7,7 +7,11 @@ $(document).ready(function () {
         "html"
     );
 
-    // $.get($('#box-coin').data('url'), function (data) {
-    //     $('#box-coin').html(data);
-    // }, 'html');
+    $.get(
+        $("#box-coin").data("url"),
+        function (data) {
+            $("#box-coin").html(data);
+        },
+        "html"
+    );
 });
