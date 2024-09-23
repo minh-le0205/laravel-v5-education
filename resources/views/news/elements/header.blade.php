@@ -33,6 +33,8 @@
             $xhtmlMenuUser = sprintf('<li><a href="%s">%s</a></li>', route('auth/logout'), 'Đăng xuất');
         }
 
+        $xhtmlMenu .= sprintf('<li><a href="%s">Tin tức tổng hợp</a></li>', route('rss/index'));
+
         $xhtmlAdmin = '';
         if (!empty(session('userInfo')) && session('userInfo')['level'] == 'admin') {
             $xhtmlAdmin = sprintf('<li><a href="%s">%s</a></li>', route('dashboard'), 'Admin');

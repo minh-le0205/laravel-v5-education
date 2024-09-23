@@ -258,4 +258,14 @@ Route::group(['prefix' => $prefixNews, 'namespace' => 'News'], function () {
         // ====================== LOGOUT ========================
         Route::get('/logout',       ['as' => $controllerName . '/logout',     'uses' => $controller . 'logout']);
     });
+
+    // ====================== RSS ========================
+    $prefix         = '';
+    $controllerName = 'rss';
+    Route::group(['prefix' =>  $prefix], function () use ($controllerName) {
+        $controller = ucfirst($controllerName)  . 'Controller@';
+        Route::get('/tin-tuc-tong-hop',                             ['as' => "$controllerName/index",                  'uses' => $controller . 'index']);
+        // Route::get('/get-gold',                             ['as' => "$controllerName/get-gold",                  'uses' => $controller . 'getGold']);
+        // Route::get('/get-coin',                             ['as' => "$controllerName/get-coin",                  'uses' => $controller . 'getCoin']);
+    });
 });
