@@ -77,10 +77,14 @@ $(document).ready(function () {
             dataType: "json",
             success: function (response) {
                 btn.data("url", response.route);
-
+                btn.data("class", response.statusObj.class);
                 btn.removeClass(currentBtnClass);
                 btn.addClass(response.statusObj.class);
                 btn.html(response.statusObj.name);
+                btn.notify("Thành công", {
+                    position: "top center",
+                    className: "success",
+                });
             },
         });
     });
