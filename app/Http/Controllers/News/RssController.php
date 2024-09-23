@@ -32,4 +32,12 @@ class RssController extends Controller
             'items'   => $data
         ]);
     }
+
+    public function getGold()
+    {
+        $itemsGold = Feed::getGold();
+        return view($this->pathViewController .  'child-index.box-gold', [
+            'itemsGold' => $itemsGold
+        ]);
+    }
 }

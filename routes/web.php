@@ -239,33 +239,33 @@ Route::group(['prefix' => $prefixNews, 'namespace' => 'News'], function () {
     });
 
     // ============================== NOTIFY ==============================
-    $prefix         = '';
+    $prefix = '';
     $controllerName = 'notify';
-    Route::group(['prefix' =>  $prefix], function () use ($controllerName) {
-        $controller = ucfirst($controllerName)  . 'Controller@';
-        Route::get('/no-permission',                             ['as' => $controllerName . '/noPermission',                  'uses' => $controller . 'noPermission']);
+    Route::group(['prefix' => $prefix], function () use ($controllerName) {
+        $controller = ucfirst($controllerName) . 'Controller@';
+        Route::get('/no-permission', ['as' => $controllerName . '/noPermission', 'uses' => $controller . 'noPermission']);
     });
 
     // Login
-    $prefix         = '';
+    $prefix = '';
     $controllerName = 'auth';
 
-    Route::group(['prefix' =>  $prefix], function () use ($controllerName) {
-        $controller = ucfirst($controllerName)  . 'Controller@';
-        Route::get('/login',        ['as' => $controllerName . '/login',      'uses' => $controller . 'login'])->middleware('check.login');
-        Route::post('/postLogin',   ['as' => $controllerName . '/postLogin',  'uses' => $controller . 'postLogin']);
+    Route::group(['prefix' => $prefix], function () use ($controllerName) {
+        $controller = ucfirst($controllerName) . 'Controller@';
+        Route::get('/login', ['as' => $controllerName . '/login', 'uses' => $controller . 'login'])->middleware('check.login');
+        Route::post('/postLogin', ['as' => $controllerName . '/postLogin', 'uses' => $controller . 'postLogin']);
 
         // ====================== LOGOUT ========================
-        Route::get('/logout',       ['as' => $controllerName . '/logout',     'uses' => $controller . 'logout']);
+        Route::get('/logout', ['as' => $controllerName . '/logout', 'uses' => $controller . 'logout']);
     });
 
     // ====================== RSS ========================
-    $prefix         = '';
+    $prefix = '';
     $controllerName = 'rss';
-    Route::group(['prefix' =>  $prefix], function () use ($controllerName) {
-        $controller = ucfirst($controllerName)  . 'Controller@';
-        Route::get('/tin-tuc-tong-hop',                             ['as' => "$controllerName/index",                  'uses' => $controller . 'index']);
-        // Route::get('/get-gold',                             ['as' => "$controllerName/get-gold",                  'uses' => $controller . 'getGold']);
+    Route::group(['prefix' => $prefix], function () use ($controllerName) {
+        $controller = ucfirst($controllerName) . 'Controller@';
+        Route::get('/tin-tuc-tong-hop', ['as' => "$controllerName/index", 'uses' => $controller . 'index']);
+        Route::get('/get-gold', ['as' => "$controllerName/get-gold", 'uses' => $controller . 'getGold']);
         // Route::get('/get-coin',                             ['as' => "$controllerName/get-coin",                  'uses' => $controller . 'getCoin']);
     });
 });
