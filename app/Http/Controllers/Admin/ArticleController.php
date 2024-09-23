@@ -103,6 +103,8 @@ class ArticleController extends Controller
 
         $this->model->saveItem($params, ['task' => 'change-type']);
 
-        return redirect()->route($this->controllerName)->with('zvn_notify', "Cập nhật kiểu bài viết thành công");
+        return response()->json([
+            'status' => 'success'
+        ]);
     }
 }
