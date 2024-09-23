@@ -67,7 +67,7 @@ $(document).ready(function () {
         if (!confirm("Bạn có chắc muốn xóa phần tử?")) return false;
     });
 
-    $(".status-ajax").on("click", function () {
+    $(".status-ajax, .is-home-ajax").on("click", function () {
         let url = $(this).data("url");
         let btn = $(this);
         let currentBtnClass = btn.data("class");

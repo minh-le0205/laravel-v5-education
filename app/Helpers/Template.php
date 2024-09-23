@@ -44,9 +44,10 @@ class Template
         $route = route($controllerName . '/isHome', ['is_home' => $isHome, 'id' => $id]);
 
         $xhtml = sprintf(
-            '<a href="%s" type="button"
-            class="btn btn-round %s">%s</a>',
+            '<button data-url="%s" data-class="%s" type="button"
+            class="btn btn-round %s is-home-ajax">%s</button>',
             $route,
+            $tmplStatus[$isHome]['class'],
             $tmplStatus[$isHome]['class'],
             $tmplStatus[$isHome]['name']
         );

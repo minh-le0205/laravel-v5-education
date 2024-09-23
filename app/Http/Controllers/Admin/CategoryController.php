@@ -79,7 +79,14 @@ class CategoryController extends Controller
         $params["id"] = $request->id;
         $this->model->saveItem($params, ['task' => 'change-is-home']);
 
-        return redirect()->route($this->controllerName)->with('zvn_notify', "Cập nhật trạng thái hiển thị trang chủ thành công");
+        $isHome = $request->is_home == '1' ? '0' : '1';
+
+        $route = route($this->controllerName . '/isHome', ['is_home' => $isHome, 'id' => $request->id]);
+
+        return response()->json([
+            'statusObj' => config('zvn.template.is_home')[$isHome],
+            'route' => $route,
+        ]);
     }
 
     public function save(MainRequest $request)
