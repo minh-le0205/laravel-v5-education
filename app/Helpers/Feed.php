@@ -34,7 +34,7 @@ class Feed
     {
         ini_set('allow_url_fopen', 'on');
         try {
-            // fix by CURL way
+            // fix by CURL way, for using simplexml_load_string later
             $url = $link;
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
