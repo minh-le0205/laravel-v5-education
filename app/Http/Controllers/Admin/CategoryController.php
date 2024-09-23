@@ -114,6 +114,8 @@ class CategoryController extends Controller
 
         $this->model->saveItem($params, ['task' => 'change-display']);
 
-        return redirect()->route($this->controllerName)->with('zvn_notify', "Cập nhật kiểu hiển thị thành công");
+        return response()->json([
+            'status' => 'success'
+        ]);
     }
 }

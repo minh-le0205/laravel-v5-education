@@ -90,9 +90,20 @@ $(document).ready(function () {
     });
 
     $selectChangeAttr.on("change", function () {
+        let ele = $(this);
         let selectValue = $(this).val();
         let url = $(this).data("url");
-        console.log(url.replace("value_new", selectValue));
-        window.location.href = url.replace("value_new", selectValue);
+        url = url.replace("value_new", selectValue);
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "json",
+            success: function (response) {
+                ele.notify("Cập nhật thành công", {
+                    position: "top center",
+                    className: "success",
+                });
+            },
+        });
     });
 });
