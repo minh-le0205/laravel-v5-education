@@ -26,8 +26,8 @@ class Template
         $route = route($controllerName . '/status', ['status' => $status, 'id' => $id]);
 
         $xhtml = sprintf(
-            '<a href="%s" type="button"
-            class="btn btn-round %s">%s</a>',
+            '<button data-url="%s" type="button"
+            class="btn btn-round %s status-ajax">%s</button>',
             $route,
             $tmplStatus[$status]['class'],
             $tmplStatus[$status]['name']

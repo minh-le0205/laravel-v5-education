@@ -67,6 +67,28 @@ $(document).ready(function () {
         if (!confirm("Bạn có chắc muốn xóa phần tử?")) return false;
     });
 
+    $(".status-ajax").on("click", function () {
+        let url = $(this).data("url");
+        let btn = $(this);
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "json",
+            success: function (response) {
+                btn.data("url", response.route);
+                if (response.status == "inactive") {
+                    btn.removeClass("btn-primary");
+                    btn.addClass("btn-warning");
+                    btn.html("Chưa kích hoạt");
+                } else {
+                    btn.removeClass("btn-warning");
+                    btn.addClass("btn-primary");
+                    btn.html("Kích hoạt");
+                }
+            },
+        });
+    });
+
     $selectChangeAttr.on("change", function () {
         let selectValue = $(this).val();
         let url = $(this).data("url");

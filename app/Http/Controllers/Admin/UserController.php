@@ -66,7 +66,13 @@ class UserController extends Controller
 
         $this->model->saveItem($params, ['task' => 'change-status']);
 
-        return redirect()->route($this->controllerName)->with('zvn_notify', "Cập nhật trạng thái thành công");
+        $status = $request->status == 'active' ? 'inactive' : 'active';
+        $route = route($this->controllerName . '/status', ['status' => $status, 'id' => $request->id]);
+
+        return response()->json([
+            'status' => $status,
+            'route' => $route,
+        ]);
     }
 
     public function save(MainRequest $request)
