@@ -70,7 +70,7 @@ class UserController extends Controller
         $route = route($this->controllerName . '/status', ['status' => $status, 'id' => $request->id]);
 
         return response()->json([
-            'status' => $status,
+            'statusObj' => config('zvn.template.status')[$status],
             'route' => $route,
         ]);
     }

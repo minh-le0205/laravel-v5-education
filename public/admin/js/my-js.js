@@ -70,21 +70,17 @@ $(document).ready(function () {
     $(".status-ajax").on("click", function () {
         let url = $(this).data("url");
         let btn = $(this);
+        let currentBtnClass = btn.data("class");
         $.ajax({
             type: "GET",
             url: url,
             dataType: "json",
             success: function (response) {
                 btn.data("url", response.route);
-                if (response.status == "inactive") {
-                    btn.removeClass("btn-primary");
-                    btn.addClass("btn-warning");
-                    btn.html("Chưa kích hoạt");
-                } else {
-                    btn.removeClass("btn-warning");
-                    btn.addClass("btn-primary");
-                    btn.html("Kích hoạt");
-                }
+
+                btn.removeClass(currentBtnClass);
+                btn.addClass(response.statusObj.class);
+                btn.html(response.statusObj.name);
             },
         });
     });

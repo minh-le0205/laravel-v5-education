@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SliderModel as MainModel;
 use App\Http\Requests\SliderRequest as MainRequest;
+use Config;
 
 
 class SliderController extends Controller
@@ -67,8 +67,9 @@ class SliderController extends Controller
         $status = $request->status == 'active' ? 'inactive' : 'active';
         $route = route($this->controllerName . '/status', ['status' => $status, 'id' => $request->id]);
 
+
         return response()->json([
-            'status' => $status,
+            'statusObj' => config('zvn.template.status')[$status],
             'route' => $route,
         ]);
     }
