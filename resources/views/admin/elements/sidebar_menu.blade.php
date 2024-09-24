@@ -1,11 +1,19 @@
+@php
+    $accountName = '';
+    $accountImage = '';
+    if (!empty(session('userInfo'))) {
+        $accountName = session('userInfo')['username'];
+        $accountImage = asset('images/user/' . session('userInfo')['avatar']);
+    }
+@endphp
 <div class="clearfix"></div>
 <div class="profile clearfix">
     <div class="profile_pic">
-        <img src="{{ asset('admin/img/img.jpg') }}" alt="..." class="img-circle profile_img">
+        <img src="{!! $accountImage !!}" alt="..." class="img-circle profile_img">
     </div>
     <div class="profile_info">
         <span>Welcome,</span>
-        <h2>Minh Le</h2>
+        <h2>{!! $accountName !!}</h2>
     </div>
 </div>
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
