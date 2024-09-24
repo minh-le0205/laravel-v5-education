@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\SliderModel as MainModel;
 use App\Http\Requests\SliderRequest as MainRequest;
 use App\Http\Controllers\Admin\AdminController;
