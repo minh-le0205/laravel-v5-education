@@ -24,7 +24,7 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => 
         $controller = ucfirst($controllerName) . 'Controller@';
         Route::get('/', [
             'as' => $controllerName,
-            'uses' => $controller . 'index'
+            'uses' => $controller . 'dashboard'
         ]);
     });
 

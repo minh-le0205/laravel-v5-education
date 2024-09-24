@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\AdminController;
 
 
-class DashboardController extends Controller
+class DashboardController extends AdminController
 {
-  private $pathViewController = "admin.pages.dashboard.";
-  private $controllerName = 'dashboard';
+  // private $pathViewController = "admin.pages.dashboard.";
+  // private $controllerName = 'dashboard';
 
   public function __construct()
   {
+    $this->pathViewController = "admin.pages.dashboard.";
+    $this->controllerName = 'dashboard';
     view()->share('controllerName', $this->controllerName);
+    parent::__construct();
   }
-  public function index()
+
+
+  public function dashboard()
   {
-    return view($this->pathViewController . "index", [
-      "message" => "DashboardController - index",
-      "id" => ''
-    ]);
+    return view($this->pathViewController . "index");
   }
 }
