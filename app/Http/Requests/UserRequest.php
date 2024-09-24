@@ -25,7 +25,12 @@ class UserRequest extends FormRequest
     public function rules()
     {
         $id = $this->id;
-        $task   = $this->task;
+        $task = 'add';
+
+
+        if (isset($this->taskChangeLevel)) $task = 'change-level';
+        if (isset($this->taskEditInfo)) $task = 'edit-info';
+        if (isset($this->taskChangePassword)) $task = 'change-password';
 
         $condAvatar   = '';
         $condUserName = '';

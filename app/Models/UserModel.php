@@ -24,7 +24,11 @@ class UserModel extends AdminModel
             '_token',
             'avatar_current',
             'password_confirmation',
-            'task'
+            'task',
+            'taskChangeLevel',
+            'taskEditInfo',
+            'taskChangePassword',
+            'taskAdd'
         ];
     }
 

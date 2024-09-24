@@ -18,7 +18,6 @@
 
     $inputHiddenID = Form::hidden('id', isset($item['id']) ? $item['id'] : null);
     $inputHiddenAvatar = Form::hidden('avatar_current', isset($item['avatar']) ? $item['avatar'] : null);
-    $inputHiddenTask = Form::hidden('task', 'add');
 
     $elements = [
         [
@@ -61,8 +60,7 @@
             'element' =>
                 $inputHiddenID .
                 $inputHiddenAvatar .
-                $inputHiddenTask .
-                Form::submit('Save', ['class' => 'btn btn-success']),
+                Form::submit('Save', ['class' => 'btn btn-success', 'name' => 'taskAdd']),
             'type' => 'btn-submit',
         ],
     ];

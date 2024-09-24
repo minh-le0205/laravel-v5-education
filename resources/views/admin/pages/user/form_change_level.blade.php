@@ -12,7 +12,6 @@
     ];
 
     $inputHiddenID = Form::hidden('id', $item['id']);
-    $inputHiddenTask = Form::hidden('task', 'change-level');
 
     $elements = [
         [
@@ -20,7 +19,8 @@
             'element' => Form::select('level', $levelValue, $item['level'], $formInputAttr),
         ],
         [
-            'element' => $inputHiddenID . $inputHiddenTask . Form::submit('Save', ['class' => 'btn btn-success']),
+            'element' =>
+                $inputHiddenID . Form::submit('Save', ['class' => 'btn btn-success', 'name' => 'taskChangeLevel']),
             'type' => 'btn-submit-edit',
         ],
     ];
