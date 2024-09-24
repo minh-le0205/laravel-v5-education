@@ -213,6 +213,11 @@ Route::group(['prefix' => $prefixNews, 'namespace' => 'News'], function () {
             'as' => $controllerName,
             'uses' => $controller . 'index'
         ]);
+
+        Route::get('/not-found', [
+            'as' => $controllerName . "/notFound",
+            'uses' => $controller . 'notFound'
+        ]);
     });
 
     // Category

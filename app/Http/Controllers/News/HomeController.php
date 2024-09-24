@@ -45,4 +45,9 @@ class HomeController extends Controller
             'itemsLatest' => $itemsLatest
         ]);
     }
+
+    public function notFound()
+    {
+        return view($this->pathViewController . "not_found");
+    }
 }
