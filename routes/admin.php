@@ -187,4 +187,44 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => 
       'uses' => $controller . 'changeStatus'
     ])->where('id', '[0-9]+');
   });
+
+  // Menu Group
+  $prefix = 'menu';
+  $controllerName = 'menu';
+  Route::group(['prefix' => $prefix], function () use ($controllerName) {
+    $controller = ucfirst($controllerName) . 'Controller@';
+    Route::get('/', [
+      'as' => $controllerName,
+      'uses' => $controller . 'index'
+    ]);
+    Route::get('/form/{id?}', [
+      'as' => $controllerName . '/form',
+      'uses' => $controller . 'form'
+    ])->where('id', '[0-9]+');
+
+    Route::post('/save', [
+      'as' => $controllerName . '/save',
+      'uses' => $controller . 'save'
+    ]);
+
+    Route::get('/delete/{id}', [
+      'as' => $controllerName . '/delete',
+      'uses' => $controller . 'delete'
+    ])->where('id', '[0-9]+');
+
+    Route::get('/change-status-{status}/{id}', [
+      'as' => $controllerName . '/status',
+      'uses' => $controller . 'changeStatus'
+    ])->where('id', '[0-9]+');
+
+    Route::get('/change-type-menu-{type_menu}/{id}', [
+      'as' => $controllerName . '/type_menu',
+      'uses' => $controller . 'changeTypeMenu'
+    ])->where('id', '[0-9]+');
+
+    Route::get('/change-type-link-{type_link}/{id}', [
+      'as' => $controllerName . '/type_link',
+      'uses' => $controller . 'changeTypeLink'
+    ])->where('id', '[0-9]+');
+  });
 });

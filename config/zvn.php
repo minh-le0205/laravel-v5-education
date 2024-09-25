@@ -48,6 +48,14 @@ return [
             'admin'      => ['name' => 'Quản trị hệ thống'],
             'member'      => ['name' => 'Người dùng bình thường'],
         ],
+        'type_menu' => [
+            'link' => ['name' => 'Link'],
+            'category_article' => ['name' => 'Danh mục bài viết']
+        ],
+        'type_link' => [
+            'current' => ['name' => 'Trang hiện tại'],
+            'new_tab' => ['name' => 'Tab mới']
+        ],
         'search' => [
             'all' => ['name' => 'Search By All'],
             'id' => ['name' => 'Search By ID'],
@@ -73,6 +81,7 @@ return [
             'article' => ['all', 'name', 'content'],
             'user'      => ['all', 'username', 'email', 'fullname'],
             'rss'       => ['all', 'name', 'link'],
+            'menu'       => ['all', 'name'],
         ],
         'button' => [
             'default' => ['edit', 'delete'],
@@ -81,6 +90,7 @@ return [
             'article' => ['edit', 'delete'],
             'user'      => ['edit'],
             'rss'   => ['edit', 'delete'],
+            'menu' => ['edit', 'delete']
         ]
     ]
 ];
