@@ -74,3 +74,5 @@ Route::group(['prefix' => $prefixNews, 'namespace' => 'News'], function () {
     Route::get('/get-coin', ['as' => "$controllerName/get-coin", 'uses' => $controller . 'getCoin']);
   });
 });
+
+Route::redirect('', $prefixNews);
