@@ -35,4 +35,28 @@ class MenuController extends AdminController
             return redirect()->route($this->controllerName)->with('zvn_notify', $notify);
         }
     }
+
+    public function changeTypeMenu(Request $request)
+    {
+        $params["currentTypeMenu"] = $request->type_menu;
+        $params["id"] = $request->id;
+
+        $this->model->saveItem($params, ['task' => 'change-type-menu']);
+
+        return response()->json([
+            'status' => 'success'
+        ]);
+    }
+
+    public function changeTypeLink(Request $request)
+    {
+        $params["currentTypeLink"] = $request->type_link;
+        $params["id"] = $request->id;
+
+        $this->model->saveItem($params, ['task' => 'change-type-link']);
+
+        return response()->json([
+            'status' => 'success'
+        ]);
+    }
 }

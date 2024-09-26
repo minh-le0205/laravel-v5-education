@@ -115,6 +115,18 @@ class MenuModel extends AdminModel
         if ($options['task'] == 'edit-item') {
             self::where('id', $params['id'])->update($this->prepareParams($params));
         }
+
+        if ($options['task'] == 'change-type-menu') {
+            $type = $params['currentTypeMenu'];
+            self::where('id', $params['id'])
+                ->update(['type_menu' => $type]);
+        }
+
+        if ($options['task'] == 'change-type-link') {
+            $type = $params['currentTypeLink'];
+            self::where('id', $params['id'])
+                ->update(['type_link' => $type]);
+        }
     }
 
     public function deleteItem($params, $options)
