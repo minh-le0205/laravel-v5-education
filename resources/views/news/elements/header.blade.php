@@ -44,7 +44,7 @@
 
                     $xhtmlMenu .= sprintf(
                         '
-                    <li %s><a href="%s">%s</a></li>
+                    <li %s><a style="margin:16px;" href="%s">%s</a></li>
                 ',
                         $classActive,
                         $link,
