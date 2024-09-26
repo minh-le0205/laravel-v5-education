@@ -10,6 +10,16 @@
         'inactive' => config('zvn.template.status.inactive.name'),
     ];
 
+    $typeMenuValues = array_combine(
+        array_keys(config('zvn.template.type_menu')),
+        array_column(config('zvn.template.type_menu'), 'name'),
+    );
+
+    $typeLinkValues = array_combine(
+        array_keys(config('zvn.template.type_link')),
+        array_column(config('zvn.template.type_link'), 'name'),
+    );
+
     $inputHiddenId = Form::hidden('id', $item['id'] ?? '');
 
     $elements = [
@@ -18,24 +28,24 @@
             'element' => Form::text('name', $item['name'] ?? '', $formInputAttr),
         ],
         [
-            'label' => Form::label('description', 'Description', $formLabelAttr),
-            'element' => Form::text('description', $item['description'] ?? '', $formInputAttr),
-        ],
-        [
             'label' => Form::label('status', 'Status', $formLabelAttr),
-            'element' => Form::select('status', $statusValue, $item['status'] ?? '', $formInputAttr),
+            'element' => Form::select('status', $statusValue, @$item['status'], $formInputAttr),
         ],
         [
             'label' => Form::label('link', 'Link', $formLabelAttr),
             'element' => Form::text('link', $item['link'] ?? '', $formInputAttr),
         ],
         [
-            'label' => Form::label('thumb', 'Thumb', $formLabelAttr),
-            'element' => Form::file('thumb', $formInputAttr),
-            'thumb' => !empty($item['id'])
-                ? Template::showItemThumb($controllerName, $item['thumb'], $item['name'])
-                : null,
-            'type' => 'thumb',
+            'label' => Form::label('ordering', 'Ordering', $formLabelAttr),
+            'element' => Form::number('ordering', @$item['ordering'], $formInputAttr),
+        ],
+        [
+            'label' => Form::label('type_menu', 'Type Menu', $formLabelAttr),
+            'element' => Form::select('type_menu', $typeMenuValues, @$item['type_menu'], $formInputAttr),
+        ],
+        [
+            'label' => Form::label('type_link', 'Type Link', $formLabelAttr),
+            'element' => Form::select('type_link', $typeLinkValues, @$item['type_link'], $formInputAttr),
         ],
         [
             'element' => $inputHiddenId . Form::submit('Save', ['class' => 'btn btn-success']),
