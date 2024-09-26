@@ -1,30 +1,59 @@
 @php
     use App\Models\CategoryModel as CategoryModel;
+    use App\Models\MenuModel as MenuModel;
     use App\Helpers\Url as UrlHelper;
 
     $categoryModel = new CategoryModel();
     $itemsCategory = $categoryModel->getListItems(null, ['task' => 'news-list-items']);
 
+    $menuModel = new MenuModel();
+    $itemsMenu = $menuModel->getListItems(null, ['task' => 'news-list-items']);
+
     $xhtmlMenu = '';
     if (!empty($itemsCategory)) {
         $xhtmlMenu =
             '<nav class="main_nav"><ul class="main_nav_list d-flex flex-row align-items-center justify-content-start">';
-
         $categoryIdCurrent = Route::input('category_id');
+        foreach ($itemsMenu as $item) {
+            $target = $item['type_link'] == 'current' ? '_self' : '_blank';
+            if ($item['type_menu'] == 'link') {
+                $xhtmlMenu .= sprintf(
+                    '
+                <li><a href="%s" target="%s">%s</a></li>
+            ',
+                    $item['link'],
+                    $target,
+                    $item['name'],
+                );
+            } else {
+                $xhtmlMenu .= '<li class="dropdown">';
+                $xhtmlMenu .= sprintf(
+                    '
+                <a target="%s" class="dropdown-toggle" data-toggle="dropdown" href="%s">%s
+                ',
+                    $target,
+                    $item['link'],
+                    $item['name'],
+                );
+                $xhtmlMenu .= '<span class="caret"></span></a>';
+                $xhtmlMenu .= '<ul class="dropdown-menu">';
+                foreach ($itemsCategory as $item) {
+                    $link = UrlHelper::linkCategory($item['id'], $item['name']);
 
-        foreach ($itemsCategory as $item) {
-            $link = UrlHelper::linkCategory($item['id'], $item['name']);
+                    $classActive = $categoryIdCurrent == $item['id'] ? 'class="active"' : '';
 
-            $classActive = $categoryIdCurrent == $item['id'] ? 'class="active"' : '';
-
-            $xhtmlMenu .= sprintf(
-                '
+                    $xhtmlMenu .= sprintf(
+                        '
                     <li %s><a href="%s">%s</a></li>
                 ',
-                $classActive,
-                $link,
-                $item['name'],
-            );
+                        $classActive,
+                        $link,
+                        $item['name'],
+                    );
+                }
+                $xhtmlMenu .= '</ul>';
+                $xhtmlMenu .= '</li>';
+            }
         }
 
         if (empty(session('userInfo'))) {
