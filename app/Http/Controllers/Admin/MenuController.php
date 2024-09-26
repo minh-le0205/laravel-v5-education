@@ -59,4 +59,16 @@ class MenuController extends AdminController
             'status' => 'success'
         ]);
     }
+
+    public function changeOrdering(Request $request)
+    {
+        $params["currentOrdering"] = $request->ordering;
+        $params["id"] = $request->id;
+
+        $this->model->saveItem($params, ['task' => 'change-ordering']);
+
+        return response()->json([
+            'status' => 'success'
+        ]);
+    }
 }

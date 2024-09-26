@@ -27,7 +27,8 @@
                             $name = Highlight::show($item['name'], $params['search'], 'name');
                             $listBtn = Template::showButtonAction($controllerName, $id);
                             $link = $item->link;
-                            $ordering = $item->ordering;
+                            // $ordering = $item->ordering;
+                            $ordering = Template::showItemOrdering($controllerName, $item->ordering, $id);
                             $typeMenu = Template::showItemSelect($controllerName, $id, $item->type_menu, 'type_menu');
                             $typeLink = Template::showItemSelect($controllerName, $id, $item->type_link, 'type_link');
                         @endphp

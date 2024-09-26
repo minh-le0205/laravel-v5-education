@@ -92,5 +92,11 @@ return [
             'rss'   => ['edit', 'delete'],
             'menu' => ['edit', 'delete']
         ]
+    ],
+    'notify' => [
+        'update' => [
+            'success' => 'Cập nhật thành công',
+            'failed' => 'Cập nhật thất bại',
+        ]
     ]
 ];

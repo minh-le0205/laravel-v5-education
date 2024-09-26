@@ -226,5 +226,10 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => 
       'as' => $controllerName . '/type_link',
       'uses' => $controller . 'changeTypeLink'
     ])->where('id', '[0-9]+');
+
+    Route::get('/change-ordering-{ordering}/{id}', [
+      'as' => $controllerName . '/ordering',
+      'uses' => $controller . 'changeOrdering'
+    ])->where('id', '[0-9]+');
   });
 });

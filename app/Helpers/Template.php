@@ -230,4 +230,14 @@ class Template
 
         return preg_replace('/\s+?(\S+)?$/', '', substr($content, 0, $length)) . $prefix;
     }
+
+    public static function showItemOrdering($controllerName, $orderingValue, $id)
+    {
+        $link = route($controllerName . '/ordering', ['ordering' => 'value_new', 'id' => $id]);
+        $xhtml = sprintf('
+            <input min="0" style="width:60px;margin-left:30%%" type="number" class="form-control ordering" id="ordering-%s" data-url="%s" value="%s"/>
+        ', $id, $link, $orderingValue);
+
+        return $xhtml;
+    }
 }

@@ -127,6 +127,12 @@ class MenuModel extends AdminModel
             self::where('id', $params['id'])
                 ->update(['type_link' => $type]);
         }
+
+        if ($options['task'] == 'change-ordering') {
+            $ordering = $params['currentOrdering'];
+            self::where('id', $params['id'])
+                ->update(['ordering' => $ordering]);
+        }
     }
 
     public function deleteItem($params, $options)

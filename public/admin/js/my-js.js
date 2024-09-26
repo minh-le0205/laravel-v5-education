@@ -5,6 +5,7 @@ $(document).ready(function () {
     let $inputSearchField = $("input[name  = search_field]");
     let $inputSearchValue = $("input[name  = search_value]");
     let $selectChangeAttr = $("select[name = select_change_attr]");
+    let orderingInput = $("input.ordering");
 
     $("a.select-field").click(function (e) {
         e.preventDefault();
@@ -98,6 +99,23 @@ $(document).ready(function () {
             type: "GET",
             url: url,
             dataType: "json",
+            success: function (response) {
+                ele.notify("Cập nhật thành công", {
+                    position: "top center",
+                    className: "success",
+                });
+            },
+        });
+    });
+
+    orderingInput.on("change", function (e) {
+        let ele = $(this);
+        let url = ele.data("url");
+        let value = ele.val();
+        $.ajax({
+            type: "GET",
+            url: url.replace("value_new", value),
+            dataType: "Json",
             success: function (response) {
                 ele.notify("Cập nhật thành công", {
                     position: "top center",
