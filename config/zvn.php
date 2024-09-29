@@ -98,5 +98,8 @@ return [
             'success' => 'Cập nhật thành công',
             'failed' => 'Cập nhật thất bại',
         ]
+    ],
+    'path' => [
+        'gallery' => 'images/gallery'
     ]
 ];
