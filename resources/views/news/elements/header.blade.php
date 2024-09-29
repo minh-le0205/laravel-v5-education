@@ -14,19 +14,22 @@
         $xhtmlMenu =
             '<nav class="main_nav"><ul class="main_nav_list d-flex flex-row align-items-center justify-content-start">';
         $categoryIdCurrent = Route::input('category_id');
+        $currentUri = !empty(basename(request()->path())) ? '/' . basename(request()->path()) : '/';
         foreach ($itemsMenu as $item) {
             $target = $item['type_link'] == 'current' ? '_self' : '_blank';
+            $classActiveMenu = $item['link'] == $currentUri ? 'active' : '';
             if ($item['type_menu'] == 'link') {
                 $xhtmlMenu .= sprintf(
                     '
-                <li><a href="%s" target="%s">%s</a></li>
+                <li class="%s"><a href="%s" target="%s">%s</a></li>
             ',
+                    $classActiveMenu,
                     $item['link'],
                     $target,
                     $item['name'],
                 );
             } else {
-                $xhtmlMenu .= '<li class="dropdown">';
+                $xhtmlMenu .= sprintf('<li class="dropdown %s">', $classActiveMenu);
                 $xhtmlMenu .= sprintf(
                     '
                 <a target="%s" class="dropdown-toggle" data-toggle="dropdown" href="%s">%s
