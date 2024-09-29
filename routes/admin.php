@@ -232,4 +232,15 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => 
       'uses' => $controller . 'changeOrdering'
     ])->where('id', '[0-9]+');
   });
+
+  // Gallery Group
+  $prefix = 'gallery';
+  $controllerName = 'gallery';
+  Route::group(['prefix' => $prefix], function () use ($controllerName) {
+    $controller = ucfirst($controllerName) . 'Controller@';
+    Route::get('/', [
+      'as' => $controllerName,
+      'uses' => $controller . 'gallery'
+    ]);
+  });
 });

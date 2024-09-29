@@ -27,6 +27,7 @@
             <li><a href="{{ route('article') }}"><i class="fa fa-newspaper-o"></i> Articles</a></li>
             <li><a href="{{ route('rss') }}"><i class="fa fa-rss"></i> Rss</a></li>
             <li><a href="{{ route('menu') }}"><i class="fa fa-bars"></i> Menu</a></li>
+            <li><a href="{{ route('gallery') }}"><i class="fa fa-file-image-o"></i> Gallery</a></li>
         </ul>
     </div>
 </div>
