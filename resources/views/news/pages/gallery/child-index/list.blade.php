@@ -5,9 +5,9 @@
                 @php
                     $filename = $item->getFilename();
                 @endphp
-                <div class="col-lg-4">
-                    <img style="width: 100%; padding-bottom:20%;" src="{{ asset('images/gallery/' . $filename) }}"
-                        alt="" srcset="">
+                <div class="col-lg-4 hover_flashing">
+                    <figure><img style="width: 100%; padding-bottom:20%;" src="{{ asset('images/gallery/' . $filename) }}"
+                            alt="" srcset=""></figure>
                 </div>
             @endforeach
         </div>
