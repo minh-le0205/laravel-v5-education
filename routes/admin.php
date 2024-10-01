@@ -239,7 +239,7 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => 
   Route::group(['prefix' => $prefix], function () use ($controllerName) {
     $controller = ucfirst($controllerName) . 'Controller@';
     Route::get('/', [
-      'as' => $controllerName,
+      'as' => 'admin/' . $controllerName,
       'uses' => $controller . 'gallery'
     ]);
   });
