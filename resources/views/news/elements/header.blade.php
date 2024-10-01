@@ -29,7 +29,7 @@
                 $xhtmlMenu .= '<li class="dropdown">';
                 $xhtmlMenu .= sprintf(
                     '
-                <a target="%s" class="dropdown-toggle" data-toggle="dropdown" href="%s">%s
+                <a data-name="category_article" target="%s" class="dropdown-toggle" data-toggle="dropdown" href="%s">%s
                 ',
                     $target,
                     $item['link'],
@@ -44,7 +44,7 @@
 
                     $xhtmlMenu .= sprintf(
                         '
-                    <li %s><a style="margin:16px;" href="%s">%s</a></li>
+                    <li %s><a data-parent="category_article" style="margin:16px;" href="%s">%s</a></li>
                 ',
                         $classActive,
                         $link,

@@ -45,6 +45,10 @@ ul.main_nav_list li.active a {
     color: #61e49b;
 }
 
+.main_nav_list li a.active {
+    color: #61e49b;
+}
+
 .featured_posts {
     margin-top: 95px;
     margin-bottom: 95px;
