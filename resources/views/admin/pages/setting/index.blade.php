@@ -1,6 +1,6 @@
 @extends('admin.main')
 @php
-    $type = Route::input('type');
+    $type = Request::input('type', 'general');
 @endphp
 @section('content')
     <div class="page-header zvn-page-header clearfix">
@@ -13,24 +13,37 @@
             <div class="x_panel">
                 <div class="x_content">
                     <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab"
-                                aria-controls="general" aria-selected="true">Cấu hình chung</a>
+                        <li @if ($type == 'general') class="active" @endif>
+                            <a href="{{ route('setting', ['type' => 'general']) }}" role="tab">Cấu hình
+                                chung</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="email-tab" data-toggle="tab" href="#email" role="tab"
-                                aria-controls="email" aria-selected="true">Email</a>
+                        <li @if ($type == 'email') class="active" @endif>
+                            <a href="{{ route('setting', ['type' => 'email']) }}" role="tab">Email</a>
                         </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link active" id="social-tab" data-toggle="tab" href="#social" role="tab"
-                                aria-controls="social" aria-selected="true">Home</a>
+                        <li @if ($type == 'social') class="active" @endif>
+                            <a href="{{ route('setting', ['type' => 'social']) }}" role="tab">Social</a>
                         </li>
                     </ul>
-                    <div class="tab-content" id="myTabContent">
-                        {{-- @include('admin.pages.setting.child_index.form_general')
-                        @include('admin.pages.setting.child_index.form_email')
-                        @include('admin.pages.setting.child_index.form_social') --}}
+                    <div class="tab-content" id="settingTabContent">
+                        <div role="tabpanel"class="tab-pane fade active in">
+                            @switch($type)
+                                @case('general')
+                                    @include('admin.pages.setting.child_index.form_general')
+                                @break
+
+                                @case('social')
+                                    @include('admin.pages.setting.child_index.form_social')
+                                @break
+
+                                @case('email')
+                                    @include('admin.pages.setting.child_index.form_email')
+                                @break
+
+                                @default
+                                    @include('admin.pages.setting.child_index.form_general')
+                                @break
+                            @endswitch
+                        </div>
                     </div>
                 </div>
             </div>

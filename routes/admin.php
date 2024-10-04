@@ -253,5 +253,10 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => 
       'as' => $controllerName,
       'uses' => $controller . 'index'
     ]);
+
+    Route::post('/general-setting', [
+      'as' => $controllerName . '/general-setting',
+      'uses' => $controller . 'general'
+    ]);
   });
 });
