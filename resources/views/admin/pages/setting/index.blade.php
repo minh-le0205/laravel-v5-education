@@ -28,12 +28,13 @@
                                     @include('admin.pages.setting.child_index.form_general')
                                 @break
 
-                                @case('social')
-                                    @include('admin.pages.setting.child_index.form_social')
+                                @case('email')
+                                    @include('admin.pages.setting.child_index.form_email_account')
+                                    @include('admin.pages.setting.child_index.form_email_bcc')
                                 @break
 
-                                @case('email')
-                                    @include('admin.pages.setting.child_index.form_email')
+                                @case('social')
+                                    @include('admin.pages.setting.child_index.form_social')
                                 @break
 
                                 @default

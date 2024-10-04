@@ -6,7 +6,6 @@
     $formLabelAttr = config('zvn.template.form_label');
     $formCkEditor = config('zvn.template.form_ckeditor');
 
-    $inputHiddenID = Form::hidden('id', @$item['id']);
     $logoElement = '
         <div class="input-group">
    <span class="input-group-btn">
@@ -51,7 +50,7 @@
             'element' => Form::textArea('maps', @$item['maps'], $formInputAttr),
         ],
         [
-            'element' => $inputHiddenID . Form::submit('Lưu', ['class' => 'btn btn-success', 'name' => 'general-task']),
+            'element' => Form::submit('Lưu', ['class' => 'btn btn-success', 'name' => 'general-task']),
             'type' => 'btn-submit',
         ],
     ];
@@ -66,7 +65,7 @@
                     'accept-charset' => 'UTF-8',
                     'enctype' => 'multipart/form-data',
                     'class' => 'form-horizontal form-label-left',
-                    'id' => 'main-form',
+                    'id' => 'setting-general-form',
                 ]) }}
                 {!! FormTemplate::show($elements) !!}
                 {{ Form::close() }}
