@@ -3,11 +3,8 @@
     $type = Request::input('type', 'general');
 @endphp
 @section('content')
-    <div class="page-header zvn-page-header clearfix">
-        <div class="zvn-page-header-title">
-            <h3>Quản lý Setting</h3>
-        </div>
-    </div>
+    @include('admin.templates.page_header', ['pageIndex' => false])
+    @include('admin.templates.zvn_notify')
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">

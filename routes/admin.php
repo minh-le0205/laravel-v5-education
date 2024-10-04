@@ -258,5 +258,20 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => 
       'as' => $controllerName . '/general-setting',
       'uses' => $controller . 'general'
     ]);
+
+    Route::post('/social-setting', [
+      'as' => $controllerName . '/social-setting',
+      'uses' => $controller . 'social'
+    ]);
+
+    Route::post('/email-account-setting', [
+      'as' => $controllerName . '/email-account-setting',
+      'uses' => $controller . 'emailAccount'
+    ]);
+
+    Route::post('/email-bcc-setting', [
+      'as' => $controllerName . '/email-bcc-setting',
+      'uses' => $controller . 'emailBcc'
+    ]);
   });
 });
