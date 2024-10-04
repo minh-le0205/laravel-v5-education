@@ -125,5 +125,5 @@ $(document).ready(function () {
         });
     });
 
-    $("#lfm").filemanager("file");
+    $("#lfm").filemanager("image");
 });
