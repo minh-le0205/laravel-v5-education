@@ -28,6 +28,7 @@
             <li><a href="{{ route('rss') }}"><i class="fa fa-rss"></i> Rss</a></li>
             <li><a href="{{ route('menu') }}"><i class="fa fa-bars"></i> Menu</a></li>
             <li><a href="{{ route('admin/gallery') }}"><i class="fa fa-file-image-o"></i> Gallery</a></li>
+            <li><a href="{{ route('setting') }}"><i class="fa fa-cog"></i> Setting</a></li>
         </ul>
     </div>
 </div>

@@ -2,21 +2,20 @@
 
 namespace App\Models;
 
-use DB;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
 use App\Models\AdminModel;
+use DB;
 
-class RssModel extends AdminModel
+class SettingModel extends AdminModel
 {
     public function __construct()
     {
-        $this->table = 'rss';
-        $this->folderUpload = 'rss';
+        $this->table = 'setting';
+        $this->folderUpload = 'setting';
         $this->fieldSearchAccepted = [
             'id',
-            'name',
-            'link',
+            'key_value',
+            'value',
+            'status'
         ];
         $this->crudNotAccepted = [
             '_token'
@@ -28,7 +27,7 @@ class RssModel extends AdminModel
         $result = null;
 
         if ($options['task'] == "admin-list-items") {
-            $query = $this->select('id', 'name', 'status', 'link', 'ordering', 'source', 'created', 'created_by', 'modified', 'modified_by');
+            $query = $this->select('id', 'key_value', 'value', 'status');
 
             if ($params['filter']['status'] !== "all") {
                 $query->where('status', '=', $params['filter']['status']);
@@ -51,7 +50,7 @@ class RssModel extends AdminModel
         }
 
         if ($options['task'] == 'news-list-items') {
-            $query = $this->select('id', 'link', 'source')
+            $query = $this->select('id', 'key_value', 'value', 'status')
                 ->where('status', '=', 'active')
                 ->orderBy('ordering', 'asc');
 
@@ -68,7 +67,7 @@ class RssModel extends AdminModel
         $result = null;
 
         if ($options['task'] == 'get-item') {
-            $result = self::select('id', 'name', 'status', 'link', 'ordering', 'source')->where('id', $params['id'])->first();
+            $result = self::select('id', 'key_value', 'value', 'status')->where('id', $params['id'])->first();
         }
 
         return $result;
