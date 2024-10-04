@@ -124,4 +124,6 @@ $(document).ready(function () {
             },
         });
     });
+
+    $("#lfm").filemanager("file");
 });

@@ -7,8 +7,23 @@
     $formCkEditor = config('zvn.template.form_ckeditor');
 
     $inputHiddenID = Form::hidden('id', @$item['id']);
+    $logoElement = '
+        <div class="input-group">
+   <span class="input-group-btn">
+     <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+       <i class="fa fa-picture-o"></i> Choose
+     </a>
+   </span>
+   <input id="thumbnail" class="form-control" type="text" name="logo">
+ </div>
+ <img id="holder" style="margin-top:15px;max-height:100px;">
+    ';
 
     $elements = [
+        [
+            'label' => Form::label('logo', 'Logo', $formLabelAttr),
+            'element' => $logoElement,
+        ],
         [
             'label' => Form::label('hotline', 'Hotline', $formLabelAttr),
             'element' => Form::text('hotline', @$item['hotline'], $formInputAttr),
