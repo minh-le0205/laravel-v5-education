@@ -251,7 +251,7 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => 
     $controller = ucfirst($controllerName) . 'Controller@';
     Route::get('/', [
       'as' => $controllerName,
-      'uses' => $controller . 'setting'
+      'uses' => $controller . 'index'
     ]);
   });
 });

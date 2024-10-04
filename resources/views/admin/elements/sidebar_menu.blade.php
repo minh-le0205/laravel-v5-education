@@ -28,7 +28,14 @@
             <li><a href="{{ route('rss') }}"><i class="fa fa-rss"></i> Rss</a></li>
             <li><a href="{{ route('menu') }}"><i class="fa fa-bars"></i> Menu</a></li>
             <li><a href="{{ route('admin/gallery') }}"><i class="fa fa-file-image-o"></i> Gallery</a></li>
-            <li><a href="{{ route('setting') }}"><i class="fa fa-cog"></i> Setting</a></li>
+            <li>
+                <a><i class="fa fa-cog"></i> Cấu hình</a>
+                <ul class="nav child_menu">
+                    <li><a href="{{ route('setting', ['type' => 'general']) }}">Cấu hình chung</a></li>
+                    <li><a href="{{ route('setting', ['type' => 'email']) }}">Email</a></li>
+                    <li><a href="{{ route('setting', ['type' => 'social']) }}">Social</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>
