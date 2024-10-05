@@ -68,7 +68,14 @@ class SettingModel extends AdminModel
         $result = null;
 
         if ($params['type'] == 'general') {
-            $result = self::select('value')->where('key_value', 'setting-general')->first()->toArray();
+            $result = self::select('value')->where('key_value', 'setting-general')->firstOrFail()->toArray();
+            $result = json_decode($result['value'], true);
+        }
+
+        if ($params['type'] == 'email') {
+            $result = self::select('value')->where('key_value', 'setting-email-account')->firstOrFail()->toArray();
+            $result = json_decode($result['value'], true);
+            $result['bcc'] = self::select('value')->where('key_value', 'setting-email-bcc')->first()->value;
         }
 
         return $result;
@@ -122,6 +129,18 @@ class SettingModel extends AdminModel
 
         if ($options['task'] == 'setting-general') {
             $type = 'setting-general';
+            $value = json_encode($this->prepareParams($params), JSON_UNESCAPED_UNICODE);
+            self::where('key_value', $type)->update(['value' => $value]);
+        }
+
+        if ($options['task'] == 'setting-email-account') {
+            $type = 'setting-email-account';
+            $value = json_encode($this->prepareParams($params), JSON_UNESCAPED_UNICODE);
+            self::where('key_value', $type)->update(['value' => $value]);
+        }
+
+        if ($options['task'] == 'setting-email-bcc') {
+            $type = 'setting-email-bcc';
             $value = json_encode($this->prepareParams($params), JSON_UNESCAPED_UNICODE);
             self::where('key_value', $type)->update(['value' => $value]);
         }

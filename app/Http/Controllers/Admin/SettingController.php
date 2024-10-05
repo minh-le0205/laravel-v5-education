@@ -24,9 +24,7 @@ class SettingController extends Controller
     {
         $params['type'] = $request->input('type', 'general');
         $item = $this->model->getItem($params, null);
-        if (!empty($item)) {
-            $item = json_decode($item['value'], true);
-        }
+
         return view($this->pathViewController . "index", compact('item'));
     }
 
@@ -35,7 +33,25 @@ class SettingController extends Controller
         if ($request->method() == 'POST') {
             $params = $request->all();
             $this->model->saveItem($params, ['task' => 'setting-general']);
-            return redirect()->route($this->controllerName, ['type' => 'general'])->with('zvn_notify', 'Xóa phần tử thành công!');
+            return redirect()->route($this->controllerName, ['type' => 'general'])->with('zvn_notify', 'Cập nhật cấu hình chung thành công');
+        }
+    }
+
+    public function emailAccount(Request $request)
+    {
+        if ($request->method() == 'POST') {
+            $params = $request->all();
+            $this->model->saveItem($params, ['task' => 'setting-email-account']);
+            return redirect()->route($this->controllerName, ['type' => 'email'])->with('zvn_notify', 'Cập nhật tài khoản email thành công!');
+        }
+    }
+
+    public function emailBcc(Request $request)
+    {
+        if ($request->method() == 'POST') {
+            $params = $request->all();
+            $this->model->saveItem($params, ['task' => 'setting-email-bcc']);
+            return redirect()->route($this->controllerName, ['type' => 'email'])->with('zvn_notify', 'Cập nhật tài khoản email bcc thành công!');
         }
     }
 }

@@ -12,11 +12,11 @@
         ],
         [
             'label' => Form::label('email_account_password', 'Mật khẩu', $formLabelAttr),
-            'element' => Form::text('email_account_password', @$item['working_tinme'], $formInputAttr),
+            'element' => Form::text('email_account_password', @$item['email_account_password'], $formInputAttr),
         ],
 
         [
-            'element' => Form::submit('Lưu', ['class' => 'btn btn-success', 'name' => 'email-account-task']),
+            'element' => Form::submit('Lưu', ['class' => 'btn btn-success']),
             'type' => 'btn-submit',
         ],
     ];

@@ -4,14 +4,18 @@
 
     $formInputAttr = config('zvn.template.form_input');
     $formLabelAttr = config('zvn.template.form_label');
+    $bccEmail = '';
+    if (!empty($item['bcc'])) {
+        $bccEmail = json_decode($item['bcc'], true);
+    }
 
     $elements = [
         [
             'label' => Form::label('', '', $formLabelAttr),
-            'element' => Form::textArea('email_bcc', @$item['bcc'], $formInputAttr),
+            'element' => Form::textArea('email_bcc', $bccEmail['email_bcc'], ['class' => 'tags form-control']),
         ],
         [
-            'element' => Form::submit('Lưu', ['class' => 'btn btn-success', 'name' => 'email-bcc-task']),
+            'element' => Form::submit('Lưu', ['class' => 'btn btn-success']),
             'type' => 'btn-submit',
         ],
     ];
