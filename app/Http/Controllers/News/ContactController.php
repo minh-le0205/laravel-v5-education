@@ -23,4 +23,6 @@ class ContactController extends Controller
         view()->share('title', 'Liên hệ');
         return view($this->pathViewController . "index");
     }
+
+    public function save() {}
 }
