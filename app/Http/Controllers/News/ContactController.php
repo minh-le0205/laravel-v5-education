@@ -5,6 +5,7 @@ namespace App\Http\Controllers\News;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ContactModel;
+use App\Mail\MailService;
 
 class ContactController extends Controller
 {
@@ -28,6 +29,14 @@ class ContactController extends Controller
     {
         view()->share('title', 'Liên hệ');
         if ($request->method() == 'POST') {
+            $data = $request->all();
+
+            $mailService = new MailService;
+            $mailService->sendMailConfirm($data);
+            $mailService->sendMailInfo($data);
+
+
+
             return redirect()->route($this->controllerName)->with('zvn_notify', 'Cảm ơn bạn đã gửi thông tin. Chúng tôi sẽ liên hệ trong thời gian sớm nhát');
         }
     }
