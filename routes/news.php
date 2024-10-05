@@ -95,9 +95,9 @@ Route::group(['prefix' => $prefixNews, 'namespace' => 'News'], function () {
       'uses' => $controller . 'index'
     ]);
 
-    Route::post('/save', [
-      'as' => $controllerName . '/save',
-      'uses' => $controller . 'save'
+    Route::post('/post-contact', [
+      'as' => $controllerName . '/post-contact',
+      'uses' => $controller . 'postContact'
     ]);
   });
 });

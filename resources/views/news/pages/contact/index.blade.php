@@ -8,7 +8,7 @@
                     <div class="row">
                         @include('news.pages.contact.child_index.info_block')
                     </div>
-
+                    @include('admin.templates.zvn_notify')
                     <div class="row">
                         @include('news.pages.contact.child_index.map_block')
                         @include('news.pages.contact.child_index.contact_block')

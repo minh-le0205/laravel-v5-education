@@ -24,5 +24,11 @@ class ContactController extends Controller
         return view($this->pathViewController . "index");
     }
 
-    public function save() {}
+    public function postContact(Request $request)
+    {
+        view()->share('title', 'Liên hệ');
+        if ($request->method() == 'POST') {
+            return redirect()->route($this->controllerName)->with('zvn_notify', 'Cảm ơn bạn đã gửi thông tin. Chúng tôi sẽ liên hệ trong thời gian sớm nhát');
+        }
+    }
 }

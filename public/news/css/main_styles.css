@@ -168,7 +168,7 @@ h5::selection,
 h6::selection {
 }
 .form-control {
-    color: #db5246;
+    color: black;
 }
 section {
     display: block;

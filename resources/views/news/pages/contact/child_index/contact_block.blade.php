@@ -1,13 +1,15 @@
 <div class="col-lg-6 form_grid">
     <h4 class="mb5">Gửi tin nhắn cho chúng tôi</h4>
-    <p style="line-height: 25px">Bạn chỉ đầy đủ thông tin cá nhân và vấn đề trao đổi với ZendVN vào form bên dưới, sau
+    <p style="line-height: 25px">Bạn chỉ điền đầy đủ thông tin cá nhân và vấn đề trao đổi với ZendVN vào form bên dưới,
+        sau
         khi nhận được thông tin này chúng tôi sẽ liên hệ với các bạn trong thời gian sớm nhất.</p>
-    <form class="contact_form" id="contact_form" name="contact_form" action="{{ route('contact/save') }}" method="post"
-        novalidate="novalidate"><input type="hidden" name="_token" value="GCvsHHXZVpwI5vNv74Y8BGhzNiYCEw3miAO9aMp7">
+    <form class="contact_form" id="contact_form" name="contact_form" action="{{ route('contact/post-contact') }}"
+        method="post" novalidate="novalidate">
+        @csrf
         <div class="row">
             <div class="col-sm-12">
-                <div class="form-group"><label for="exampleInputName">Họ tên</label><input id="form_name" name="name"
-                        class="form-control" type="text"></div>
+                <div class="form-group"><label for="exampleInputName">Họ tên</label><input id="form_name"
+                        name="full_name" class="form-control" type="text"></div>
             </div>
             <div class="col-sm-12">
                 <div class="form-group"><label for="exampleInputEmail">Email</label><input id="form_email"
