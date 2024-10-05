@@ -78,6 +78,11 @@ class SettingModel extends AdminModel
             $result['bcc'] = self::select('value')->where('key_value', 'setting-email-bcc')->first()->value;
         }
 
+        if ($params['type'] == 'social') {
+            $result = self::select('value')->where('key_value', 'setting-social')->firstOrFail()->toArray();
+            $result = json_decode($result['value'], true);
+        }
+
         return $result;
     }
 
@@ -141,6 +146,12 @@ class SettingModel extends AdminModel
 
         if ($options['task'] == 'setting-email-bcc') {
             $type = 'setting-email-bcc';
+            $value = json_encode($this->prepareParams($params), JSON_UNESCAPED_UNICODE);
+            self::where('key_value', $type)->update(['value' => $value]);
+        }
+
+        if ($options['task'] == 'setting-social') {
+            $type = 'setting-social';
             $value = json_encode($this->prepareParams($params), JSON_UNESCAPED_UNICODE);
             self::where('key_value', $type)->update(['value' => $value]);
         }

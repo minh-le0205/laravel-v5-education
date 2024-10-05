@@ -16,6 +16,9 @@ return [
         'form_input' => [
             'class' => 'form-control col-md-6 col-xs-12'
         ],
+        'form_input_tags' => [
+            'class' => 'tags form-control col-md-6 col-xs-12'
+        ],
         'form_label_edit' => [
             'class' => 'control-label col-md-4 col-sm-3 col-xs-12'
         ],

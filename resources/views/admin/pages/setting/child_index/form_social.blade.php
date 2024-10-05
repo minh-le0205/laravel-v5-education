@@ -2,7 +2,7 @@
     use App\Helpers\Form as FormTemplate;
     use App\Helpers\Template;
 
-    $formInputAttr = config('zvn.template.form_input');
+    $formInputAttr = config('zvn.template.form_input_tags');
     $formLabelAttr = config('zvn.template.form_label');
 
     $elements = [

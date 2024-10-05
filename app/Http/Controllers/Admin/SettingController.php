@@ -54,4 +54,13 @@ class SettingController extends Controller
             return redirect()->route($this->controllerName, ['type' => 'email'])->with('zvn_notify', 'Cập nhật tài khoản email bcc thành công!');
         }
     }
+
+    public function social(Request $request)
+    {
+        if ($request->method() == 'POST') {
+            $params = $request->all();
+            $this->model->saveItem($params, ['task' => 'setting-social']);
+            return redirect()->route($this->controllerName, ['type' => 'social'])->with('zvn_notify', 'Cập nhật thông tin social thành công!');
+        }
+    }
 }

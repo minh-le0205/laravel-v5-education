@@ -2,7 +2,7 @@
     use App\Helpers\Form as FormTemplate;
     use App\Helpers\Template;
 
-    $formInputAttr = config('zvn.template.form_input');
+    $formInputAttr = config('zvn.template.form_input_tags');
     $formLabelAttr = config('zvn.template.form_label');
     $bccEmail = '';
     if (!empty($item['bcc'])) {
@@ -12,7 +12,7 @@
     $elements = [
         [
             'label' => Form::label('', '', $formLabelAttr),
-            'element' => Form::textArea('email_bcc', $bccEmail['email_bcc'], ['class' => 'tags form-control']),
+            'element' => Form::textArea('email_bcc', $bccEmail['email_bcc'], $formInputAttr),
         ],
         [
             'element' => Form::submit('Lưu', ['class' => 'btn btn-success']),
