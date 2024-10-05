@@ -18,7 +18,8 @@ class SettingModel extends AdminModel
             'status'
         ];
         $this->crudNotAccepted = [
-            '_token'
+            '_token',
+            'general-task'
         ];
     }
 
@@ -66,8 +67,8 @@ class SettingModel extends AdminModel
     {
         $result = null;
 
-        if ($options['task'] == 'get-item') {
-            $result = self::select('id', 'key_value', 'value', 'status')->where('id', $params['id'])->first();
+        if ($params['type'] == 'general') {
+            $result = self::select('value')->where('key_value', 'setting-general')->first()->toArray();
         }
 
         return $result;
@@ -117,6 +118,12 @@ class SettingModel extends AdminModel
             $params['modified_by']   = "minhle";
             $params['modified']      = date('Y-m-d');
             self::where('id', $params['id'])->update($this->prepareParams($params));
+        }
+
+        if ($options['task'] == 'setting-general') {
+            $type = 'setting-general';
+            $value = json_encode($this->prepareParams($params), JSON_UNESCAPED_UNICODE);
+            self::where('key_value', $type)->update(['value' => $value]);
         }
     }
 

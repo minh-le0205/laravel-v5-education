@@ -6,17 +6,22 @@
     $formLabelAttr = config('zvn.template.form_label');
     $formCkEditor = config('zvn.template.form_ckeditor');
 
-    $logoElement = '
+    $logo = $item['logo'] ?? '';
+    $logoElement = sprintf(
+        '
         <div class="input-group">
    <span class="input-group-btn">
      <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
        <i class="fa fa-picture-o"></i> Choose
      </a>
    </span>
-   <input id="thumbnail" class="form-control" type="text" name="logo">
+   <input id="thumbnail" class="form-control" type="text" name="logo" value="%s">
  </div>
- <img id="holder" style="margin-top:15px;max-height:100px;">
-    ';
+ <img id="holder" style="margin-top:15px;max-height:100px;" src="%s">
+    ',
+        $logo,
+        asset($logo),
+    );
 
     $elements = [
         [
@@ -50,7 +55,7 @@
             'element' => Form::textArea('maps', @$item['maps'], $formInputAttr),
         ],
         [
-            'element' => Form::submit('Lưu', ['class' => 'btn btn-success', 'name' => 'general-task']),
+            'element' => Form::submit('Lưu', ['class' => 'btn btn-success']),
             'type' => 'btn-submit',
         ],
     ];
@@ -58,7 +63,7 @@
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
-            @include('admin.templates.x_title', ['title' => 'Cấu hình chung '])
+            @include('admin.templates.x_title', ['title' => 'Cấu hình chung'])
             <div class="x_content">
                 {{ Form::open([
                     'method' => 'POST',

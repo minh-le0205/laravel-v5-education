@@ -25,7 +25,9 @@
                         <div role="tabpanel"class="tab-pane fade active in">
                             @switch($type)
                                 @case('general')
-                                    @include('admin.pages.setting.child_index.form_general')
+                                    @include('admin.pages.setting.child_index.form_general', [
+                                        'item' => $item,
+                                    ])
                                 @break
 
                                 @case('email')

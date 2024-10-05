@@ -20,8 +20,22 @@ class SettingController extends Controller
         view()->share('controllerName', $this->controllerName);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view($this->pathViewController . "index");
+        $params['type'] = $request->input('type', 'general');
+        $item = $this->model->getItem($params, null);
+        if (!empty($item)) {
+            $item = json_decode($item['value'], true);
+        }
+        return view($this->pathViewController . "index", compact('item'));
+    }
+
+    public function general(Request $request)
+    {
+        if ($request->method() == 'POST') {
+            $params = $request->all();
+            $this->model->saveItem($params, ['task' => 'setting-general']);
+            return redirect()->route($this->controllerName, ['type' => 'general'])->with('zvn_notify', 'Xóa phần tử thành công!');
+        }
     }
 }
