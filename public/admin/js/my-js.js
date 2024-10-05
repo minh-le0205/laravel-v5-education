@@ -126,4 +126,9 @@ $(document).ready(function () {
     });
 
     $("#lfm").filemanager("image");
+
+    $(".tags").tagsInput({
+        defaultText: "",
+        width: "100%",
+    });
 });

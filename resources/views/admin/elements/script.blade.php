@@ -15,4 +15,5 @@
 <script src="{{ asset('admin/js/notify.min.js') }}"></script>
 <script src="{{ asset('admin/js/custom.min.js') }}"></script>
 <script src="{{ asset('admin/js/my-js.js') }}"></script>
+<script src="{{ asset('admin/js/tags_input/jquery.tagsinput.min.js') }}"></script>
 <script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
