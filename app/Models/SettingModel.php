@@ -63,7 +63,7 @@ class SettingModel extends AdminModel
         return $result;
     }
 
-    public function getItem($params, $options)
+    public function getItem($params, $options = null)
     {
         $result = null;
 
