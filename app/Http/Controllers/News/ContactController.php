@@ -35,7 +35,8 @@ class ContactController extends Controller
             $mailService->sendMailConfirm($data);
             $mailService->sendMailInfo($data);
 
-
+            $contactModel = new ContactModel();
+            $contactModel->saveItem($data, ['task' => 'add-item']);
 
             return redirect()->route($this->controllerName)->with('zvn_notify', 'Cảm ơn bạn đã gửi thông tin. Chúng tôi sẽ liên hệ trong thời gian sớm nhát');
         }
