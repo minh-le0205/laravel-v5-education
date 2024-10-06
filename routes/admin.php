@@ -274,4 +274,20 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => 
       'uses' => $controller . 'emailBcc'
     ]);
   });
+
+  // Contact Group
+  $prefix = 'contact';
+  $controllerName = 'contact';
+  Route::group(['prefix' => $prefix], function () use ($controllerName) {
+    $controller = ucfirst($controllerName) . 'Controller@';
+    Route::get('/', [
+      'as' => 'admin/' . $controllerName,
+      'uses' => $controller . 'index'
+    ]);
+
+    Route::get('/hasContacted/{id}', [
+      'as' => $controllerName . '/hasContacted',
+      'uses' => $controller . 'hasContacted'
+    ])->where('id', '[0-9]+');
+  });
 });

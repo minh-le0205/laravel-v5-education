@@ -36,6 +36,7 @@
                     <li><a href="{{ route('setting', ['type' => 'social']) }}">Social</a></li>
                 </ul>
             </li>
+            <li><a href="{{ route('admin/contact') }}"><i class="fa fa-phone-square"></i> Contact</a></li>
         </ul>
     </div>
 </div>

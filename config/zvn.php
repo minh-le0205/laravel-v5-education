@@ -31,6 +31,11 @@ return [
             'all' => ['class' => 'btn-success', 'name' => 'Tất cả'],
             'default' => ['class' => 'btn-danger', 'name' => 'Chưa xác định'],
         ],
+        'has_contacted' => [
+            '1' => ['class' => 'btn-primary', 'name' => 'Đã liên hệ'],
+            '0' => ['class' => 'btn-warning', 'name' => 'Chưa liên hệ'],
+            'all' => ['class' => 'btn-success', 'name' => 'Tất cả'],
+        ],
         'is_home' => [
             '0' => ['class' => 'btn-primary', 'name' => 'Hiển thị'],
             '1' => ['class' => 'btn-warning', 'name' => 'Không hiển thị'],

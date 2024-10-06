@@ -142,6 +142,39 @@ class Template
         return $xhtml;
     }
 
+    public static function showButtonFilterContact($controllerName, $countListStatus, $currentFilterStatus)
+    {
+        $xhtml = null;
+
+        $tmpStatusClass = Config::get('zvn.template.has_contacted');
+
+        if ($countListStatus > 0) {
+            array_unshift($countListStatus, [
+                'user_count' => array_sum(array_column($countListStatus, 'user_count')),
+                'has_contacted' => 'all'
+            ]);
+            foreach ($countListStatus as $value) {
+                $statusName = array_key_exists($value['has_contacted'], $tmpStatusClass) ? $tmpStatusClass[$value['has_contacted']]['name'] : $tmpStatusClass['default']['name'];
+                $link = route($controllerName) . '?filter_status=' . $value['has_contacted'];
+                $currentActiveClass = ($currentFilterStatus == $value['has_contacted']) ? 'btn-primary' : 'btn-info';
+                $xhtml .= sprintf(
+                    '
+                <a href="%s" type="button" class="btn %s">
+                                %s <span class="badge bg-white">%s</span>
+                            </a>
+                ',
+                    $link,
+                    $currentActiveClass,
+                    $statusName,
+                    $value['user_count'],
+                );
+            }
+        }
+
+
+        return $xhtml;
+    }
+
     public static function showSearchArea($controllerName)
     {
         $xhtml = null;
@@ -237,6 +270,24 @@ class Template
         $xhtml = sprintf('
             <input min="0" style="width:60px;margin-left:30%%" type="number" class="form-control ordering" id="ordering-%s" data-url="%s" value="%s"/>
         ', $id, $link, $orderingValue);
+
+        return $xhtml;
+    }
+
+    public static function showItemHasContacted($controllerName, $id, $hasContacted)
+    {
+        $tmplStatus = Config::get('zvn.template.has_contacted');
+
+        $route = route($controllerName . '/hasContacted', ['has_contacted' => $hasContacted, 'id' => $id]);
+
+        $xhtml = sprintf(
+            '<button data-url="%s" data-class="%s" type="button"
+            class="btn btn-round %s is-home-ajax">%s</button>',
+            $route,
+            $tmplStatus[$hasContacted]['class'],
+            $tmplStatus[$hasContacted]['class'],
+            $tmplStatus[$hasContacted]['name']
+        );
 
         return $xhtml;
     }

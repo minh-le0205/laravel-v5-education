@@ -49,7 +49,7 @@ class ContactModel extends AdminModel
                 }
             }
 
-            $result =  $query->orderBy('ordering', 'asc')
+            $result =  $query->orderBy('id', 'asc')
                 ->paginate($params['pagination']['totalItemsPerPage']);
         }
 
