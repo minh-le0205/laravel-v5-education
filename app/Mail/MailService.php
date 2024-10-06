@@ -24,7 +24,7 @@ class MailService
       Mail::send([], [], function ($message) use ($mail, $data) {
         $message->from($mail['email_account_username'], $this->fromTitle);
         $message->to($data['email']);
-        $message->subject($this->fromTitle . '- Thông báo gửi liên hệ thành công');
+        $message->subject($this->fromTitle . ' - Thông báo gửi liên hệ thành công');
 
         $content = sprintf(
           '
