@@ -29,4 +29,26 @@ $(document).ready(function () {
             }
         }
     });
+
+    // Save form info to localStorage
+    $("#contact_form").on("submit", function () {
+        localStorage.setItem(
+            "full_name",
+            $('#contact_form [name="full_name"]').val()
+        );
+
+        localStorage.setItem("email", $('#contact_form [name="email"]').val());
+
+        localStorage.setItem("phone", $('#contact_form [name="phone"]').val());
+    });
+
+    if ($("#contact_form").length > 0) {
+        $('#contact_form [name="full_name"]').val(
+            localStorage.getItem("full_name")
+        );
+
+        $('#contact_form [name="email"]').val(localStorage.getItem("email"));
+
+        $('#contact_form [name="phone"]').val(localStorage.getItem("phone"));
+    }
 });
