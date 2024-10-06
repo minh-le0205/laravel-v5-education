@@ -18,5 +18,19 @@ class ContactController extends AdminController
         parent::__construct();
     }
 
-    public function hasContacted(Request $request) {}
+    public function hasContacted(Request $request)
+    {
+        $params["currentHasContacted"] = $request->has_contacted;
+        $params["id"] = $request->id;
+        $this->model->saveItem($params, ['task' => 'change-has-contacted']);
+
+        $hasContacted = $request->has_contacted == '1' ? '0' : '1';
+
+        $route = route($this->controllerName . '/hasContacted', ['has_contacted' => $hasContacted, 'id' => $request->id]);
+
+        return response()->json([
+            'statusObj' => config('zvn.template.has_contacted')[$hasContacted],
+            'route' => $route,
+        ]);
+    }
 }

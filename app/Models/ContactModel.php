@@ -103,8 +103,9 @@ class ContactModel extends AdminModel
         }
 
         if ($options['task'] == 'change-has-contacted') {
-            $hasContacted = ($params['currentHasContacted'] == "yes") ? "no" : "yes";
-            self::where('id', $params['id'])->update(['has_contacted' => $hasContacted]);
+            $hasContacted = $params['currentHasContacted'] == '1' ? '0' : '1';
+            self::where('id', $params['id'])
+                ->update(['has_contacted' => $hasContacted]);
         }
     }
 
