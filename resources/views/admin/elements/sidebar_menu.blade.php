@@ -37,6 +37,7 @@
                 </ul>
             </li>
             <li><a href="{{ route('admin/contact') }}"><i class="fa fa-phone-square"></i> Contact</a></li>
+            <li><a href="{{ route('logs') }}"><i class="fa fa-exclamation-circle"></i> Logs</a></li>
         </ul>
     </div>
 </div>

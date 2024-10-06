@@ -290,4 +290,12 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => 
       'uses' => $controller . 'hasContacted'
     ])->where('id', '[0-9]+');
   });
+
+  // Logs group
+  $prefix = 'logs';
+  Route::group(['prefix' => $prefix], function () {
+    Route::get('/', function () {
+      return view('admin.pages.logs.index');
+    })->name('logs');
+  });
 });
