@@ -26,9 +26,10 @@ class CategoryController extends AdminController
         $item = null;
 
         if ($request->id != null) {
-            $params['id'] = $request->id;
-            $item = $this->model->getItem($params, ['task' => 'get-item']);
+            $this->params['id'] = $request->id;
+            $item = $this->model->getItem($this->params, ['task' => 'get-item']);
         }
+
 
         $nodes = $this->model->getListItems($this->params, ['task' => 'admin-list-items-in-selectbox']);
 

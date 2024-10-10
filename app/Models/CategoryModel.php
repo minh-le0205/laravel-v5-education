@@ -69,6 +69,10 @@ class CategoryModel extends AdminModel
                 'name'
             )->where('_lft', '<>', NULL)->withDepth()->defaultOrder();
 
+            if (isset($params['id'])) {
+                $node = self::find($params['id']);
+                $query->where('_lft', '<', $node->_lft)->orWhere('_lft', '>', $node->_rgt);
+            }
             $nodes = $query->get()->toFlatTree();
 
             foreach ($nodes as $value) {
@@ -134,10 +138,15 @@ class CategoryModel extends AdminModel
         }
 
         if ($options['task'] == 'edit-item') {
-            $params['modified_by'] = 'minhle';
-            $params['modified'] = Date('Y-m-d');
-            $params = $this->prepareParams($params);
-            self::where('id', $params['id'])->update($params);
+            $params['modified_by'] = session('userInfo')['username'];
+            $params['modified'] = date('Y-m-d H:i:s');
+            $parent = self::find($params['parent_id']);
+
+            $query = $current = self::find($params['id']);
+            $query->update($this->prepareParams($params));
+            if ($current->parent_id != $params['parent_id']) {
+                $query->prependToNode($parent)->save();
+            }
         }
 
         if ($options['task'] == 'change-is-home') {
