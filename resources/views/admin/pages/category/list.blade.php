@@ -24,7 +24,9 @@
                             $rowClass = $key % 2 == 0 ? 'even' : 'odd';
                             $id = $item->id;
                             $status = Template::showItemStatus($controllerName, $id, $item->status);
-                            $isHome = Template::showItemIsHome($controllerName, $id, $item->is_home);
+                            if (!is_null($item->is_home)) {
+                                $isHome = Template::showItemIsHome($controllerName, $id, $item->is_home);
+                            }
                             $display = Template::showItemSelect($controllerName, $id, $item->display, 'display');
                             $name = Highlight::show($item['name'], $params['search'], 'name');
                             $createdHistory = Template::showItemHistory($item->created_by, $item->created);
