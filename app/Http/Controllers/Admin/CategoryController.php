@@ -21,6 +21,24 @@ class CategoryController extends AdminController
         parent::__construct();
     }
 
+    public function form(Request $request)
+    {
+        $item = null;
+
+        if ($request->id != null) {
+            $params['id'] = $request->id;
+            $item = $this->model->getItem($params, ['task' => 'get-item']);
+        }
+
+        $nodes = $this->model->getListItems($this->params, ['task' => 'admin-list-items-in-selectbox']);
+
+
+        return view($this->pathViewController . 'form', [
+            'item' => $item,
+            'nodes' => $nodes
+        ]);
+    }
+
     public function isHome(Request $request)
     {
         $params["currentIsHome"] = $request->is_home;
@@ -49,6 +67,7 @@ class CategoryController extends AdminController
                 $task = 'edit-item';
                 $notify = 'Cập nhật phần tử thành công.';
             }
+
             $this->model->saveItem($params, ['task' => $task]);
 
             return redirect()->route($this->controllerName)->with('zvn_notify', $notify);

@@ -24,6 +24,7 @@
                             $rowClass = $key % 2 == 0 ? 'even' : 'odd';
                             $id = $item->id;
                             $status = Template::showItemStatus($controllerName, $id, $item->status);
+                            $isHome = null;
                             if (!is_null($item->is_home)) {
                                 $isHome = Template::showItemIsHome($controllerName, $id, $item->is_home);
                             }
