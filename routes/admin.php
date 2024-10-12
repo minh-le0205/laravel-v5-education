@@ -123,6 +123,11 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => 
       'as' => $controllerName . '/type',
       'uses' => $controller . 'type'
     ])->where('id', '[0-9]+');
+
+    Route::get('/change-category-{category_id}/{id}', [
+      'as' => $controllerName . '/change-category',
+      'uses' => $controller . 'changeCategory'
+    ])->where('id', '[0-9]+');
   });
 
   // User Group

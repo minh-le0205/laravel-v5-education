@@ -26,7 +26,13 @@
                             $name = Highlight::show($item['name'], $params['search'], 'name');
                             $content = Highlight::show($item['content'], $params['search'], 'content');
                             $thumb = Template::showItemThumbNews($controllerName, $item->thumb, $item->name);
-                            $categoryName = $item['category_name'];
+                            $category = Form::select('select_change_attr', $itemsCategory, $item->category_id, [
+                                'class' => 'form-control',
+                                'data-url' => route("$controllerName/change-category", [
+                                    'id' => $id,
+                                    'category_id' => 'value_new',
+                                ]),
+                            ]);
                             $type = Template::showItemSelect($controllerName, $id, $item->type, 'type');
                             $listBtn = Template::showButtonAction($controllerName, $id);
                         @endphp
@@ -41,7 +47,7 @@
                             </td>
                             </td>
                             <td class="text-center">
-                                {!! $categoryName !!}
+                                {!! $category !!}
                             </td>
                             <td class="text-center">
                                 {!! $type !!}

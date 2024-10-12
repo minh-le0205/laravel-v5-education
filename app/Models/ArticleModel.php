@@ -41,7 +41,8 @@ class ArticleModel extends AdminModel
                 'article.modified',
                 'article.modified_by',
                 'category.name as category_name',
-                'article.type'
+                'article.type',
+                'article.category_id'
             )->leftJoin('category', 'article.category_id', '=', 'category.id');
             if ($params['filter']['status'] != 'all') {
                 $query->where('article.status', $params['filter']['status']);
@@ -238,6 +239,13 @@ class ArticleModel extends AdminModel
             $type = $params['currentType'];
             self::where('id', $params['id'])
                 ->update(['type' => $type]);
+        }
+
+        if ($options['task'] == 'change-category') {
+            $params['modified_by'] = session('userInfo')['username'];
+            $params['modified'] = date('Y-m-d H:i:s');
+            self::where('id', $params['id'])
+                ->update($this->prepareParams($params));
         }
     }
 
