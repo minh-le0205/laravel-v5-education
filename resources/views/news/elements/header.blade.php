@@ -2,6 +2,7 @@
     use App\Models\CategoryModel as CategoryModel;
     use App\Models\MenuModel as MenuModel;
     use App\Helpers\Url as UrlHelper;
+    use App\Helpers\Template;
 
     $categoryModel = new CategoryModel();
     $itemsCategory = $categoryModel->getListItems(null, ['task' => 'news-list-items']);
@@ -36,22 +37,11 @@
                     $item['name'],
                 );
                 $xhtmlMenu .= '<span class="caret"></span></a>';
-                $xhtmlMenu .= '<ul class="dropdown-menu">';
-                foreach ($itemsCategory as $item) {
-                    $link = UrlHelper::linkCategory($item['id'], $item['name']);
-
-                    $classActive = $categoryIdCurrent == $item['id'] ? 'class="active"' : '';
-
-                    $xhtmlMenu .= sprintf(
-                        '
-                    <li %s><a data-parent="category_article" style="margin:16px;" href="%s">%s</a></li>
-                ',
-                        $classActive,
-                        $link,
-                        $item['name'],
-                    );
+                if (count($itemsCategory) > 0) {
+                    $xhtmlMenu .= '<ul class="dropdown-menu">';
+                    Template::showNestedMenu($itemsCategory, $xhtmlMenu);
+                    $xhtmlMenu .= '</ul>';
                 }
-                $xhtmlMenu .= '</ul>';
                 $xhtmlMenu .= '</li>';
             }
         }

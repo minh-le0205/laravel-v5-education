@@ -337,4 +337,19 @@ class Template
 
         return $xhtml;
     }
+
+    public static function showNestedMenu($items, &$xhtml)
+    {
+        foreach ($items as $item) {
+            $link = Url::linkCategory($item['id'], $item['name']);
+            if (count($item['children'])) {
+                $xhtml .= '<li class="nav-item">';
+                $xhtml .= sprintf('<a href="%s" class="nav-link dropdown-item">%s<span class="fa fa-caret-right" style="margin-left:7px;"></span></a><ul class="submenu dropdown-menu">', $link, $item['name']);
+                Template::showNestedMenu($item['children'], $xhtml);
+                $xhtml .= '</ul></li>';
+            } else {
+                $xhtml .= sprintf('<li class="nav-item"> <a class="nav-link dropdown-item" href="%s">%s</a></li>', $link, $item['name']);
+            }
+        }
+    }
 }

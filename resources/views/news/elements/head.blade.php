@@ -16,3 +16,4 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('news/js/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('news/js/OwlCarousel2-2.2.1/animate.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('news/css/combine-all.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('news/css/dropdown.css') }}">
