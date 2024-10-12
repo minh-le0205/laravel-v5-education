@@ -77,6 +77,14 @@ class CategoryModel extends AdminModel
             }
         }
 
+        if ($options['task'] == 'news-breadcrumbs') {
+            $results = self::withDepth()
+                ->having('depth', '>', 0)
+                ->defaultOrder()
+                ->ancestorsAndSelf($params['category_id'])
+                ->toArray();
+        }
+
         return $results;
     }
 

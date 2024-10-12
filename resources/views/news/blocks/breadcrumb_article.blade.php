@@ -14,7 +14,9 @@
                         <div class="breadcrumbs">
                             <ul class="d-flex flex-row align-items-start justify-content-start">
                                 <li><a href="{{ route('home') }}">Trang chủ</a></li>
-                                <li><a href="{{ $linkCategory }}">{!! $item['category_name'] !!}</a></li>
+                                @foreach ($breadcrumbs as $breadcrumb)
+                                    <li><a href="{!! UrlHelper::linkCategory($breadcrumb['id'], $breadcrumb['name']) !!}">{!! $breadcrumb['name'] !!}</a></li>
+                                @endforeach
                                 <li>{!! $item['name'] !!}</li>
                             </ul>
                         </div>

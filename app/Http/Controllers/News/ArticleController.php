@@ -24,6 +24,7 @@ class ArticleController extends Controller
     {
         $params['article_id'] = $request->article_id;
         $articleModel = new ArticleModel();
+        $categoryModel = new CategoryModel();
 
 
         $itemArticle = $articleModel->getItem($params, ['task' => 'news-get-items']);
@@ -38,11 +39,14 @@ class ArticleController extends Controller
         $params['category_id'] = $itemArticle['category_id'];
         $itemArticle['related_articles'] = $articleModel->getListItems($params, ['task' => 'news-list-items-related-in-category']);
 
+        $breadcrumbs = $categoryModel->getListItems($params, ['task' => 'news-breadcrumbs']);
+
 
         return view($this->pathViewController . "index", [
             'params' => $this->params,
             'itemsLatest' => $itemsLatest,
-            'itemArticle' => $itemArticle
+            'itemArticle' => $itemArticle,
+            'breadcrumbs' => $breadcrumbs
         ]);
     }
 }

@@ -38,11 +38,14 @@ class CategoryController extends Controller
 
         $itemsLatest = $articleModel->getListItems(null, ['task' => 'news-list-items-latest']);
 
+        $breadcrumbs = $categoryModel->getListItems($params, ['task' => 'news-breadcrumbs']);
+
 
         return view($this->pathViewController . "index", [
             'params' => $this->params,
             'itemsLatest' => $itemsLatest,
-            'itemCategory' => $itemCategory
+            'itemCategory' => $itemCategory,
+            'breadcrumbs' => $breadcrumbs
         ]);
     }
 }
