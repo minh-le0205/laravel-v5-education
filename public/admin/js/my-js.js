@@ -125,6 +125,22 @@ $(document).ready(function () {
         });
     });
 
+    $('select[name="filter_category"]').on("change", function () {
+        var pathName = window.location.pathname;
+        let searchParams = new URLSearchParams(window.location.search);
+        params = ["filter_status", "search_field", "search_value"];
+        let link = "";
+
+        $.each(params, function (key, value) {
+            if (searchParams.has(value)) {
+                link += `${value}=${searchParams.get(value)}&`;
+            }
+        });
+
+        let filter_category = $(this).val();
+        window.location.href = `${pathName}?${link}filter_category=${filter_category}`;
+    });
+
     $("#lfm").filemanager("image");
 
     $(".tags").tagsInput({

@@ -45,6 +45,21 @@ class CategoryModel extends AdminModel
             $results = $query->get()->toArray();
         }
 
+        if ($options['task'] == 'admin-list-items-in-selectbox-for-article') {
+            $nodes = self::select('id', 'name')
+                ->withDepth()
+                ->having('depth', '>', 0)
+                ->defaultOrder()
+                ->where('status', 'active')
+                ->get()
+                ->toFlatTree()
+                ->toArray();
+
+            foreach ($nodes as $value) {
+                $results[$value['id']] = str_repeat('|----', $value['depth']) . $value['name'];
+            }
+        }
+
         if ($options['task'] == 'admin-list-items-in-selectbox') {
             $query = self::select(
                 'id',

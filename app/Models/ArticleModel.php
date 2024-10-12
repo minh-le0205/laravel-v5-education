@@ -7,6 +7,7 @@ use DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Models\AdminModel;
+use App\Models\CategoryModel;
 
 class ArticleModel extends AdminModel
 {
@@ -45,6 +46,13 @@ class ArticleModel extends AdminModel
             if ($params['filter']['status'] != 'all') {
                 $query->where('article.status', $params['filter']['status']);
             }
+
+            if ($params['filter']['category'] != 'all') {
+                $categories = CategoryModel::descendantsAndSelf($params['filter']['category'])->pluck('id')->toArray();
+                $query->whereIn('article.category_id', $categories);
+            }
+
+
             if ($params['search']['field'] != "") {
                 if ($params['search']['field'] == 'all') {
                     foreach ($this->fieldSearchAccepted as $column) {

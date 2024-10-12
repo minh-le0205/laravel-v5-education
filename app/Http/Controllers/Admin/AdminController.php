@@ -22,6 +22,7 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         $this->params['filter']['status'] = $request->input('filter_status', 'all');
+        $this->params['filter']['category'] = $request->input('filter_category', 'all');
         $this->params['search']['field'] = $request->input('search_field', '');
         $this->params['search']['value'] = $request->input('search_value', '');
         $items = $this->model->getListItems($this->params, ['task' => 'admin-list-item']);
