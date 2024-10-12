@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use Config;
+use App\Models\CategoryModel;
 
 class Template
 {
@@ -288,6 +289,51 @@ class Template
             $tmplStatus[$hasContacted]['class'],
             $tmplStatus[$hasContacted]['name']
         );
+
+        return $xhtml;
+    }
+
+    public static function showNestedSetName($name, $level)
+    {
+        $xhtml = str_repeat("|------", $level - 1);
+        $xhtml .= sprintf(
+            '
+            <span class="badge badge-danger p-1">%s</span> <strong>%s</strong>
+        ',
+            $level,
+            $name
+        );
+
+        return $xhtml;
+    }
+
+
+
+    public static function showNestedSetUpDown($controllerName, $id)
+    {
+        $upButton = sprintf(
+            '
+        <a href="%s" type="button" class="btn btn-primary mb-0" data-toggle="tooltip" title="" data-original-title="Up"> <i class="fa fa-long-arrow-up"></i>
+        </a>',
+            route("$controllerName/move", ['id' => $id, 'type' => 'up'])
+        );
+
+        $downButton = sprintf(
+            '
+            <a href="%s" type="button" class="btn btn-primary mb-0" data-toggle="tooltip" title="" data-original-title="Down"> <i class="fa fa-long-arrow-down"></i>
+            </a>',
+            route("$controllerName/move", ['id' => $id, 'type' => 'down'])
+        );
+
+        $node = CategoryModel::find($id);
+
+        if (empty($node->getPrevSibling()) || empty($node->getPrevSibling()->parent_id)) $upButton = '';
+        if (empty($node->getNextSibling())) $downButton = '';
+        $xhtml = '
+            <span style="width: 36px; display: inline-block">' . $upButton . '</span>
+            <span style="width: 36px; display: inline-block">' . $downButton . '</span>
+        ';
+
 
         return $xhtml;
     }

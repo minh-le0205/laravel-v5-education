@@ -10,6 +10,7 @@
                     <th class="column-title text-center">ID</th>
                     <th class="column-title text-center">Category</th>
                     <th class="column-title text-center">Trạng thái</th>
+                    <th class="column-title text-center">Ordering</th>
                     <th class="column-title text-center">Hiển thị home</th>
                     <th class="column-title text-center">Kiểu hiển thị</th>
                     <th class="column-title text-center">Tạo mới</th>
@@ -29,16 +30,20 @@
                                 $isHome = Template::showItemIsHome($controllerName, $id, $item->is_home);
                             }
                             $display = Template::showItemSelect($controllerName, $id, $item->display, 'display');
-                            $name = Highlight::show($item['name'], $params['search'], 'name');
+                            $name = Template::showNestedSetName($item->name, $item->depth);
                             $createdHistory = Template::showItemHistory($item->created_by, $item->created);
                             $modifiedHistory = Template::showItemHistory($item->modified_by, $item->modified);
                             $listBtn = Template::showButtonAction($controllerName, $id);
+                            $move = Template::showNestedSetUpDown($controllerName, $id);
                         @endphp
                         <tr class="{{ $rowClass }} pointer">
                             <td class="text-center">{{ $item->id }}</td>
-                            <td class="text-center">{!! $name !!}</td>
+                            <td>{!! $name !!}</td>
                             <td class="text-center">
                                 {!! $status !!}
+                            </td>
+                            <td class="text-center">
+                                {!! $move !!}
                             </td>
                             <td class="text-center">
                                 {!! $isHome !!}

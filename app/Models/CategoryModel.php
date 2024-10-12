@@ -20,31 +20,11 @@ class CategoryModel extends AdminModel
     {
         $results = null;
         if ($options['task'] == 'admin-list-item') {
-            $query = self::select(
-                'id',
-                'status',
-                'is_home',
-                'display',
-                'name',
-                'created',
-                'created_by',
-                'modified',
-                'modified_by'
-            );
-            if ($params['filter']['status'] != 'all') {
-                $query->where('status', $params['filter']['status']);
-            }
-            if ($params['search']['field'] != "") {
-                if ($params['search']['field'] == 'all') {
-                    foreach ($this->fieldSearchAccepted as $column) {
-                        $query->orWhere($column, "LIKE", "%" . $params['search']['value'] . "%");
-                    }
-                } else if (in_array($params['search']['field'], $this->fieldSearchAccepted)) {
-                    $query->where($params['search']['field'], "LIKE", "%" . $params['search']['value'] . "%");
-                }
-            }
-            $results = $query->orderBy('id', 'desc')
-                ->paginate($params['pagination']['totalItemsPerPage']);
+            $results = self::withDepth()
+                ->having('depth', '>', 0)
+                ->defaultOrder()
+                ->get()
+                ->toFlatTree();
         }
 
         if ($options['task'] == 'news-list-items') {
@@ -168,5 +148,14 @@ class CategoryModel extends AdminModel
             $node = self::find($params['id']);
             $node->delete();
         }
+    }
+
+    public function move($params = null, $options = null)
+    {
+        $node = self::find($params['id']);
+        $historyBy = session('userInfo')['username'];
+        $this->where('id', $params['id'])->update(['modified_by' => $historyBy]);
+        if ($params['type'] == 'down') $node->down();
+        if ($params['type'] == 'up') $node->up();
     }
 }

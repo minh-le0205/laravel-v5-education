@@ -53,6 +53,11 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => 
       'as' => $controllerName . '/display',
       'uses' => $controller . 'display'
     ])->where('id', '[0-9]+');
+
+    Route::get('/move-{type}/{id}', [
+      'as' => $controllerName . '/move',
+      'uses' => $controller . 'move'
+    ])->where('id', '[0-9]+');
   });
 
   // Slider Group
