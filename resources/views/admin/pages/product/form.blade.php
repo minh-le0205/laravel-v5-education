@@ -21,6 +21,10 @@
             'element' => Form::text('name', $item['name'] ?? '', $formInputAttr),
         ],
         [
+            'label' => Form::label('description', 'Description', $formLabelAttr),
+            'element' => Form::textArea('description', $item['description'] ?? '', $formCkEditor),
+        ],
+        [
             'label' => Form::label('content', 'Content', $formLabelAttr),
             'element' => Form::textArea('content', $item['content'] ?? '', $formCkEditor),
         ],
@@ -31,6 +35,10 @@
         [
             'label' => Form::label('category_id', 'Category', $formLabelAttr),
             'element' => Form::select('category_id', $itemsCategory, $item['category_id'] ?? '', $formInputAttr),
+        ],
+        [
+            'label' => Form::label('price', 'Price', $formLabelAttr),
+            'element' => Form::text('price', $item['price'] ?? '', $formInputAttr),
         ],
         [
             'label' => Form::label('thumb', 'Thumb', $formLabelAttr),
