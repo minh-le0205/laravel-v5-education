@@ -90,6 +90,7 @@ return [
             'user'      => ['all', 'username', 'email', 'fullname'],
             'rss'       => ['all', 'name', 'link'],
             'menu'       => ['all', 'name'],
+            'attribute'       => ['all', 'name'],
         ],
         'button' => [
             'default' => ['edit', 'delete'],
@@ -98,7 +99,8 @@ return [
             'article' => ['edit', 'delete'],
             'user'      => ['edit'],
             'rss'   => ['edit', 'delete'],
-            'menu' => ['edit', 'delete']
+            'menu' => ['edit', 'delete'],
+            'attribute' => ['edit', 'delete']
         ]
     ],
     'notify' => [

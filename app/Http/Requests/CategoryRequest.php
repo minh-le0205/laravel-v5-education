@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CategoryRequest extends FormRequest
 {
-    protected $table = 'category';
+    protected $table = 'category_article';
     /**
      * Determine if the user is authorized to make this request.
      *

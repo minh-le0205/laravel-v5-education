@@ -40,10 +40,10 @@ class ArticleModel extends AdminModel
                 'article.created_by',
                 'article.modified',
                 'article.modified_by',
-                'category.name as category_name',
+                'category_article.name as category_name',
                 'article.type',
                 'article.category_id'
-            )->leftJoin('category', 'article.category_id', '=', 'category.id');
+            )->leftJoin('category_article', 'article.category_id', '=', 'category_article.id');
             if ($params['filter']['status'] != 'all') {
                 $query->where('article.status', $params['filter']['status']);
             }
@@ -82,10 +82,10 @@ class ArticleModel extends AdminModel
                 'article.content',
                 'article.created',
                 'article.category_id',
-                'category.name as category_name',
+                'category_article.name as category_name',
                 'article.thumb',
                 'article.created_by'
-            )->leftJoin('category', 'article.category_id', '=', 'category.id')
+            )->leftJoin('category_article', 'article.category_id', '=', 'category_article.id')
                 ->where('article.status', 'active')
                 ->where('article.type', 'feature')
                 ->orderBy('id', 'desc')
@@ -101,10 +101,10 @@ class ArticleModel extends AdminModel
                 'article.content',
                 'article.created',
                 'article.category_id',
-                'category.name as category_name',
+                'category_article.name as category_name',
                 'article.thumb',
                 'article.created_by'
-            )->leftJoin('category', 'article.category_id', '=', 'category.id')
+            )->leftJoin('category_article', 'article.category_id', '=', 'category_article.id')
                 ->where('article.status', 'active')
                 ->orderBy('publish_at', 'desc')
                 ->take(4);
@@ -137,10 +137,10 @@ class ArticleModel extends AdminModel
                 'article.content',
                 'article.created',
                 'article.category_id',
-                'category.name as category_name',
+                'category_article.name as category_name',
                 'article.thumb',
                 'article.created_by'
-            )->leftJoin('category', 'article.category_id', '=', 'category.id')
+            )->leftJoin('category_article', 'article.category_id', '=', 'category_article.id')
                 ->where('article.id', '!=', $params['article_id'])
                 ->where('article.category_id', '=', $params['category_id'])
                 ->orderBy('id', 'desc')
@@ -169,13 +169,13 @@ class ArticleModel extends AdminModel
                 'article.name',
                 'article.content',
                 'article.category_id',
-                'category.name as category_name',
+                'category_article.name as category_name',
                 'article.thumb',
                 'article.created',
                 'article.created_by',
-                'category.display'
+                'category_article.display'
             )
-                ->leftJoin('category', 'category.id', '=', 'article.category_id')
+                ->leftJoin('category_article', 'category_article.id', '=', 'article.category_id')
                 ->where('article.id', $params['article_id'])
                 ->where('article.status', '=', 'active')
                 ->first();

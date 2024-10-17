@@ -13,7 +13,7 @@ class CategoryModel extends AdminModel
 {
     use NodeTrait;
 
-    protected $table = 'category';
+    protected $table = 'category_article';
     protected $guarded = [];
 
     public function getListItems($params, $options)
