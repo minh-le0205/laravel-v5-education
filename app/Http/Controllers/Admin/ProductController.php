@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\ProductModel as MainModel;
 use App\Models\CategoryProductModel;
+use App\Models\AttributeModel;
 use App\Http\Requests\ProductRequest as MainRequest;
 use App\Http\Controllers\Admin\AdminController;
 
@@ -59,11 +60,16 @@ class ProductController extends AdminController
         }
 
         $categoryModel  = new CategoryProductModel();
-        $itemsCategory  = $categoryModel->getListItems(null, ['task' => 'admin-list-items-in-selectbox']);
+        $attributeModel = new AttributeModel();
+
+
+        $itemsCategory  = $categoryModel->getListItems(null, ['task' => 'admin-list-items-in-selectbox-for-product']);
+        $itemsAttribute = $attributeModel->getListItems(null, ['task' => 'admin-list-item-for-product']);
 
         return view($this->pathViewController . 'form', [
             'item' => $item,
-            'itemsCategory' => $itemsCategory
+            'itemsCategory' => $itemsCategory,
+            'itemsAttribute' => $itemsAttribute
         ]);
     }
 }

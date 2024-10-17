@@ -35,6 +35,7 @@
                 <ul class="nav child_menu">
                     <li><a href="{{ route('categoryProduct') }}">Danh mục</a></li>
                     <li><a href="{{ route('product') }}">Sản phẩm</a></li>
+                    <li><a href="{{ route('attribute') }}">Thuộc tính</a></li>
                 </ul>
             </li>
             <li><a href="{{ route('rss') }}"><i class="fa fa-rss"></i> Rss</a></li>
@@ -50,7 +51,6 @@
             </li>
             <li><a href="{{ route('admin/contact') }}"><i class="fa fa-phone-square"></i> Contact</a></li>
             <li><a href="{{ route('logs') }}"><i class="fa fa-exclamation-circle"></i> Logs</a></li>
-            <li><a href="{{ route('attribute') }}"><i class="fa fa-print"></i> Attribute</a></li>
         </ul>
     </div>
 </div>

@@ -57,6 +57,13 @@ class AttributeModel extends AdminModel
             $result = $query->get()->toArray();
         }
 
+        if ($options['task'] == 'admin-list-item-for-product') {
+            $result = $this->select(
+                'id',
+                'name',
+                'ordering'
+            )->where('status', 'active')->orderBy('ordering', 'asc')->get();
+        }
 
 
         return $result;

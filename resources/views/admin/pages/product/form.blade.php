@@ -75,6 +75,7 @@
                     {!! Form::close() !!}
                 </div>
             </div>
+            @include('admin.pages.product.form_attribute')
         </div>
     </div>
 @endsection
