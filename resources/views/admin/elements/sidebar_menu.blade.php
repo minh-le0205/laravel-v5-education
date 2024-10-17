@@ -38,6 +38,7 @@
             </li>
             <li><a href="{{ route('admin/contact') }}"><i class="fa fa-phone-square"></i> Contact</a></li>
             <li><a href="{{ route('logs') }}"><i class="fa fa-exclamation-circle"></i> Logs</a></li>
+            <li><a href="{{ route('attribute') }}"><i class="fa fa-print"></i> Attribute</a></li>
         </ul>
     </div>
 </div>

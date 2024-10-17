@@ -308,4 +308,40 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => 
       return view('admin.pages.logs.index');
     })->name('logs');
   });
+
+
+  // Attribute Group
+  $prefix = 'attribute';
+  $controllerName = 'attribute';
+  Route::group(['prefix' => $prefix], function () use ($controllerName) {
+    $controller = ucfirst($controllerName) . 'Controller@';
+    Route::get('/', [
+      'as' => $controllerName,
+      'uses' => $controller . 'index'
+    ]);
+    Route::get('/form/{id?}', [
+      'as' => $controllerName . '/form',
+      'uses' => $controller . 'form'
+    ])->where('id', '[0-9]+');
+
+    Route::post('/save', [
+      'as' => $controllerName . '/save',
+      'uses' => $controller . 'save'
+    ]);
+
+    Route::get('/delete/{id}', [
+      'as' => $controllerName . '/delete',
+      'uses' => $controller . 'delete'
+    ])->where('id', '[0-9]+');
+
+    Route::get('/change-status-{status}/{id}', [
+      'as' => $controllerName . '/status',
+      'uses' => $controller . 'changeStatus'
+    ])->where('id', '[0-9]+');
+
+    Route::get('/change-ordering-{ordering}/{id}', [
+      'as' => $controllerName . '/ordering',
+      'uses' => $controller . 'changeOrdering'
+    ])->where('id', '[0-9]+');
+  });
 });
