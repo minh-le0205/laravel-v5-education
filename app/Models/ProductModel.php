@@ -152,7 +152,7 @@ class ProductModel extends AdminModel
     {
         $result = null;
         if ($options['task'] == 'get-item') {
-            $result = self::select('id', 'name', 'content', 'status', 'thumb', 'category_id')->where('id', $params['id'])->first();
+            $result = self::select('id', 'name', 'description', 'content', 'status', 'thumb', 'category_id', 'price')->where('id', $params['id'])->first();
         }
 
         if ($options['task'] == 'get-thumb') {

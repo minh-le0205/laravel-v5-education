@@ -91,6 +91,7 @@ return [
             'rss'       => ['all', 'name', 'link'],
             'menu'       => ['all', 'name'],
             'attribute'       => ['all', 'name'],
+            'product'       => ['all', 'name'],
         ],
         'button' => [
             'default' => ['edit', 'delete'],
@@ -100,7 +101,8 @@ return [
             'user'      => ['edit'],
             'rss'   => ['edit', 'delete'],
             'menu' => ['edit', 'delete'],
-            'attribute' => ['edit', 'delete']
+            'attribute' => ['edit', 'delete'],
+            'product' => ['edit', 'delete']
         ]
     ],
     'notify' => [
