@@ -41,7 +41,7 @@ class CategoryProductModel extends AdminModel
             $results = $query->get()->toArray();
         }
 
-        if ($options['task'] == 'admin-list-items-in-selectbox-for-article') {
+        if ($options['task'] == 'admin-list-items-in-selectbox-for-product') {
             $nodes = self::select('id', 'name')
                 ->withDepth()
                 ->having('depth', '>', 0)

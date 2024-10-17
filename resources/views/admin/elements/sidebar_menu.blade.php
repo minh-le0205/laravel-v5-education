@@ -34,6 +34,7 @@
                 <a><i class="fa fa-product-hunt"></i> Quản lý sản phẩm</a>
                 <ul class="nav child_menu">
                     <li><a href="{{ route('categoryProduct') }}">Danh mục</a></li>
+                    <li><a href="{{ route('product') }}">Sản phẩm</a></li>
                 </ul>
             </li>
             <li><a href="{{ route('rss') }}"><i class="fa fa-rss"></i> Rss</a></li>
