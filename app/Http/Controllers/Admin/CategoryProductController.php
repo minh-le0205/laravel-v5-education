@@ -3,17 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Models\CategoryModel as MainModel;
-use App\Http\Requests\CategoryRequest as MainRequest;
+use App\Models\CategoryProductModel as MainModel;
+use App\Http\Requests\CategoryProductRequest as MainRequest;
 use App\Http\Controllers\Admin\AdminController;
 
-
-class CategoryController extends AdminController
+class CategoryProductController extends AdminController
 {
     public function __construct()
     {
-        $this->pathViewController = "admin.pages.category.";
-        $this->controllerName = 'category';
+        $this->pathViewController = "admin.pages.category_product.";
+        $this->controllerName = 'categoryProduct';
         $this->model = new MainModel();
         $this->params['pagination']['totalItemsPerPage'] = 5;
         parent::__construct();
@@ -38,22 +37,6 @@ class CategoryController extends AdminController
         ]);
     }
 
-    public function isHome(Request $request)
-    {
-        $params["currentIsHome"] = $request->is_home;
-        $params["id"] = $request->id;
-        $this->model->saveItem($params, ['task' => 'change-is-home']);
-
-        $isHome = $request->is_home == '1' ? '0' : '1';
-
-        $route = route($this->controllerName . '/isHome', ['is_home' => $isHome, 'id' => $request->id]);
-
-        return response()->json([
-            'statusObj' => config('zvn.template.is_home')[$isHome],
-            'route' => $route,
-        ]);
-    }
-
     public function save(MainRequest $request)
     {
         if ($request->method() == 'POST') {
@@ -71,18 +54,6 @@ class CategoryController extends AdminController
 
             return redirect()->route($this->controllerName)->with('zvn_notify', $notify);
         }
-    }
-
-    public function display(Request $request)
-    {
-        $params["currentDisplay"] = $request->display;
-        $params["id"] = $request->id;
-
-        $this->model->saveItem($params, ['task' => 'change-display']);
-
-        return response()->json([
-            'status' => 'success'
-        ]);
     }
 
     public function move(Request $request)

@@ -30,6 +30,12 @@
                     <li><a href="{{ route('article') }}">Bài viết</a></li>
                 </ul>
             </li>
+            <li>
+                <a><i class="fa fa-product-hunt"></i> Quản lý sản phẩm</a>
+                <ul class="nav child_menu">
+                    <li><a href="{{ route('categoryProduct') }}">Danh mục</a></li>
+                </ul>
+            </li>
             <li><a href="{{ route('rss') }}"><i class="fa fa-rss"></i> Rss</a></li>
             <li><a href="{{ route('menu') }}"><i class="fa fa-bars"></i> Menu</a></li>
             <li><a href="{{ route('admin/gallery') }}"><i class="fa fa-file-image-o"></i> Gallery</a></li>

@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use Config;
 use App\Models\CategoryModel;
+use App\Models\CategoryProductModel;
 
 class Template
 {
@@ -325,7 +326,17 @@ class Template
             route("$controllerName/move", ['id' => $id, 'type' => 'down'])
         );
 
-        $node = CategoryModel::find($id);
+        $node = null;
+
+        switch ($controllerName) {
+            case 'categoryProduct':
+                $node = CategoryProductModel::find($id);
+                break;
+
+            case 'category':
+                $node = CategoryModel::find($id);
+                break;
+        }
 
         if (empty($node->getPrevSibling()) || empty($node->getPrevSibling()->parent_id)) $upButton = '';
         if (empty($node->getNextSibling())) $downButton = '';
