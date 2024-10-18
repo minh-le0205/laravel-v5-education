@@ -23,4 +23,4 @@
 <link href="{{ asset('admin/css/jquery.tagsinput.min.css') }}" rel="stylesheet">
 {{-- Dropzone CSS --}}
 <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
+<link href="{{ asset('admin/asset/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet">
