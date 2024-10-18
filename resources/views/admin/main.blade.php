@@ -28,6 +28,7 @@
         </div>
     </div>
     @include('admin.elements.script')
+    @yield('after_script')
 </body>
 
 </html>

@@ -42,11 +42,7 @@
         ],
         [
             'label' => Form::label('thumb', 'Thumb', $formLabelAttr),
-            'element' => Form::file('thumb', $formInputAttr),
-            'thumb' => !empty($item['id'])
-                ? Template::showItemThumbNews($controllerName, $item['thumb'], $item['name'])
-                : null,
-            'type' => 'thumb',
+            'type' => 'dropzone',
         ],
         [
             'element' => $inputHiddenId . $inputHiddenThumb . Form::submit('Save', ['class' => 'btn btn-success']),
@@ -73,6 +69,42 @@
                     ]) !!}
                     {!! FormTemplate::show($elements) !!}
                     {!! Form::close() !!}
+                    <div id="tpl" style="display: none">
+                        {{-- <div class="dz-preview-dz-file-preview">
+                            <div class="dz-image" style="margin: auto">
+                                <img data-dz-thumbnail />
+                            </div>
+                            <div class="dz-details">
+                                <div class="dz-filename">
+                                    <span data-dz-name></span>
+                                </div>
+                                <div class="dz-size" data-dz-size></div>
+                            </div>
+                            <div class="dz-progress">
+                                <span class="dz-upload" data-dz-uploadprogress></span>
+                            </div>
+                            <div class="dz-error-message">
+                                <span data-dz-errormessage></span>
+                            </div>
+                            <div style="margin-top: 5px" class="input-thumb">
+                                <input type="text" placeholder="Alt ảnh" name="thumb [alt][]" class="dz-custom-input">
+                            </div>
+                        </div> --}}
+                        <div class="dz-preview dz-file-preview">
+                            <div class="dz-details">
+                                <div class="dz-filename"><span data-dz-name></span></div>
+                                <div class="dz-size" data-dz-size></div>
+                                <img data-dz-thumbnail />
+                            </div>
+                            <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                            <div class="dz-success-mark"><span>✔</span></div>
+                            <div class="dz-error-mark"><span>✘</span></div>
+                            <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            <div style="margin-top: 5px" class="input-thumb">
+                                <input type="text" placeholder="Alt ảnh" name="thumb [alt][]" class="dz-custom-input">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             @if (isset($item['id']))
@@ -80,4 +112,44 @@
             @endif
         </div>
     </div>
+@endsection
+
+
+{{-- Dropzone script --}}
+@section('after_script')
+    <script>
+        $(document).ready(function() {
+            $('#dropzone').sortable({});
+            let uploadedDocumentMap = {};
+            Dropzone.options.dropzone = {
+                dictDefaultMessage: "Kéo thả hình ảnh vào để tải lên",
+                dictRemoveFile: "Xóa",
+                url: "{{ route('product/media') }}",
+                acceptedFiles: ".jpeg, .jpg, .png, .gif",
+                addRemoveLinks: true,
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                previewTemplate: document.querySelector('#tpl').innerHTML,
+                success: function(file, response) {
+                    $(file.previewElement)
+                        .find('.input-thumb')
+                        .append(`<input type="hidden" name="thumb[name][]" value="${response.name}">`);
+                    uploadedDocumentMap[file.name] = response.name;
+                },
+                removedfile: function(file) {
+                    file.previewElement.remove();
+                    var name = "";
+                    if (typeof file.name !== 'undefined') {
+                        name = file.name;
+                    } else {
+                        name = uploadedDocumentMap[file.name];
+                    }
+                },
+                error: function(tile, response) {
+                    return false;
+                },
+            };
+        });
+    </script>
 @endsection

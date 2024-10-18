@@ -34,6 +34,17 @@ class Form
                     $element['element']
                 );
                 break;
+            case 'dropzone':
+                $xhtml .= sprintf(
+                    '<div class="form-group">
+                        %s
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="dropzone" id="dropzone"></div>
+                        </div>
+                    </div>',
+                    $element['label']
+                );
+                break;
             case 'thumb':
                 $xhtml .= sprintf(
                     '

@@ -17,3 +17,5 @@
 <script src="{{ asset('admin/js/my-js.js') }}"></script>
 <script src="{{ asset('admin/js/tags_input/jquery.tagsinput.min.js') }}"></script>
 <script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
+<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+<script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>

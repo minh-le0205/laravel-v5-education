@@ -429,5 +429,10 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => 
       'as' => $controllerName . '/save_attribute',
       'uses' => $controller . 'saveAttribute'
     ]);
+
+    Route::post('/media', [
+      'as' => $controllerName . '/media',
+      'uses' => $controller . 'media'
+    ]);
   });
 });
