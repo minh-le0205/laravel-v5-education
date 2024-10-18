@@ -70,26 +70,6 @@
                     {!! FormTemplate::show($elements) !!}
                     {!! Form::close() !!}
                     <div id="tpl" style="display: none">
-                        {{-- <div class="dz-preview-dz-file-preview">
-                            <div class="dz-image" style="margin: auto">
-                                <img data-dz-thumbnail />
-                            </div>
-                            <div class="dz-details">
-                                <div class="dz-filename">
-                                    <span data-dz-name></span>
-                                </div>
-                                <div class="dz-size" data-dz-size></div>
-                            </div>
-                            <div class="dz-progress">
-                                <span class="dz-upload" data-dz-uploadprogress></span>
-                            </div>
-                            <div class="dz-error-message">
-                                <span data-dz-errormessage></span>
-                            </div>
-                            <div style="margin-top: 5px" class="input-thumb">
-                                <input type="text" placeholder="Alt ảnh" name="thumb [alt][]" class="dz-custom-input">
-                            </div>
-                        </div> --}}
                         <div class="dz-preview dz-file-preview">
                             <div class="dz-image" style="margin:auto;"><img data-dz-thumbnail /></div>
                             <div class="dz-details">
@@ -119,7 +99,7 @@
 @section('after_script')
     <script>
         $(document).ready(function() {
-            $('#dropzone').sortable({});
+            $('#dropzone').sortable();
             let uploadedDocumentMap = {};
             Dropzone.options.dropzone = {
                 dictDefaultMessage: "Kéo thả hình ảnh vào để tải lên",
