@@ -75,7 +75,9 @@
                     {!! Form::close() !!}
                 </div>
             </div>
-            @include('admin.pages.product.form_attribute')
+            @if (isset($item['id']))
+                @include('admin.pages.product.form_attribute')
+            @endif
         </div>
     </div>
 @endsection

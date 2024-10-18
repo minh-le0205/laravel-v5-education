@@ -424,5 +424,10 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => 
       'as' => $controllerName . '/change-category',
       'uses' => $controller . 'changeCategory'
     ])->where('id', '[0-9]+');
+
+    Route::post('/save-attribute', [
+      'as' => $controllerName . '/save_attribute',
+      'uses' => $controller . 'saveAttribute'
+    ]);
   });
 });

@@ -147,4 +147,10 @@ $(document).ready(function () {
         defaultText: "",
         width: "100%",
     });
+
+    $(".product-attr-tags").tagsInput({
+        defaultText: "",
+        width: "100%",
+        delimiter: "$$",
+    });
 });

@@ -236,6 +236,23 @@ class ProductModel extends AdminModel
             self::where('id', $params['id'])
                 ->update($this->prepareParams($params));
         }
+
+        if ($options['task'] == 'save-attribute') {
+            $this->table = 'product_attribute';
+            self::where('product_id', $params['id'])->delete();
+            foreach ($params['attribute'] as $key => $attribute) {
+                if (!empty($attribute)) {
+                    $_attributes = explode("$$", $attribute);
+                    foreach ($_attributes as $ele) {
+                        self::insert([
+                            'product_id' => $params['id'],
+                            'attribute_id' => $key,
+                            'value' => $ele,
+                        ]);
+                    }
+                }
+            }
+        }
     }
 
     public function deleteItem($params, $options)

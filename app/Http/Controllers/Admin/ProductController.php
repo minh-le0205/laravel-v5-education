@@ -72,4 +72,17 @@ class ProductController extends AdminController
             'itemsAttribute' => $itemsAttribute
         ]);
     }
+
+    public function saveAttribute(Request $request)
+    {
+        if ($request->method() == 'POST') {
+            $params = $request->all();
+
+            $notify = 'Cập nhật thuộc tính thành công';
+
+            $this->model->saveItem($params, ['task' => 'save-attribute']);
+
+            return redirect()->route($this->controllerName)->with('zvn_notify', $notify);
+        }
+    }
 }
