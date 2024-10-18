@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ProductModel as MainModel;
 use App\Models\CategoryProductModel;
 use App\Models\AttributeModel;
+use App\Models\ProductAttributeModel;
 use App\Http\Requests\ProductRequest as MainRequest;
 use App\Http\Controllers\Admin\AdminController;
 
@@ -61,10 +62,20 @@ class ProductController extends AdminController
 
         $categoryModel  = new CategoryProductModel();
         $attributeModel = new AttributeModel();
+        $productAttributeModel = new ProductAttributeModel();
 
 
         $itemsCategory  = $categoryModel->getListItems(null, ['task' => 'admin-list-items-in-selectbox-for-product']);
         $itemsAttribute = $attributeModel->getListItems(null, ['task' => 'admin-list-item-for-product']);
+
+        foreach ($itemsAttribute as $attribute) {
+            $attribute['values'] = $productAttributeModel->getListItems(
+                [
+                    'product_id' => @$params['id'],
+                    'attribute_id' => $attribute['id']
+                ]
+            );
+        }
 
         return view($this->pathViewController . 'form', [
             'item' => $item,

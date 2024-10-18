@@ -22,4 +22,23 @@ class ProductAttributeModel extends AdminModel
             '_token'
         ];
     }
+
+    public function getListItems($params, $options = null)
+    {
+        $result = null;
+
+        if (!empty($params['product_id'])) {
+            $query = self::select('value')
+                ->where('product_id', $params['product_id'])
+                ->where('attribute_id', $params['attribute_id'])
+                ->get()->toArray();
+
+            if (!empty($query)) {
+                $result = implode('$$', array_column($query, 'value'));
+            }
+        }
+
+
+        return $result;
+    }
 }

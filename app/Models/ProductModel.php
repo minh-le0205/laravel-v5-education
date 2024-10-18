@@ -239,7 +239,7 @@ class ProductModel extends AdminModel
 
         if ($options['task'] == 'save-attribute') {
             $this->table = 'product_attribute';
-            self::where('product_id', $params['id'])->delete();
+            self::where('product_id', $params['id'])->whereIn('attribute_id', array_keys($params['attribute']))->delete();
             foreach ($params['attribute'] as $key => $attribute) {
                 if (!empty($attribute)) {
                     $_attributes = explode("$$", $attribute);

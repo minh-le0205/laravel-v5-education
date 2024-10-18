@@ -10,7 +10,7 @@
         foreach ($itemsAttribute as $item) {
             $elementsA[] = [
                 'label' => Form::label("attribute[$item->id]", $item->name, $formLabelAttr),
-                'element' => Form::textArea("attribute[$item->id]", '', [
+                'element' => Form::textArea("attribute[$item->id]", @$item->values, [
                     'class' => 'product-attr-tags form-control col-md-6 col-xs-12',
                     'id' => "attribute-$item->id",
                 ]),
