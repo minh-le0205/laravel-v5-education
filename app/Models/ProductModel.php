@@ -275,7 +275,12 @@ class ProductModel extends AdminModel
     {
         if ($options['task'] == 'delete-item') {
             $item = self::getItem($params, ['task' => 'get-thumb']);
-            $this->deleteThumbNews($item['thumb']);
+            if (!empty($item['thumb'])) {
+                $thumbList = json_decode($item['thumb']);
+                foreach ($thumbList as $thumb) {
+                    $this->deleteThumb($thumb->name);
+                }
+            }
             self::where('id', $params['id'])->delete();
         }
     }
