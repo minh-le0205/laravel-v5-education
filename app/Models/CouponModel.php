@@ -46,14 +46,14 @@ class CouponModel extends AdminModel
                 }
             }
 
-            $result =  $query->orderBy('ordering', 'asc')
+            $result =  $query->orderBy('id', 'asc')
                 ->paginate($params['pagination']['totalItemsPerPage']);
         }
 
         if ($options['task'] == 'news-list-items') {
             $query = $this->select('*')
                 ->where('status', '=', 'active')
-                ->orderBy('ordering', 'asc');
+                ->orderBy('id', 'asc');
 
             $result = $query->get()->toArray();
         }

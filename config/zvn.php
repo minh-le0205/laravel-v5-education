@@ -48,6 +48,10 @@ return [
             'normal' => ['name' => 'Bình thường'],
             'feature' => ['name' => 'Nổi bật'],
         ],
+        'type_discount_coupon' => [
+            'percent' => ['name' => 'Giảm theo %'],
+            'price' => ['name' => 'Giảm trực tiếp'],
+        ],
         'rss_source' => [
             'vnexpress'   => ['name' => 'VNExpress'],
             'tuoitre'     => ['name' => 'Tuổi Trẻ'],

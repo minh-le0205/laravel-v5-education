@@ -38,6 +38,12 @@
                     <li><a href="{{ route('attribute') }}">Thuộc tính</a></li>
                 </ul>
             </li>
+            <li>
+                <a><i class="fa fa-money"></i> Quản lý bán hàng</a>
+                <ul class="nav child_menu">
+                    <li><a href="{{ route('coupon') }}">Mã giảm giá</a></li>
+                </ul>
+            </li>
             <li><a href="{{ route('rss') }}"><i class="fa fa-rss"></i> Rss</a></li>
             <li><a href="{{ route('menu') }}"><i class="fa fa-bars"></i> Menu</a></li>
             <li><a href="{{ route('admin/gallery') }}"><i class="fa fa-file-image-o"></i> Gallery</a></li>
