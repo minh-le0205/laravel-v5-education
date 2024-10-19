@@ -5,6 +5,7 @@ namespace App\Models;
 use DB;
 use App\Models\AdminModel;
 use App\Models\CategoryProductModel;
+use Illuminate\Support\Facades\File;
 
 class ProductModel extends AdminModel
 {
@@ -19,7 +20,8 @@ class ProductModel extends AdminModel
         ];
         $this->crudNotAccepted = [
             '_token',
-            'thumb_current'
+            'thumb_current',
+            'thumb_'
         ];
     }
 
@@ -212,9 +214,17 @@ class ProductModel extends AdminModel
                 ->update(['status' => $status]);
         }
         if ($options['task'] == 'add-item') {
-            $params['thumb'] = $this->uploadThumbNews($params['thumb']);
-            $params['created_by'] = 'minhle';
-            $params['created'] = Date('Y-m-d');
+            $thumb = [];
+            if (isset($params['thumb']['name'])) {
+                foreach ($params['thumb_']['alt'] as $key => $value) {
+                    $thumb[$key]['name'] = $params['thumb']['name'][$key];
+                    $thumb[$key]['alt'] = $value;
+                    $thumb[$key]['size'] = File::size("images/$this->folderUpload/" . $thumb[$key]['name']);
+                }
+            }
+            $params['thumb'] = json_encode($thumb);
+            $params['created_by'] = session('userInfo')['username'];
+            $params['created'] = date('Y-m-d H:i:s');
             $params = $this->prepareParams($params);
             self::insert($params);
         }

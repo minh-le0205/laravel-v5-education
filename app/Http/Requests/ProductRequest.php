@@ -25,17 +25,17 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         $id = $this->id;
-        $thumbCondition = 'bail|required|image|max:100';
+        // $thumbCondition = 'bail|required|image|max:100';
         $nameCondition = "bail|required|between:5,100|unique:$this->table,name";
         if (!empty($id)) {
-            $thumbCondition = 'bail|image|max:100';
+            // $thumbCondition = 'bail|image|max:100';
             $nameCondition .= ",$id";
         }
         return [
             'name' => $nameCondition,
             'content' => 'bail|required|min:5',
             'status' => 'bail|in:active,inactive',
-            'thumb' => $thumbCondition
+            // 'thumb' => $thumbCondition
         ];
     }
 
