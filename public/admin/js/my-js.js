@@ -153,4 +153,20 @@ $(document).ready(function () {
         width: "100%",
         delimiter: "$$",
     });
+
+    $("#btn-generate-coupon").click(function (e) {
+        e.preventDefault();
+        let newCode = createRandomString(6);
+        $("input[name='code']").val(newCode);
+    });
+
+    function createRandomString(length) {
+        const chars =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        let result = "";
+        for (let i = 0; i < length; i++) {
+            result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return result;
+    }
 });

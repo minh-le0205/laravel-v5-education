@@ -448,7 +448,7 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => 
     ]);
     Route::get('/form/{id?}', [
       'as' => $controllerName . '/form',
-      'uses' => $controller . 'formProduct'
+      'uses' => $controller . 'form'
     ])->where('id', '[0-9]+');
 
     Route::post('/save', [
