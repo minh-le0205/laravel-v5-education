@@ -24,3 +24,5 @@
 {{-- Dropzone CSS --}}
 <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 <link href="{{ asset('admin/asset/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet">
+{{-- DateRangePicker --}}
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
