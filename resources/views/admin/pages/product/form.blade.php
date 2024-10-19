@@ -6,6 +6,8 @@
     $formLabelAttr = config('zvn.template.form_label');
     $formCkEditor = config('zvn.template.form_ckeditor');
 
+    $srcThumb = asset('images/product/');
+
     $statusValue = [
         'default' => 'Select status',
         'active' => config('zvn.template.status.active.name'),
@@ -129,6 +131,23 @@
                 error: function(tile, response) {
                     return false;
                 },
+                // Display image if existing
+                @if (isset($item) && $item['thumb'])
+                    init: function() {
+                        var files = JSON.parse({!! json_encode($item['thumb']) !!}); // Correctly format this as JSON
+                        for (var i in files) {
+                            var file = files[i];
+                            var src = "{{ $srcThumb }}" + "/" + file.name;
+                            this.displayExistingFile(file, src);
+                            file.previewElement.classList.add('dz-complete');
+                            $(file.previewElement)
+                                .find('.input-thumb')
+                                .append(
+                                    `<input type="hidden" name="thumb[name][]" value="${file.name}">`);
+                            $(file.previewElement).find('.input-thumb [name="thumb[alt][]"]').val(file.alt);
+                        }
+                    }
+                @endif
             };
         });
     </script>

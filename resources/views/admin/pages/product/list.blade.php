@@ -24,7 +24,8 @@
                             $status = Template::showItemStatus($controllerName, $id, $item->status);
                             $name = Highlight::show($item['name'], $params['search'], 'name');
                             $content = Highlight::show($item['content'], $params['search'], 'content');
-                            $thumb = Template::showItemThumbNews($controllerName, $item->thumb, $item->name);
+                            $thumbName = json_decode($item->thumb)[0]->name ?? '';
+                            $thumb = Template::showItemThumb($controllerName, $thumbName, $item->name);
                             $category = Form::select('select_change_attr', $itemsCategory, $item->category_id, [
                                 'class' => 'form-control',
                                 'data-url' => route("$controllerName/change-category", [

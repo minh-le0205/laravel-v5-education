@@ -230,12 +230,18 @@ class ProductModel extends AdminModel
         }
 
         if ($options['task'] == 'edit-item') {
-            if (!empty($params['thumb'])) {
-                $this->deleteThumbNews($params['thumb_current']);
-                $params['thumb'] = $this->uploadThumbNews($params['thumb']);
+            $thumb = [];
+            if (isset($params['thumb']['name'])) {
+                foreach ($params['thumb_']['alt'] as $key => $value) {
+                    $thumb[$key]['name'] = $params['thumb']['name'][$key];
+                    $thumb[$key]['alt'] = $value;
+                    $thumb[$key]['size'] = File::size("images/$this->folderUpload/" . $thumb[$key]['name']);
+                }
             }
-            $params['modified_by'] = 'minhle';
-            $params['modified'] = Date('Y-m-d');
+
+            $params['thumb'] = json_encode($thumb);
+            $params['modified_by'] = session('userInfo')['username'];
+            $params['modified'] = date('Y-m-d H:i:s');
             $params = $this->prepareParams($params);
             self::where('id', $params['id'])->update($params);
         }
