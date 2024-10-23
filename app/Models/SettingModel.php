@@ -161,10 +161,10 @@ class SettingModel extends AdminModel
         }
 
         if ($options['task'] == 'setting-video') {
+            $params['modified_by'] = session('userInfo')['username'];
+            $params['modified'] = date('Y-m-d H:i:s');
             $type = 'setting-video';
-            $value = $params['value'];
-
-            self::where('key_value', $type)->update(['value' => $value]);
+            self::where('key_value', $type)->update($params);
         }
     }
 
