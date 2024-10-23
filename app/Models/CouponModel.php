@@ -19,7 +19,9 @@ class CouponModel extends AdminModel
             'status'
         ];
         $this->crudNotAccepted = [
-            '_token'
+            '_token',
+            'code_edit',
+            'datepicker-coupon'
         ];
     }
 

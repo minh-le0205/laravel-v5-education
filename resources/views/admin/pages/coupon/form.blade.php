@@ -24,7 +24,7 @@
     $inputHiddenId = Form::hidden('id', $item['id'] ?? '');
 
     if (isset($item['id'])) {
-        $code = Form::text('code', $item['code'] ?? '', $formInputAttr + ['readonly' => true]);
+        $code = Form::text('code_edit', $item['code'] ?? '', $formInputAttr + ['readonly' => true]);
     } else {
         $code = sprintf(
             '<div class="col-lg-8">%s</div><div class="col-lg-4">%s</div>',
@@ -36,6 +36,9 @@
             ]),
         );
     }
+
+    $startTime = isset($item['start_time']) ? date('d/m/Y H:i:s', strtotime($item['start_time'])) : date('d/m/Y H:i:s');
+    $endTime = isset($item['end_time']) ? date('d/m/Y H:i:s', strtotime($item['end_time'])) : date('d/m/Y H:i:s');
 
     $elements = [
         [
@@ -49,6 +52,17 @@
         [
             'label' => Form::label('value', 'Giá trị', $formLabelAttr),
             'element' => Form::text('value', $item['value'] ?? '', $formInputAttr),
+        ],
+        [
+            'label' => Form::label('datepicker-coupon', 'Thời gian áp dụng', $formLabelAttr),
+            'element' =>
+                Form::text(
+                    'datepicker-coupon',
+                    null,
+                    $formInputAttr + ['data-start' => $startTime, 'data-end' => $endTime],
+                ) .
+                Form::hidden('start_time', $item['start_time'] ?? date('Y-m-d H:i:s')) .
+                Form::hidden('end_time', $item['end_time'] ?? date('Y-m-d H:i:s')),
         ],
         [
             'label' => Form::label('start__end_price', 'Khoảng giá áp dụng', $formLabelAttr),

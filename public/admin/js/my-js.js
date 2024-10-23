@@ -169,4 +169,52 @@ $(document).ready(function () {
         }
         return result;
     }
+
+    // Daterangpicker events
+    $("#datepicker-coupon").daterangepicker({
+        showDropdowns: true,
+        timePicker: true,
+        timePicker24Hour: true,
+        timePickerSeconds: true,
+        startDate: $("#datepicker-coupon").data("start"),
+        endDate: $("#datepicker-coupon").data("end"),
+        locale: {
+            format: "DD/MM/YYYY HH:mm:ss",
+            separator: "-",
+            applyLabel: "Apply",
+            cancelLabel: "Cancel",
+            fromLabel: "From",
+            toLabel: "To",
+            customRangeLabel: "Custom",
+            weekLabel: "W",
+            daysOfWeek: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"],
+            monthNames: [
+                "Tháng 1",
+                "Tháng 2",
+                "Tháng 3",
+                "Tháng 4",
+                "Tháng 5",
+                "Tháng 6",
+                "Tháng 7",
+                "Tháng 8",
+                "Tháng 9",
+                "Tháng 10",
+                "Tháng 11",
+                "Tháng 12",
+            ],
+            firstDay: 1,
+        },
+        opens: "center",
+        drops: "auto",
+    });
+
+    $("#datepicker-coupon").on("apply.daterangepicker", function (ev, picker) {
+        $('[name="start_time"]').val(
+            picker.startDate.format("YYYY-MM-DD HH:mm:ss")
+        );
+
+        $('[name="end_time"]').val(
+            picker.endDate.format("YYYY-MM-DD HH:mm:ss")
+        );
+    });
 });
