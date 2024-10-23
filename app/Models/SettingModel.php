@@ -83,6 +83,10 @@ class SettingModel extends AdminModel
             $result = json_decode($result['value'], true);
         }
 
+        if ($params['type'] == 'video') {
+            $result = self::select('value')->where('key_value', 'setting-video')->firstOrFail()->toArray();
+        }
+
         return $result;
     }
 
@@ -153,6 +157,13 @@ class SettingModel extends AdminModel
         if ($options['task'] == 'setting-social') {
             $type = 'setting-social';
             $value = json_encode($this->prepareParams($params), JSON_UNESCAPED_UNICODE);
+            self::where('key_value', $type)->update(['value' => $value]);
+        }
+
+        if ($options['task'] == 'setting-video') {
+            $type = 'setting-video';
+            $value = $params['value'];
+
             self::where('key_value', $type)->update(['value' => $value]);
         }
     }

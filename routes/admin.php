@@ -466,4 +466,25 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => 
       'uses' => $controller . 'changeStatus'
     ])->where('id', '[0-9]+');
   });
+
+
+  // Video Group
+  $prefix = 'video';
+  $controllerName = 'video';
+  Route::group(['prefix' => $prefix], function () use ($controllerName) {
+    $controller = ucfirst($controllerName) . 'Controller@';
+    Route::get('/', [
+      'as' => $controllerName,
+      'uses' => $controller . 'index'
+    ]);
+    Route::get('/form/{id?}', [
+      'as' => $controllerName . '/form',
+      'uses' => $controller . 'form'
+    ])->where('id', '[0-9]+');
+
+    Route::post('/save', [
+      'as' => $controllerName . '/save',
+      'uses' => $controller . 'save'
+    ]);
+  });
 });
