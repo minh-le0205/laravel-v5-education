@@ -22,7 +22,7 @@
         ],
         [
             'label' => Form::label('content', 'Content', $formLabelAttr),
-            'element' => Form::textArea('content', $item['content'] ?? '', $formCkEditor),
+            'element' => Form::textArea('content', $item['content'] ?? '', $formCkEditor + ['id' => 'ckeditor']),
         ],
         [
             'label' => Form::label('status', 'Status', $formLabelAttr),
