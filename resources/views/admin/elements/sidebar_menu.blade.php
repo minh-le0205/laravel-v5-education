@@ -42,6 +42,7 @@
                 <a><i class="fa fa-money"></i> Quản lý bán hàng</a>
                 <ul class="nav child_menu">
                     <li><a href="{{ route('coupon') }}">Mã giảm giá</a></li>
+                    <li><a href="{{ route('shipping') }}">Vận chuyển</a></li>
                 </ul>
             </li>
             <li><a href="{{ route('rss') }}"><i class="fa fa-rss"></i> Rss</a></li>

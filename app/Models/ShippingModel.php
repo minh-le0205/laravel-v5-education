@@ -3,20 +3,19 @@
 namespace App\Models;
 
 use DB;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
 use App\Models\AdminModel;
 
-class RssModel extends AdminModel
+class ShippingModel extends AdminModel
 {
     public function __construct()
     {
-        $this->table = 'rss';
-        $this->folderUpload = 'rss';
+        $this->table = 'shipping';
+        $this->folderUpload = 'shipping';
         $this->fieldSearchAccepted = [
             'id',
             'name',
-            'link',
+            'status',
+            'cost'
         ];
         $this->crudNotAccepted = [
             '_token'
@@ -27,8 +26,8 @@ class RssModel extends AdminModel
     {
         $result = null;
 
-        if ($options['task'] == "admin-list-items") {
-            $query = $this->select('id', 'name', 'status', 'link', 'ordering', 'source', 'created', 'created_by', 'modified', 'modified_by');
+        if ($options['task'] == "admin-list-item") {
+            $query = $this->select('id', 'name', 'status', 'cost', 'created', 'created_by', 'modified', 'modified_by');
 
             if ($params['filter']['status'] !== "all") {
                 $query->where('status', '=', $params['filter']['status']);
@@ -46,14 +45,14 @@ class RssModel extends AdminModel
                 }
             }
 
-            $result =  $query->orderBy('ordering', 'asc')
+            $result =  $query->orderBy('id', 'asc')
                 ->paginate($params['pagination']['totalItemsPerPage']);
         }
 
         if ($options['task'] == 'news-list-items') {
-            $query = $this->select('id', 'link', 'source')
+            $query = $this->select('id', 'name', 'status', 'cost')
                 ->where('status', '=', 'active')
-                ->orderBy('ordering', 'asc');
+                ->orderBy('id', 'asc');
 
             $result = $query->get()->toArray();
         }
@@ -68,7 +67,7 @@ class RssModel extends AdminModel
         $result = null;
 
         if ($options['task'] == 'get-item') {
-            $result = self::select('id', 'name', 'status', 'link', 'ordering', 'source')->where('id', $params['id'])->first();
+            $result = self::select('id', 'name', 'status', 'cost')->where('id', $params['id'])->first();
         }
 
         return $result;
@@ -109,14 +108,14 @@ class RssModel extends AdminModel
         }
 
         if ($options['task'] == 'add-item') {
-            $params['created_by'] = "minhle";
-            $params['created']    = date('Y-m-d');
+            $params['created_by'] = session('userInfo')['username'];
+            $params['created'] = date('Y-m-d H:i:s');
             self::insert($this->prepareParams($params));
         }
 
         if ($options['task'] == 'edit-item') {
-            $params['modified_by']   = "minhle";
-            $params['modified']      = date('Y-m-d');
+            $params['modified_by'] = session('userInfo')['username'];
+            $params['modified'] = date('Y-m-d H:i:s');
             self::where('id', $params['id'])->update($this->prepareParams($params));
         }
     }

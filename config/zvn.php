@@ -96,6 +96,7 @@ return [
             'menu'       => ['all', 'name'],
             'attribute'       => ['all', 'name'],
             'product'       => ['all', 'name'],
+            'shipping'       => ['all', 'name'],
         ],
         'button' => [
             'default' => ['edit', 'delete'],
@@ -106,7 +107,8 @@ return [
             'rss'   => ['edit', 'delete'],
             'menu' => ['edit', 'delete'],
             'attribute' => ['edit', 'delete'],
-            'product' => ['edit', 'delete']
+            'product' => ['edit', 'delete'],
+            'shipping' => ['edit', 'delete']
         ]
     ],
     'notify' => [
